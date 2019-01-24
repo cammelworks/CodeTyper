@@ -2,11 +2,26 @@
 <html lang="ja" >
   <head>
     <meta charset="utf-8">
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyCNdPBNs_yzSoj3YSAYp83giUP0xIMQ9wg",
+            authDomain: "codetyper-cc5b6.firebaseapp.com",
+            databaseURL: "https://codetyper-cc5b6.firebaseio.com",
+            projectId: "codetyper-cc5b6",
+            storageBucket: "codetyper-cc5b6.appspot.com",
+            messagingSenderId: "496234219788"
+        };
+        var file_base = firebase.initializeApp(config, "other");
+    </script>
     <title>Typing Game!</title>
     <link rel="stylesheet" href="typing.css">
   </head>
   <body>
-    <input type="file" id="selfile"><br>
     <div>
       <pre id = "target">
         ここにプログラムが表示されます．
@@ -30,3 +45,4 @@
     <script src="typing.js"></script>
   </body>
 </html>
+

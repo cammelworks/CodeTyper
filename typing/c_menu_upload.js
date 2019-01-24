@@ -18,6 +18,7 @@
         //ここで名前付け
         for(var i = 0, f; f = files[i]; i++){
             var fileRef  = storageRef.child(files[i].name+files[i].type);
+            
             fileRef.put(files[i]).then(function(snapshot) {
                 console.log('Uploaded a file!');
             });

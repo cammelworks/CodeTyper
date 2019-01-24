@@ -12,7 +12,6 @@
   let timerId;
   let initWord;
   let spaceKeyPressed;
-  let fileSelected;
   let inputedText;
 
   const inputed = document.createElement("span");
@@ -35,7 +34,6 @@
     scoreLabel.innerHTML = score;
     missLabel.innerHTML = miss;
     timerLabel.innerHTML = time;
-    fileSelected = false;
     inputed.textContent = inputedText;
     target.appendChild(inputed);
     cursor.textContent = currentWord[currentLocation];
@@ -45,7 +43,33 @@
     target.classList.add("hidden");
   }
   init();
+    
+  //firebaseからの読み込み
+  let reader = new FileReader();
+  var storageRef = file_base.storage().ref();
+    
+  var fileRef = storageRef.child('sample1.c').getDownloadURL();
+  //console.log(fileRef);
+    
+  const request = new XMLHttpRequest();
+  request.open("GET", fileRef);
+  request.addEventListener("load", (event) => {
+    console.log("hello");  
+    console.log(event.target.status); // => 200
+    console.log(event.target.responseText); // => "{...}"
+  });    
+  //////    
+  /*    
+  //テキストデータに変換
+  reader.readAsText(file);
+  reader.onload = function(ev){
+    currentWord = reader.result;
+    cursor.textContent = currentWord[currentLocation];
+    text.textContent = currentWord.substring(currentLocation + 1);
+  }
+  */
 
+  /*    
   //ファイルの読み込み
   let obj = document.getElementById("selfile");
   obj.addEventListener("change", function(evt) {
@@ -53,7 +77,6 @@
     let reader = new FileReader();
     reader.readAsText(file[0]);
     reader.onload = function(ev){
-      fileSelected = true;
       currentWord = reader.result
       // document.typing.target.value = currentWord;
       // target.innerText = currentWord;
@@ -61,6 +84,7 @@
       text.textContent = currentWord.substring(currentLocation + 1);
     }
   })
+  */
 
   //タイマーの設置
   let cursorCount = 0;
@@ -109,14 +133,8 @@
     }
   })
   window.addEventListener('keypress', function(e) {
-    if(!fileSelected){
-      alert("ファイルを選択してください");
-    }
     //ゲーム開始
     if(!spaceKeyPressed) {
-      if(!fileSelected){
-        return;
-      }
       if(String.fromCharCode(e.keyCode) === " "){
         spaceKeyPressed = true;
         updateTimer();
