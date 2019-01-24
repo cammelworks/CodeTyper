@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja" >
+  <head>
+    <meta charset="utf-8">
+    <title>Typing Game!</title>
+    <link rel="stylesheet" href="typing.css">
+  </head>
+  <body>
+    <input type="file" id="selfile"><br>
+    <div>
+      <pre id = "target">
+        ここにプログラムが表示されます．
+      </pre>
+    </div>
+    <!-- <form name="typing">
+      <textarea name="target" rows="20" cols="80" readonly>Word</textarea>
+    </form> -->
+    <div class="info">
+      <p id="letters">
+        Letters count: <span id="score">0</span>
+      </p>
+      <p id="missCount">
+        Miss count: <span id="miss">0</span>
+      </p>
+      <p id="time">
+        Remaining Time: <span id="timer"></span>
+      </p>
+    </div>
+    <p id="start">Word</p>
+    <script src="typing.js"></script>
+  </body>
+</html>
