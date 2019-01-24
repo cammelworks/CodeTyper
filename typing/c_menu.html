@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang=ja>
+    <head>
+        <meta charset="utf-8">
+        <!-- Firebase App is always required and must be first -->
+        <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCNdPBNs_yzSoj3YSAYp83giUP0xIMQ9wg",
+                authDomain: "codetyper-cc5b6.firebaseapp.com",
+                databaseURL: "https://codetyper-cc5b6.firebaseio.com",
+                projectId: "codetyper-cc5b6",
+                storageBucket: "codetyper-cc5b6.appspot.com",
+                messagingSenderId: "496234219788"
+            };
+            firebase.initializeApp(config);
+        </script>
+        <title>C MENU</title>
+    </head>
+    <body>
+        <table id="file_list">
+        </table>
+        <input type="file" id="selfile" multiple>
+        <script src="c_menu_upload.js"></script>
+    </body>
+</html>
+<script>
+    
