@@ -7,16 +7,26 @@
   </head>
   <body>
     <input type="file" id="selfile"><br>
-    <!-- <p id="target">ここにプログラムが表示されます．</p> -->
-    <form name="typing">
-      <textarea name="target" rows="20" cols="80" readonly>ここにプログラムが表示されます</textarea>
-    </form>
-    <p class="info">
-      Letters count: <span id="score">0</span>,
-      Miss count: <span id="miss">0</span>,
-      Remaining Time: <span id="timer"></span>
-    </p>
-    <p id="start">Click to start</p>
+    <div>
+      <pre id = "target">
+        ここにプログラムが表示されます．
+      </pre>
+    </div>
+    <!-- <form name="typing">
+      <textarea name="target" rows="20" cols="80" readonly>Word</textarea>
+    </form> -->
+    <div class="info">
+      <p id="letters">
+        Letters count: <span id="score">0</span>
+      </p>
+      <p id="missCount">
+        Miss count: <span id="miss">0</span>
+      </p>
+      <p id="time">
+        Remaining Time: <span id="timer"></span>
+      </p>
+    </div>
+    <p id="start">Word</p>
     <script src="typing.js"></script>
   </body>
 </html>
