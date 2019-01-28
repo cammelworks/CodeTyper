@@ -12,7 +12,6 @@
   let timerId;
   let initWord;
   let spaceKeyPressed;
-  let fileSelected;
   let inputedText;
 
   const inputed = document.createElement("span");
@@ -35,7 +34,6 @@
     scoreLabel.innerHTML = score;
     missLabel.innerHTML = miss;
     timerLabel.innerHTML = time;
-    fileSelected = false;
     inputed.textContent = inputedText;
     target.appendChild(inputed);
     cursor.textContent = currentWord[currentLocation];
@@ -45,23 +43,35 @@
     target.classList.add("hidden");
   }
   init();
-
-  //ファイルの読み込み
-  let obj = document.getElementById("selfile");
-  obj.addEventListener("change", function(evt) {
-    let file = evt.target.files;
-    let reader = new FileReader();
-    reader.readAsText(file[0]);
-    reader.onload = function(ev){
-      fileSelected = true;
-      currentWord = reader.result
-      // document.typing.target.value = currentWord;
-      // target.innerText = currentWord;
-      cursor.textContent = currentWord[currentLocation];
-      text.textContent = currentWord.substring(currentLocation + 1);
-    }
-  })
-
+    
+  //firebaseからの読み込み
+  let reader = new FileReader();
+  var storageRef = file_base.storage().ref();
+  //今はsample1.cとしています    
+  var fileRef = storageRef.child('sample1.c').getDownloadURL().then(function(url) {
+  //urlはダウンロード用url
+    // CORSの構成が必要
+    var xhr = new XMLHttpRequest();
+    //blobで指定  
+    xhr.responseType = 'blob';
+    //ファイル転送はxhrのonload内で抑える  
+    xhr.onload = function(event) {
+      var blob = xhr.response;
+      //readAsTextの引数はblob    
+      reader.readAsText(blob);
+      //以下でファイルをcurrentWordに追加    
+      reader.onload = function(ev){
+        currentWord = reader.result;
+        cursor.textContent = currentWord[currentLocation];
+        text.textContent = currentWord.substring(currentLocation + 1);
+      }    
+    };
+    xhr.open('GET', url);
+    xhr.send(); 
+  }).catch(function(error) {
+    //エラー処理
+  });
+    
   //タイマーの設置
   let cursorCount = 0;
   function updateTimer(){
@@ -109,14 +119,8 @@
     }
   })
   window.addEventListener('keypress', function(e) {
-    if(!fileSelected){
-      alert("ファイルを選択してください");
-    }
     //ゲーム開始
     if(!spaceKeyPressed) {
-      if(!fileSelected){
-        return;
-      }
       if(String.fromCharCode(e.keyCode) === " "){
         spaceKeyPressed = true;
         updateTimer();
