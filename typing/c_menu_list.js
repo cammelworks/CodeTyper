@@ -1,8 +1,10 @@
 'use strict'
 {
     var storageRef = firebase.storage().ref();
+    var databaseRef = firebase.database().ref("/c");
+    console.log(databaseRef.orderByValue());
     // Create a reference to the file whose metadata we want to retrieve
-    var fileRef = storageRef.child('.c');
+    var fileRef = storageRef.child(*+'.c');
     // Get metadata properties
     fileRef.getMetadata().then(function(metadata) {
         // Metadata now contains the metadata for 'images/forest.jpg'
