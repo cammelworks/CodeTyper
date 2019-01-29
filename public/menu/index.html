@@ -19,15 +19,24 @@
             };
             firebase.initializeApp(config);
         </script>
-        <title>C MENU</title>
+        <title>MENU</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <table id="file_list">
-        </table>
+        <ul class="programs">
+          <li><a href="#">サンプルプログラム</a></li>
+        </ul>
         <!-- <script src="menuShowlist.js"></script> -->
-        <input type="file" id="selfile" multiple>
+        <div class="button">
+          <div class="Dbutton">
+            <a href="timeAttack/index.html" id="toTimeAttack">Time attack</a>
+          </div>
+          <label for="selfile" class="selectFiles">
+            <div class="Dbutton">Upload</div>
+            <input type="file" id="selfile" multiple>
+          </label>
+        </div>
         <script src="menuUpload.js"></script>
     </body>
 </html>
 <script>
-    
