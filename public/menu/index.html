@@ -19,14 +19,20 @@
             };
             firebase.initializeApp(config);
         </script>
-        <title>MENU</title>
+        <script>
+            function changePractice(filename){
+                console.log(filename);
+                document.location.href='./practice/index.html';
+                localStorage.setItem('filename', filename);
+            }
+        </script>    
+        <title>C MENU</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <ul class="programs">
-          <li><a href="#">サンプルプログラム</a></li>
-        </ul>
-        <!-- <script src="menuShowlist.js"></script> -->
+        <div id="fileList">
+        </div>
+        <script src="menuShowlist.js"></script>
         <div class="button">
           <div class="Dbutton">
             <a href="timeAttack/index.html" id="toTimeAttack">Time attack</a>
