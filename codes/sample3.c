@@ -2,15 +2,13 @@
 int main(void){
 
     int number;
-
-	  int digit = 0;
+    int digit = 0;
 
 	  printf("Input number : ");
 	  scanf("%d", &number);
 
 	  while(number != 0){
         number = number / 10;
-
 		    ++digit;
 	  }
 
