@@ -2,7 +2,9 @@
 {
     function addList(filename){
         var divElement = document.createElement("div");
-        divElement.innerHTML = '<button>'+filename+'</>';
+        //ボタン生成
+        //ボタンクリック時にpracticeページに遷移
+        divElement.innerHTML = '<button onclick="location.href=\'./practice/index.html\'">'+filename+'</button>';
         var parentObject = document.getElementById("fileList");
         parentObject.appendChild(divElement);
     }
