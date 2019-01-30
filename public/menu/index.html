@@ -27,14 +27,22 @@
             }
         </script>    
         <title>C MENU</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <div id="fileList">
         </div>
         <script src="menuShowlist.js"></script>
-        <input type="file" id="selfile" multiple>
+        <div class="button">
+          <div class="Dbutton">
+            <a href="timeAttack/index.html" id="toTimeAttack">Time attack</a>
+          </div>
+          <label for="selfile" class="selectFiles">
+            <div class="Dbutton">Upload</div>
+            <input type="file" id="selfile" multiple>
+          </label>
+        </div>
         <script src="menuUpload.js"></script>
     </body>
 </html>
 <script>
-    

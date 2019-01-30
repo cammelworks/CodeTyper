@@ -1,5 +1,6 @@
 body{
-  margin-top: 20px;
+  width: 80%;
+  margin: 20px auto 0;
   font-family: "Courier New", sans-serif;
   text-align: center;
   color: #fff;
@@ -13,20 +14,11 @@ body{
   border: 2px solid #fff;
   border-radius: 0.8em;
   letter-spacing: 3px;
-  margin: 30px 200px;
+  margin: 30px auto;
   padding-top: 10px;
   padding-left: 10px;
 }
 
-/* textarea {
-  padding: 0.5em;
-  font-size: 30px;
-  color: #fff;
-  background-color: #000;
-  border: 2px solid #fff;
-  border-radius: 0.8em;
-  outline: none;
-} */
 .inputed {
   color: red;
 }
@@ -36,12 +28,17 @@ body{
 }
 
 .hidden {
-  color: #333;
+  color: #000;
 }
 
 .info{
+  text-align: right;
   font-size: 22px;
   color: #ccc;
+}
+
+.info p {
+  margin: 0;
 }
 
 .info > #letters {
@@ -56,7 +53,8 @@ body{
   color: blue;
 }
 #start{
-  margin-top: -500px;;
+  width: 60%;
+  margin: -400px auto 0;
   font-size: 60px;
   color: #fff;
 }
