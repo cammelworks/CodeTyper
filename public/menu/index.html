@@ -19,6 +19,13 @@
             };
             firebase.initializeApp(config);
         </script>
+        <script>
+            function changePractice(filename){
+                console.log(filename);
+                document.location.href='./practice/index.html';
+                localStorage.setItem('filename', filename);
+            }
+        </script>    
         <title>C MENU</title>
     </head>
     <body>

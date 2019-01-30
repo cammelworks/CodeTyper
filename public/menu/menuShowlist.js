@@ -1,10 +1,13 @@
 'use strict'
 {
+
     function addList(filename){
         var divElement = document.createElement("div");
         //ボタン生成
         //ボタンクリック時にpracticeページに遷移
-        divElement.innerHTML = '<button onclick="location.href=\'./practice/index.html\'">'+filename+'</button>';
+        //divElement.innerHTML = '<input type="button" value="'+filename+'" onclick="changePractice('+filename+')">';
+        divElement.innerHTML = '<button onclick="changePractice(\''+filename+'\');">'+filename+'</button>';
+        //divElement.innerHTML = '<button onclick="A();">'+filename+'</button>';
         var parentObject = document.getElementById("fileList");
         parentObject.appendChild(divElement);
     }

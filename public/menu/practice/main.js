@@ -47,8 +47,8 @@
   //firebaseからの読み込み
   let reader = new FileReader();
   var storageRef = file_base.storage().ref();
-  //今はsample1.cとしています    
-  var fileRef = storageRef.child('sample1.c').getDownloadURL().then(function(url) {
+  var filename = localStorage.getItem('filename');
+  var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
   //urlはダウンロード用url
     // CORSの構成が必要
     var xhr = new XMLHttpRequest();
