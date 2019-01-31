@@ -8,6 +8,11 @@
   let scoreLabel = document.getElementById("score");
   let missLabel = document.getElementById("miss");
   let timerLabel = document.getElementById("timer");
+  let mask = document.getElementById("mask");
+  let modal = document.getElementById("modal");
+  let resultLabel = document.getElementById("result");
+  let again = document.getElementById("again");
+  let returnMenu = document.getElementById("returnMenu");
   let time;
   let timerId;
   let initWord;
@@ -39,7 +44,10 @@
     target.appendChild(cursor);
     text.textContent = currentWord.substring(currentLocation);
     target.appendChild(text);
-    target.classList.add("hidden");
+    cursor.classList.add("hidden");
+    text.classList.add("hidden");
+    mask.classList.add("hiddenMask");
+    modal.classList.add("hiddenModal");
   }
   init();
 
@@ -83,10 +91,9 @@
         cursorCount = 0;
       }
       if (time <= 0) {
-        let accuracy = (score + miss) === 0 ? "0.00" : ((score / (score + miss)) * 100).toFixed(2);
-        alert("Time is up!\n" + score + " letters, " + miss + " miss! " + accuracy + " %acuracy");
+        mask.classList.remove("hiddenMask");
+        modal.classList.remove("hiddenModal");
         clearTimeout(timerId);
-        init();
         return;
       }
       updateTimer();
@@ -123,7 +130,8 @@
         updateTimer();
         initWord = "";
         start.innerText = initWord;
-        target.classList.remove("hidden");
+        cursor.classList.remove("hidden");
+        text.classList.remove("hidden");
         cursor.textContent = currentWord[currentLocation];
       }
       return;
@@ -143,7 +151,8 @@
       scoreLabel.innerHTML = score;
       // 次のコードへ
       if(currentLocation === currentWord.length){
-        init();
+        mask.classList.remove("hiddenMask");
+        modal.classList.remove("hiddenModal");
       }
     //間違った文字を入力したときの処理
     }else {
@@ -151,4 +160,12 @@
       missLabel.innerHTML = miss;
     }
   })
+
+  again.addEventListener("click", function() {
+    location.reload();
+  });
+
+  returnMenu.addEventListener("click", function() {
+    document.location.href='../index.html';
+  });
 }

@@ -8,7 +8,7 @@
     }
     //ファイル名（拡張子なし取得用変数）
     var reg=/(.*)(?:\.([^.]+$))/;
-    
+
     var storageRef = firebase.storage().ref();
     var inputFile = document.getElementById('selfile');
     function upload2fire(ev) {
@@ -32,8 +32,27 @@
             fileRef.put(files[i]).then(function(snapshot) {
                 console.log('Uploaded to Firestore!');
             });
-            
+
         }
     }
     inputFile.addEventListener('change', upload2fire, false);
+
+    var mask = document.getElementById("mask");
+    var modal = document.getElementById("modal");
+    var uButton = document.getElementById("Ubutton");
+    var close = document.getElementById("close");
+
+    uButton.addEventListener("click", function() {
+      mask.classList.remove("hidden");
+      modal.classList.remove("hidden");
+    });
+
+    close.addEventListener("click", function() {
+      location.reload();
+    });
+
+    mask.addEventListener("click", function() {
+      close.click();
+    });
+
 }
