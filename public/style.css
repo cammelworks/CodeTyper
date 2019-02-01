@@ -1,0 +1,82 @@
+body{
+  height: auto;
+  margin-top: 20px;
+  font-family: "Courier New", sans-serif;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+}
+
+img {
+  height: 250px;
+  width: 40%;
+  margin-bottom: 50px;
+}
+
+#introduction {
+  width: 80%;
+  margin: 0 auto;
+}
+
+dl.function {
+  margin: 50px auto 50px;
+}
+
+div.position {
+  display: inline-block;
+  text-align:center;
+  margin-left: 20px;
+}
+
+div.description {
+  height: 200px;
+  width: 200px;
+  border:2px solid #fff;
+  border-radius: 0.8em;
+
+}
+
+div.description > dt {
+  font-size: 26px;
+
+}
+
+div.description > dd {
+  margin-top: 10px;
+  text-align: initial;
+}
+
+div.triangle{
+  margin-top: 20px;
+  border-top: 100px solid red;
+  border-right: 100px solid transparent;
+  border-left: 100px solid transparent;
+}
+
+ul {
+
+}
+
+li.menuTitle {
+  list-style-type: none;
+  font-size: 50px;
+  margin-bottom: 20px;
+}
+
+li.menu {
+  list-style-type: none;
+  width: 150px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 30px;
+}
+
+li.menu:hover {
+  color: green;
+  list-style-type: disc;
+}
+
+.menu div {
+  font-size: 40px;
+  cursor: pointer;
+}

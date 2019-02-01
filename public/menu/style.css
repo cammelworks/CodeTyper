@@ -7,6 +7,15 @@ body{
   background-color: #000;
 }
 
+#fileList {
+  height: 400px;
+  width: 80%;
+  margin: 0 auto 50px;
+  border: 2px solid #fff;
+  column-count: 3;
+  overflow: auto;
+}
+
 button {
   color: #fff;
   font-size: 30px;
@@ -78,7 +87,6 @@ ul.programs {
   -webkit-transform: translate(6px,6px);
   transform: translate(6px,6px);
 }
-
 
 #mask {
   background-color: rgba(0, 0, 0, 0.4);

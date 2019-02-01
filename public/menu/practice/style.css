@@ -18,6 +18,8 @@ body{
   padding-top: 10px;
   padding-left: 10px;
   overflow: auto;
+
+  position: relative;
 }
 
 .inputed {
@@ -29,8 +31,7 @@ body{
 }
 
 .hidden {
-
-  opacity: 0;
+  color: #333
 }
 
 .info{
