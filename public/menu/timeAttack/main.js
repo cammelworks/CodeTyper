@@ -91,6 +91,9 @@
         cursorCount = 0;
       }
       if (time <= 0) {
+        var accuracy = (score / (score + miss));
+        var wpm = (score / 30) * 60;
+        resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
         clearTimeout(timerId);
@@ -149,6 +152,7 @@
       text.textContent = currentWord.substring(currentLocation+1);
       score++;
       scoreLabel.innerHTML = score;
+      cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
         mask.classList.remove("hiddenMask");
@@ -158,6 +162,7 @@
     }else {
       miss++;
       missLabel.innerHTML = miss;
+      cursor.classList.add("miss");
     }
   })
 

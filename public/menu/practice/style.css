@@ -23,11 +23,16 @@ body{
 }
 
 .inputed {
-  color: red;
+  color: green;
 }
 
 .cursor {
   text-decoration: underline;
+}
+
+.miss {
+  background-color: #fff;
+  color: red;
 }
 
 .hidden {

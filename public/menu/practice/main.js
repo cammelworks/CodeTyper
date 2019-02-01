@@ -90,7 +90,11 @@
         cursor.classList.toggle("cursor");
         cursorCount = 0;
       }
+      //時間切れ
       if (time <= 0) {
+        var accuracy = (score / (score + miss)) * 100;
+        var wpm = (score / (30-time)) * 60;
+        resultLabel.innerHTML = "Time up!!<br>正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2);
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
         clearTimeout(timerId);
@@ -149,16 +153,22 @@
       text.textContent = currentWord.substring(currentLocation+1);
       score++;
       scoreLabel.innerHTML = score;
+      cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
         clearTimeout(timerId);
+        var accuracy = (score / (score + miss)) * 100;
+        var wpm = (score / 30) * 60;
+        resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + (30-time).toFixed(2);
+
       }
     //間違った文字を入力したときの処理
     }else {
       miss++;
       missLabel.innerHTML = miss;
+      cursor.classList.add("miss");
     }
   })
 
