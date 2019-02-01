@@ -22,13 +22,16 @@ body{
 }
 
 .inputed {
-  color: red;
+  color: green;
 }
 
 .cursor {
   text-decoration: underline;
 }
-
+.miss{
+  background-color:white;
+  color:red;
+}
 .hidden {
   color: #333
 }

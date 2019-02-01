@@ -148,6 +148,7 @@
       cursor.textContent = currentWord[currentLocation];
       text.textContent = currentWord.substring(currentLocation+1);
       score++;
+      cursor.classList.remove("miss");
       scoreLabel.innerHTML = score;
       // 次のコードへ
       if(currentLocation === currentWord.length){
@@ -159,6 +160,7 @@
     }else {
       miss++;
       missLabel.innerHTML = miss;
+      cursor.classList.add("miss");
     }
   })
 
