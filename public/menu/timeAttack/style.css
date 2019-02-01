@@ -22,15 +22,29 @@ body{
 }
 
 .inputed {
-  color: red;
+  color: green;
 }
 
 .cursor {
   text-decoration: underline;
 }
 
+.miss {
+  background-color: #fff;
+  color: red;
+}
+
 .hidden {
   color: #333
+}
+
+#result {
+  margin-top: 0;
+}
+
+#result > #score {
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .info{
@@ -80,7 +94,7 @@ body{
   font-size: 20px;
   color: #000;
   background-color: #fff;
-  padding: 20px;
+  padding: 0 20px 20px;
   width: 350px;
   border-radius: 4px;
   position: absolute;
