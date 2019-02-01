@@ -21,7 +21,6 @@
         </script>
         <script>
             function changePractice(filename){
-                console.log(filename);
                 document.location.href='./practice/index.html';
                 localStorage.setItem('filename', filename);
             }
@@ -47,11 +46,13 @@
         <div id="mask" class="hidden"></div>
         <div id="modal" class="hidden">
           <p id="note">アップロードするときの注意</p>
-          <label for="selfile" class="selectFiles">
-            <div id="upload">Upload</div>
-            <input type="file" id="selfile" multiple>
-          </label>
-          <div id="close">Close</div>
+          <div class="modalButton">
+            <label for="selfile" class="selectFiles">
+              <div id="upload">Upload</div>
+              <input type="file" id="selfile" multiple>
+            </label>
+            <div id="close">Close</div>
+          </div>
         </div>
         <script src="menuUpload.js"></script>
     </body>

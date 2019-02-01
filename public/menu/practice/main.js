@@ -153,6 +153,7 @@
       if(currentLocation === currentWord.length){
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
+        clearTimeout(timerId);
       }
     //間違った文字を入力したときの処理
     }else {

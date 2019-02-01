@@ -21,7 +21,7 @@
             //database用(拡張子なしファイル名)
             var filename = filesrc.match(reg)[1];
             var fileRef  = storageRef.child(filesrc);
-            var databaseRef = firebase.database().ref("/c/"+filename);
+            var databaseRef = firebase.database().ref("/"+localStorage.getItem('lang')+"/"+filename);
             //set()で常に上書き
             //databaseへのアップロード
             databaseRef.set({

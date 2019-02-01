@@ -128,4 +128,9 @@ ul.programs {
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 3px;
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.modalButton {
+  column-count: 2;
 }

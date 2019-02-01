@@ -12,7 +12,7 @@
         parentObject.appendChild(divElement);
     }
     var storageRef = firebase.storage().ref();
-    var databaseRef = firebase.database().ref("/c");
+    var databaseRef = firebase.database().ref("/" + localStorage.getItem('lang'));
     //databaseの並び順を変えてボタン生成
     //onメソッドはブラウザのリロード時、データの追加時、更新時に発火
     databaseRef.orderByChild("filename").on('child_added',function(snapshot){

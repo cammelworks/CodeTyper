@@ -81,7 +81,7 @@ body{
   color: #000;
   background-color: #fff;
   padding: 20px;
-  width: 300px;
+  width: 350px;
   border-radius: 4px;
   position: absolute;
   top: 40px;
@@ -103,4 +103,9 @@ body{
   cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 3px;
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.modalButton {
+  column-count: 2;
 }
