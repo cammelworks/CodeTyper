@@ -21,26 +21,38 @@
         </script>
         <script>
             function changePractice(filename){
-                console.log(filename);
                 document.location.href='./practice/index.html';
                 localStorage.setItem('filename', filename);
             }
-        </script>    
+
+            function toTimeAttack(){
+              document.location.href='./timeAttack/index.html';
+            }
+        </script>
         <title>C MENU</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <h1>プログラム一覧</h1>
         <div id="fileList">
         </div>
         <script src="menuShowlist.js"></script>
         <div class="button">
-          <div class="Dbutton">
-            <a href="timeAttack/index.html" id="toTimeAttack">Time attack</a>
+          <div class="Dbutton" onclick="toTimeAttack();">
+            Time attack
           </div>
-          <label for="selfile" class="selectFiles">
-            <div class="Dbutton">Upload</div>
-            <input type="file" id="selfile" multiple>
-          </label>
+          <div id="Ubutton" class="Dbutton">Upload</div>
+        </div>
+        <div id="mask" class="hidden"></div>
+        <div id="modal" class="hidden">
+          <p id="note">アップロードするときの注意</p>
+          <div class="modalButton">
+            <label for="selfile" class="selectFiles">
+              <div id="upload">Upload</div>
+              <input type="file" id="selfile" multiple>
+            </label>
+            <div id="close">Close</div>
+          </div>
         </div>
         <script src="menuUpload.js"></script>
     </body>

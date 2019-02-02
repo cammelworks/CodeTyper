@@ -17,18 +17,26 @@ body{
   margin: 30px auto;
   padding-top: 10px;
   padding-left: 10px;
+  overflow: auto;
+
+  position: relative;
 }
 
 .inputed {
-  color: red;
+  color: green;
 }
 
 .cursor {
   text-decoration: underline;
 }
 
+.miss {
+  background-color: #fff;
+  color: red;
+}
+
 .hidden {
-  color: #000;
+  color: #333
 }
 
 .info{
@@ -52,9 +60,58 @@ body{
 .info > #time{
   color: blue;
 }
-#start{
+#start {
   width: 60%;
   margin: -400px auto 0;
   font-size: 60px;
   color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+#mask {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.hiddenMask {
+  display: none;
+}
+
+#modal {
+  font-size: 20px;
+  color: #000;
+  background-color: #fff;
+  padding: 20px;
+  width: 350px;
+  border-radius: 4px;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  transition: .8s;
+}
+
+#modal p {
+  margin-bottom: 20px;
+}
+
+.hiddenModal {
+  transform: translate(0, -500px);
+}
+
+#again, #returnMenu {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.modalButton {
+  column-count: 2;
 }

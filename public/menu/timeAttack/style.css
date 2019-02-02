@@ -1,0 +1,125 @@
+body{
+  width: 80%;
+  margin: 20px auto 0;
+  font-family: "Courier New", sans-serif;
+  text-align: center;
+  color: #fff;
+  background-color: #000;
+}
+
+#target{
+  height: 600px;
+  font-size: 30px;
+  text-align: initial;
+  border: 2px solid #fff;
+  border-radius: 0.8em;
+  letter-spacing: 3px;
+  margin: 30px auto;
+  padding-top: 10px;
+  padding-left: 10px;
+  overflow: auto;
+  position: relative;
+}
+
+.inputed {
+  color: green;
+}
+
+.cursor {
+  text-decoration: underline;
+}
+
+.miss {
+  background-color: #fff;
+  color: red;
+}
+
+.hidden {
+  color: #333
+}
+
+#result {
+  margin-top: 0;
+}
+
+#result > #score {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.info{
+  text-align: right;
+  font-size: 22px;
+  color: #ccc;
+}
+
+.info p {
+  margin: 0;
+}
+
+.info > #letters {
+  color: green;
+}
+
+.info > #missCount {
+  color: red;
+}
+
+.info > #time{
+  color: blue;
+}
+#start {
+  width: 60%;
+  margin: -400px auto 0;
+  font-size: 60px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+#mask {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.hiddenMask {
+  display: none;
+}
+
+#modal {
+  font-size: 20px;
+  color: #000;
+  background-color: #fff;
+  padding: 0 20px 20px;
+  width: 350px;
+  border-radius: 4px;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  transition: .8s;
+}
+
+#modal p {
+  margin-bottom: 20px;
+}
+
+.hiddenModal {
+  transform: translate(0, -500px);
+}
+
+#again, #returnMenu {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: rgba(150, 150, 150, 0.5);
+}
+
+.modalButton {
+  column-count: 2;
+}

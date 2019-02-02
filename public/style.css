@@ -59,7 +59,7 @@ ul {
 
 li.menuTitle {
   list-style-type: none;
-  font-size: 40px;
+  font-size: 50px;
   margin-bottom: 20px;
 }
 
@@ -76,7 +76,7 @@ li.menu:hover {
   list-style-type: disc;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
+.menu div {
+  font-size: 40px;
+  cursor: pointer;
 }

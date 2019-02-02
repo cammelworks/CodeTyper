@@ -11,7 +11,12 @@
     <p id="introduction">
       Code Typerはプログラミング初心者～中級者やコーディングのときにブラインドタッチできない人向けのタイピングゲームです．
     </p>
-
+    <script>
+      function toMenu(lang) {
+        localStorage.setItem('lang', lang);
+        document.location.href='./menu/index.html';
+      }
+    </script>
     <dl class="function">
       <div class="position">
         <div class="description">
@@ -41,9 +46,9 @@
 
     <ul>
       <li class="menuTitle">MENU</li>
-      <li class="menu"><a href="menu/index.html">C</a></li>
-      <li class="menu"><a href="">Java</a></li>
-      <li class="menu"><a href="">Python</a></li>
+      <li class="menu"><div onclick="toMenu('c');">C</div></li>
+      <li class="menu"><div onclick="toMenu('Java');">Java</div></li>
+      <li class="menu"><div onclick="toMenu('Python');">Python</div></li>
     </ul>
     <script src="main.js"></script>
   </body>

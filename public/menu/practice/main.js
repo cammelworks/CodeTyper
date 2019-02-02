@@ -8,6 +8,11 @@
   let scoreLabel = document.getElementById("score");
   let missLabel = document.getElementById("miss");
   let timerLabel = document.getElementById("timer");
+  let mask = document.getElementById("mask");
+  let modal = document.getElementById("modal");
+  let resultLabel = document.getElementById("result");
+  let again = document.getElementById("again");
+  let returnMenu = document.getElementById("returnMenu");
   let time;
   let timerId;
   let initWord;
@@ -39,7 +44,10 @@
     target.appendChild(cursor);
     text.textContent = currentWord.substring(currentLocation);
     target.appendChild(text);
-    target.classList.add("hidden");
+    cursor.classList.add("hidden");
+    text.classList.add("hidden");
+    mask.classList.add("hiddenMask");
+    modal.classList.add("hiddenModal");
   }
   init();
 
@@ -82,11 +90,14 @@
         cursor.classList.toggle("cursor");
         cursorCount = 0;
       }
+      //時間切れ
       if (time <= 0) {
-        let accuracy = (score + miss) === 0 ? "0.00" : ((score / (score + miss)) * 100).toFixed(2);
-        alert("Time is up!\n" + score + " letters, " + miss + " miss! " + accuracy + " %acuracy");
+        var accuracy = (score / (score + miss)) * 100;
+        var wpm = (score / (30-time)) * 60;
+        resultLabel.innerHTML = "Time up!!<br>正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2);
+        mask.classList.remove("hiddenMask");
+        modal.classList.remove("hiddenModal");
         clearTimeout(timerId);
-        init();
         return;
       }
       updateTimer();
@@ -123,7 +134,8 @@
         updateTimer();
         initWord = "";
         start.innerText = initWord;
-        target.classList.remove("hidden");
+        cursor.classList.remove("hidden");
+        text.classList.remove("hidden");
         cursor.textContent = currentWord[currentLocation];
       }
       return;
@@ -141,14 +153,30 @@
       text.textContent = currentWord.substring(currentLocation+1);
       score++;
       scoreLabel.innerHTML = score;
+      cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
-        init();
+        mask.classList.remove("hiddenMask");
+        modal.classList.remove("hiddenModal");
+        clearTimeout(timerId);
+        var accuracy = (score / (score + miss)) * 100;
+        var wpm = (score / 30) * 60;
+        resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + (30-time).toFixed(2);
+
       }
     //間違った文字を入力したときの処理
     }else {
       miss++;
       missLabel.innerHTML = miss;
+      cursor.classList.add("miss");
     }
   })
+
+  again.addEventListener("click", function() {
+    location.reload();
+  });
+
+  returnMenu.addEventListener("click", function() {
+    document.location.href='../index.html';
+  });
 }
