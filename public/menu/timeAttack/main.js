@@ -31,7 +31,7 @@
     currentLocation = 0;
     score = 0;
     miss = 0;
-    time = 30;
+    time = 200;
     spaceKeyPressed = false;
     start.innerText = initWord;
     target.innerText = currentWord;
@@ -48,37 +48,48 @@
     text.classList.add("hidden");
     mask.classList.add("hiddenMask");
     modal.classList.add("hiddenModal");
+    getCode()
   }
-  init();
 
+  //idea datebaseからファイル名を受け取り，ファイル名の配列を作成し，その配列からランダムにファイル名を選択し，storageからダウンロードして表示
+  var files = localStorage.getItem('files');
+  var count = localStorage.getItem('count');
+  //filesは連結した文字列になっているのでsplit(",")で配列に変換
+  var fileArray = files.split(",");
   //firebaseからの読み込み
   let reader = new FileReader();
   var storageRef = file_base.storage().ref();
-  var filename = localStorage.getItem('filename');
-  var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
-  //urlはダウンロード用url
-    // CORSの構成が必要
-    var xhr = new XMLHttpRequest();
-    //blobで指定
-    xhr.responseType = 'blob';
-    //ファイル転送はxhrのonload内で抑える
-    xhr.onload = function(event) {
-      var blob = xhr.response;
-      //readAsTextの引数はblob
-      reader.readAsText(blob);
-      //以下でファイルをcurrentWordに追加
-      reader.onload = function(ev){
-        currentWord = reader.result;
-        cursor.textContent = currentWord[currentLocation];
-        text.textContent = currentWord.substring(currentLocation + 1);
-      }
-    };
-    xhr.open('GET', url);
-    xhr.send();
-  }).catch(function(error) {
-    //エラー処理
-  });
 
+  function getCode(){
+    //ランダムにファイルを指定
+    var random = Math.floor(Math.random() * count);
+    var filename = fileArray[random];
+    var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
+      //urlはダウンロード用url
+      // CORSの構成が必要
+      var xhr = new XMLHttpRequest();
+      //blobで指定
+      xhr.responseType = 'blob';
+      //ファイル転送はxhrのonload内で抑える
+      xhr.onload = function(event) {
+        var blob = xhr.response;
+        //readAsTextの引数はblob
+        reader.readAsText(blob);
+        //以下でファイルをcurrentWordに追加
+        reader.onload = function(ev){
+          currentWord = reader.result;
+          cursor.textContent = currentWord[currentLocation];
+          text.textContent = currentWord.substring(currentLocation + 1);
+        }
+      };
+      xhr.open('GET', url);
+      xhr.send();
+    }).catch(function(error) {
+      //エラー処理
+    });
+  }
+
+  init();
   //タイマーの設置
   let cursorCount = 0;
   function updateTimer(){
@@ -155,8 +166,12 @@
       cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
-        mask.classList.remove("hiddenMask");
-        modal.classList.remove("hiddenModal");
+        inputedText = "";
+        currentLocation = 0;
+        getCode();
+        inputed.textContent = inputedText;
+        cursor.textContent = currentWord[currentLocation];
+        text.textContent = currentWord.substring(currentLocation+1);
       }
     //間違った文字を入力したときの処理
     }else {
