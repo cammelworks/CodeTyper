@@ -5,6 +5,7 @@
   let score;
   let miss;
   let target = document.getElementById("target");
+  let info = document.getElementById("info");
   let scoreLabel = document.getElementById("score");
   let missLabel = document.getElementById("miss");
   let timerLabel = document.getElementById("timer");
@@ -13,11 +14,15 @@
   let resultLabel = document.getElementById("result");
   let again = document.getElementById("again");
   let returnMenu = document.getElementById("returnMenu");
+  let load = document.getElementById("load");
   let time;
   let timerId;
   let initWord;
   let spaceKeyPressed;
   let inputedText;
+  let startTime;
+  let elapsedTime;
+  let timeToAdd;
 
   const inputed = document.createElement("span");
   inputed.classList.add("inputed");
@@ -32,6 +37,7 @@
     score = 0;
     miss = 0;
     time = 200;
+    timeToAdd = 0;
     spaceKeyPressed = false;
     start.innerText = initWord;
     target.innerText = currentWord;
@@ -61,6 +67,11 @@
   var storageRef = file_base.storage().ref();
 
   function getCode(){
+    //ロード開始
+    // info.classList.add("hiddenMask");
+    target.classList.add("hiddenMask");
+    start.classList.add("hiddenMask");
+    load.classList.remove("hiddenMask");
     //ランダムにファイルを指定
     var random = Math.floor(Math.random() * count);
     var filename = fileArray[random];
@@ -81,6 +92,11 @@
           cursor.textContent = currentWord[currentLocation];
           text.textContent = currentWord.substring(currentLocation + 1);
         }
+        //ロード終了
+        // info.classList.remove("hiddenMask");
+        target.classList.remove("hiddenMask");
+        start.classList.remove("hiddenMask");
+        load.classList.add("hiddenMask");
       };
       xhr.open('GET', url);
       xhr.send();
@@ -94,7 +110,8 @@
   let cursorCount = 0;
   function updateTimer(){
     timerId = setTimeout(function() {
-      time -= 0.1;
+      elapsedTime = (Date.now() - startTime + timeToAdd) / 1000;
+      time = 200 - elapsedTime;
       cursorCount++;
       timerLabel.innerHTML = time.toFixed(1);
       if(cursorCount == 5){
@@ -141,6 +158,7 @@
     if(!spaceKeyPressed) {
       if(String.fromCharCode(e.keyCode) === " "){
         spaceKeyPressed = true;
+        startTime = Date.now();
         updateTimer();
         initWord = "";
         start.innerText = initWord;
@@ -166,12 +184,16 @@
       cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
+        clearTimeout(timerId);
+        timeToAdd = Date.now() - startTime;
         inputedText = "";
         currentLocation = 0;
         getCode();
         inputed.textContent = inputedText;
         cursor.textContent = currentWord[currentLocation];
         text.textContent = currentWord.substring(currentLocation+1);
+        startTime = Date.now();
+        updateTimer();
       }
     //間違った文字を入力したときの処理
     }else {

@@ -5,6 +5,7 @@
   let score;
   let miss;
   let target = document.getElementById("target");
+  let info = document.getElementById("info");
   let scoreLabel = document.getElementById("score");
   let missLabel = document.getElementById("miss");
   let timerLabel = document.getElementById("timer");
@@ -13,12 +14,15 @@
   let resultLabel = document.getElementById("result");
   let again = document.getElementById("again");
   let returnMenu = document.getElementById("returnMenu");
+  let load = document.getElementById("load");
   let time;
   let timerId;
   let initWord;
   let spaceKeyPressed;
   let inputedText;
+  let h1 = document.getElementById('h1');
 
+  h1.textContent = localStorage.getItem('filename');
   const inputed = document.createElement("span");
   inputed.classList.add("inputed");
   const cursor = document.createElement("span");
@@ -49,12 +53,17 @@
     mask.classList.add("hiddenMask");
     modal.classList.add("hiddenModal");
   }
+  //ロード開始
+  info.classList.add("hiddenMask");
+  target.classList.add("hiddenMask");
+  start.classList.add("hiddenMask");
   init();
 
   //firebaseからの読み込み
   let reader = new FileReader();
   var storageRef = file_base.storage().ref();
   var filename = localStorage.getItem('filename');
+
   var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
   //urlはダウンロード用url
     // CORSの構成が必要
@@ -72,6 +81,11 @@
         cursor.textContent = currentWord[currentLocation];
         text.textContent = currentWord.substring(currentLocation + 1);
       }
+      //ロード終了
+      load.classList.add("hiddenMask");
+      info.classList.remove("hiddenMask");
+      target.classList.remove("hiddenMask");
+      start.classList.remove("hiddenMask");
     };
     xhr.open('GET', url);
     xhr.send();
@@ -154,7 +168,7 @@
       score++;
       scoreLabel.innerHTML = score;
       cursor.classList.remove("miss");
-      // 次のコードへ
+      // 終了
       if(currentLocation === currentWord.length){
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
