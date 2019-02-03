@@ -20,6 +20,7 @@
   let initWord;
   let spaceKeyPressed;
   let inputedText;
+  let lines;
   let h1 = document.getElementById('h1');
 
   h1.textContent = localStorage.getItem('filename');
@@ -36,6 +37,7 @@
     score = 0;
     miss = 0;
     time = 30;
+    lines = 0;
     spaceKeyPressed = false;
     start.innerText = initWord;
     target.innerText = currentWord;
@@ -118,6 +120,16 @@
     }, 100);
   }
 
+  //オートスクロール
+  function autoScroll() {
+    lines++;
+    if(lines > 10) {
+      if(target.scrollTop < target.scrollHeight - target.clientHeight){
+        target.scrollTop += 33;
+      }
+    }
+  }
+
   //タイピングゲーム中の処理
   //Tabキーの処理
   window.addEventListener("keydown", function(e) {
@@ -160,6 +172,7 @@
       currentLocation++;
       if(e.keyCode === 13){
         inputedText += "\n";
+        autoScroll();
       }
       inputedText += String.fromCharCode(e.keyCode);
       inputed.textContent = inputedText;

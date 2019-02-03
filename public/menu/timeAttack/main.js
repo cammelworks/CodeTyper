@@ -23,6 +23,7 @@
   let startTime;
   let elapsedTime;
   let timeToAdd;
+  let lines;
 
   const inputed = document.createElement("span");
   inputed.classList.add("inputed");
@@ -120,7 +121,7 @@
       }
       if (time <= 0) {
         var accuracy = (score / (score + miss));
-        var wpm = (score / 30) * 60;
+        var wpm = (score / 200) * 60;
         resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
@@ -129,6 +130,16 @@
       }
       updateTimer();
     }, 100);
+  }
+
+  //オートスクロール
+  function autoScroll() {
+    lines++;
+    if(lines > 10) {
+      if(target.scrollTop < target.scrollHeight - target.clientHeight){
+        target.scrollTop += 33;
+      }
+    }
   }
 
   //タイピングゲーム中の処理
@@ -174,6 +185,7 @@
       currentLocation++;
       if(e.keyCode === 13){
         inputedText += "\n";
+        autoScroll();
       }
       inputedText += String.fromCharCode(e.keyCode);
       inputed.textContent = inputedText;
@@ -186,6 +198,7 @@
       if(currentLocation === currentWord.length){
         clearTimeout(timerId);
         timeToAdd = Date.now() - startTime;
+        lines = 0;
         inputedText = "";
         currentLocation = 0;
         getCode();
