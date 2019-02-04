@@ -34,12 +34,10 @@ h1 {
 .cursor {
   text-decoration: underline;
 }
-
-.miss {
-  background-color: #fff;
-  color: red;
+.miss{
+  background-color:white;
+  color:red;
 }
-
 .hidden {
   color: #333
 }

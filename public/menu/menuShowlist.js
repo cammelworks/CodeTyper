@@ -20,6 +20,7 @@
     var databaseRef = firebase.database().ref("/" + localStorage.getItem('lang'));
     //databaseの並び順を変えてボタン生成
     //onメソッドはブラウザのリロード時、データの追加時、更新時に発火
+    console.log(localStorage.getItem('lang'));
     databaseRef.orderByChild("filename").on('child_added',function(snapshot){
         console.log(snapshot.val().filename);
         addList(snapshot.val().filename);

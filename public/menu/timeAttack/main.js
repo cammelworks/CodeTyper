@@ -181,7 +181,8 @@
     }
     //正しい文字を入力したときの処理
     if((String.fromCharCode(e.keyCode) === currentWord[currentLocation]) ||
-    (e.keyCode === 13 && currentWord[currentLocation].charCodeAt(0) === 10)){
+    (e.keyCode === 13 && currentWord[currentLocation].charCodeAt(0) === 10)||
+    (e.keyCode === 165 && currentWord[currentLocation].charCodeAt(0) === 92)){
       currentLocation++;
       if(e.keyCode === 13){
         inputedText += "\n";
