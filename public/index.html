@@ -8,48 +8,62 @@
   <body>
     <img src="img/logo.png" alt="">
     <h1>手元を見てコードを書いていませんか？</h1>
-    <p id="introduction">
+    <div class="introduction">
       Code Typerはプログラミング初心者～中級者やコーディングのときにブラインドタッチできない人向けのタイピングゲームです．
-    </p>
+    </div>
     <script>
       function toMenu(lang) {
         localStorage.setItem('lang', lang);
         document.location.href='./menu/index.html';
       }
     </script>
-    <dl class="function">
-      <div class="position">
-        <div class="description">
-          <dt>Practice</dt>
-          <dd>Practiceの説明</dd>
+    <div class="function">
+        <div class="position">
+          <div class="description">
+            <dt>Practice</dt>
+            <dd>練習用モードです。</dd>
+          </div>
+          <div class="triangle">
+          </div>
         </div>
-        <div class="triangle">
+        <div class="position">
+          <div class="description">
+            <dt>TimeAttack</dt>
+            <dd>制限時間内にできるだけ多くのコードを入力していってください</dd>
+          </div>
+          <div class="triangle">
+          </div>
+        </div>
+        <div class="position">
+          <div class="description">
+            <dt>Upload</dt>
+            <dd>自分でコードをアップロードすることであなたの好きなコードを練習することができます。</dd>
+          </div>
+          <div class="triangle">
+          </div>
         </div>
       </div>
-      <div class="position">
-        <div class="description">
-          <dt>TimeAttack</dt>
-          <dd>TimeAttackの説明</dd>
-        </div>
-        <div class="triangle">
-        </div>
-      </div>
-      <div class="position">
-        <div class="description">
-          <dt>Upload</dt>
-          <dd>Uploadの説明</dd>
-        </div>
-        <div class="triangle">
-        </div>
-      </div>
-    </dl>
 
     <ul>
       <li class="menuTitle">MENU</li>
+      <li class="explanation">言語を選択してください</li>
       <li class="menu"><div onclick="toMenu('c');">C</div></li>
       <li class="menu"><div onclick="toMenu('Java');">Java</div></li>
       <li class="menu"><div onclick="toMenu('Python');">Python</div></li>
     </ul>
+
+
+
+<div class="demo demo1">
+    <div class="heading"><span>使用上の注意</span></div>
+    <div class="announce">改行はEnterキーを使用してください<br>自動インデントを想定していないため字下げはtabやスペースキーを使用してください</div>
+  </div>
+
+<div class="demo demo2">
+    <div class="heading"><span>scoreの説明</span></div>
+    <div class="announce">タイムアタックではスコアが設けられています。<br>スコア計算は"tyanio corp"独自の計算式を用いてより正確に評価を行えるようになっています。</div>
+  </div>
+
     <script src="main.js"></script>
   </body>
 </html>
