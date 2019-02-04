@@ -5,6 +5,7 @@
   let score;
   let miss;
   let target = document.getElementById("target");
+  let info = document.getElementById("info");
   let scoreLabel = document.getElementById("score");
   let missLabel = document.getElementById("miss");
   let timerLabel = document.getElementById("timer");
@@ -13,11 +14,16 @@
   let resultLabel = document.getElementById("result");
   let again = document.getElementById("again");
   let returnMenu = document.getElementById("returnMenu");
+  let load = document.getElementById("load");
   let time;
   let timerId;
   let initWord;
   let spaceKeyPressed;
   let inputedText;
+  let startTime;
+  let elapsedTime;
+  let timeToAdd;
+  let lines;
 
   const inputed = document.createElement("span");
   inputed.classList.add("inputed");
@@ -31,7 +37,8 @@
     currentLocation = 0;
     score = 0;
     miss = 0;
-    time = 30;
+    time = 200;
+    timeToAdd = 0;
     spaceKeyPressed = false;
     start.innerText = initWord;
     target.innerText = currentWord;
@@ -48,42 +55,64 @@
     text.classList.add("hidden");
     mask.classList.add("hiddenMask");
     modal.classList.add("hiddenModal");
+    getCode()
   }
-  init();
 
+  //idea datebaseからファイル名を受け取り，ファイル名の配列を作成し，その配列からランダムにファイル名を選択し，storageからダウンロードして表示
+  var files = localStorage.getItem('files');
+  var count = localStorage.getItem('count');
+  //filesは連結した文字列になっているのでsplit(",")で配列に変換
+  var fileArray = files.split(",");
   //firebaseからの読み込み
   let reader = new FileReader();
   var storageRef = file_base.storage().ref();
-  var filename = localStorage.getItem('filename');
-  var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
-  //urlはダウンロード用url
-    // CORSの構成が必要
-    var xhr = new XMLHttpRequest();
-    //blobで指定
-    xhr.responseType = 'blob';
-    //ファイル転送はxhrのonload内で抑える
-    xhr.onload = function(event) {
-      var blob = xhr.response;
-      //readAsTextの引数はblob
-      reader.readAsText(blob);
-      //以下でファイルをcurrentWordに追加
-      reader.onload = function(ev){
-        currentWord = reader.result;
-        cursor.textContent = currentWord[currentLocation];
-        text.textContent = currentWord.substring(currentLocation + 1);
-      }
-    };
-    xhr.open('GET', url);
-    xhr.send();
-  }).catch(function(error) {
-    //エラー処理
-  });
 
+  function getCode(){
+    //ロード開始
+    // info.classList.add("hiddenMask");
+    target.classList.add("hiddenMask");
+    start.classList.add("hiddenMask");
+    load.classList.remove("hiddenMask");
+    //ランダムにファイルを指定
+    var random = Math.floor(Math.random() * count);
+    var filename = fileArray[random];
+    var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
+      //urlはダウンロード用url
+      // CORSの構成が必要
+      var xhr = new XMLHttpRequest();
+      //blobで指定
+      xhr.responseType = 'blob';
+      //ファイル転送はxhrのonload内で抑える
+      xhr.onload = function(event) {
+        var blob = xhr.response;
+        //readAsTextの引数はblob
+        reader.readAsText(blob);
+        //以下でファイルをcurrentWordに追加
+        reader.onload = function(ev){
+          currentWord = reader.result;
+          cursor.textContent = currentWord[currentLocation];
+          text.textContent = currentWord.substring(currentLocation + 1);
+        }
+        //ロード終了
+        // info.classList.remove("hiddenMask");
+        target.classList.remove("hiddenMask");
+        start.classList.remove("hiddenMask");
+        load.classList.add("hiddenMask");
+      };
+      xhr.open('GET', url);
+      xhr.send();
+    }).catch(function(error) {
+      //エラー処理
+    });
+  }
+
+  init();
   //タイマーの設置
   let cursorCount = 0;
   function updateTimer(){
     timerId = setTimeout(function() {
-      time -= 0.1;
+      elapsedTime = (Date.now() - startTime + timeToAdd) / 1000;
+      time = 200 - elapsedTime;
       cursorCount++;
       timerLabel.innerHTML = time.toFixed(1);
       if(cursorCount == 5){
@@ -92,7 +121,7 @@
       }
       if (time <= 0) {
         var accuracy = (score / (score + miss));
-        var wpm = (score / 30) * 60;
+        var wpm = (score / 200) * 60;
         resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
         mask.classList.remove("hiddenMask");
         modal.classList.remove("hiddenModal");
@@ -101,6 +130,16 @@
       }
       updateTimer();
     }, 100);
+  }
+
+  //オートスクロール
+  function autoScroll() {
+    lines++;
+    if(lines > 10) {
+      if(target.scrollTop < target.scrollHeight - target.clientHeight){
+        target.scrollTop += 33;
+      }
+    }
   }
 
   //タイピングゲーム中の処理
@@ -130,6 +169,7 @@
     if(!spaceKeyPressed) {
       if(String.fromCharCode(e.keyCode) === " "){
         spaceKeyPressed = true;
+        startTime = Date.now();
         updateTimer();
         initWord = "";
         start.innerText = initWord;
@@ -145,6 +185,7 @@
       currentLocation++;
       if(e.keyCode === 13){
         inputedText += "\n";
+        autoScroll();
       }
       inputedText += String.fromCharCode(e.keyCode);
       inputed.textContent = inputedText;
@@ -155,8 +196,17 @@
       cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
-        mask.classList.remove("hiddenMask");
-        modal.classList.remove("hiddenModal");
+        clearTimeout(timerId);
+        timeToAdd = Date.now() - startTime;
+        lines = 0;
+        inputedText = "";
+        currentLocation = 0;
+        getCode();
+        inputed.textContent = inputedText;
+        cursor.textContent = currentWord[currentLocation];
+        text.textContent = currentWord.substring(currentLocation+1);
+        startTime = Date.now();
+        updateTimer();
       }
     //間違った文字を入力したときの処理
     }else {
