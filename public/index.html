@@ -19,18 +19,29 @@
         storageBucket: "",
         messagingSenderId: "496234219788"
       };
-      var login_base = firebase.initializeApp(config, "other");
+      //var login_base = firebase.initializeApp(config, "other");
+      firebase = firebase.initializeApp(config);        
     </script>
-
-    <!--firebaseui-->
+      
+    <!--
     <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-    <!--/firebaseui-->
+    -->
 
   </head>
   <body>
     <img src="img/logo.png" alt="">
     <h1>手元を見てコードを書いていませんか？</h1>
+    
+    <div class="auth">
+        <input id="email" type="email" placeholder="メールアドレスを入力" required/>
+        <input id="password" type="password" placeholder="パスワードを入力" required/>
+        <button id="login">Login</button>
+        <button id="signin">Sign in</button>
+        
+    </div>
+    <button id="signout">Sign out</button>
+      
     <div class="introduction">
       Code Typerはプログラミング初心者～中級者やコーディングのときにブラインドタッチできない人向けのタイピングゲームです．
     </div>
@@ -88,7 +99,7 @@
   </div>
 
     <script src="main.js"></script>
-    <div id="firebaseui-auth-container"></div>
-    <div id="loader">Loading...</div>
+    <!-- <div id="firebaseui-auth-container"></div> -->
+    <!--- <div id="loader">Loading...</div> -->
   </body>
 </html>
