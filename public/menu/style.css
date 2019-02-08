@@ -7,12 +7,24 @@ body{
   background-color: #000;
 }
 
+.menu {
+  height: 500px;
+  width: 1000px;
+  margin: auto;
+}
+
+.leftMenu {
+  width: 300px;
+  float: left;
+  margin: auto;
+}
+
+
 #fileList {
   height: 400px;
-  width: 80%;
+  width: 250px;
   margin: 0 auto 50px;
   border: 2px solid #fff;
-  column-count: 3;
   overflow: auto;
 }
 
@@ -30,20 +42,50 @@ button:hover {
   opacity: 0.7;
 }
 
-ul.programs {
-  list-style: none;
+.active {
+  float: right;
 }
 
-.selectFiles input {
-  display: none;
+.rightMenu {
+  width: 690px;
+  float: right;
+  margin: auto;
 }
 
+#description {
+  height: 2em;
+  border: 1px solid #fff;
+  border-radius: 3px;
+}
+
+#code {
+  height: 250px;
+  overflow: auto;
+  border: 1px solid #fff;
+  border-radius: 3px;
+}
+
+#target{
+  text-align: initial;
+  font-size: 20px;
+}
+
+#ranking {
+  height: 100px;
+  overflow: auto;
+  border: 1px solid #fff;
+}
+
+.button {
+  width: 1000px;
+  margin: auto;
+  column-count: 2;
+}
 .Dbutton {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin: auto;
   font-size: 30px;
   height: 50px;
-  width: 300px;
+  width: 200px;
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -88,49 +130,16 @@ ul.programs {
   transform: translate(6px,6px);
 }
 
-#mask {
-  background-color: rgba(0, 0, 0, 0.4);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+.Dbutton:hover{
+  opacity: 0.7;
 }
 
-#mask.hidden {
-  display: none;
-}
-
-#modal {
-  font-size: 20px;
-  color: #000;
-  background-color: #fff;
-  padding: 20px;
+.leftButton {
   width: 300px;
-  border-radius: 4px;
-  position: absolute;
-  top: 40px;
-  right: 0;
-  left: 0;
-  margin: 0 auto;
-  transition: .8s;
+  float: left;
 }
 
-#modal p {
-  margin-bottom: 20px;
-}
-
-#modal.hidden {
-  transform: translate(0, -500px);
-}
-
-#upload, #close {
-  cursor: pointer;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  background-color: rgba(150, 150, 150, 0.5);
-}
-
-.modalButton {
-  column-count: 2;
+.rightButton {
+  width: 300px;
+  float: right;
 }
