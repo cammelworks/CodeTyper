@@ -1,0 +1,47 @@
+body{
+  background-color: #282C34;
+  margin: 0;
+  padding: 0;
+}
+
+div.sidebar-container {
+  background-color: #21252B;
+  width: 20%;
+  height: 1000px;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+
+div.logo-container{
+  color: #CBCED4;
+  text-align: center;
+  border-bottom: #181A1F solid 1px;
+}
+
+div.body-container {
+  width: 80%;
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+
+ul.languages-container {
+  width: 100%;
+  border: #181A1F solid 1px;
+  padding: 0;
+  font-size: 0px;
+}
+
+ul.languages-container li {
+  width: 25%;
+  border-right: 1px solid #181A1F;
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+}
+
+ul.foo li.a {
+  display: block;
+}
