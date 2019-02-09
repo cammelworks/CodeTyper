@@ -13,7 +13,7 @@
     var note=document.getElementById("note");
     var fileCount;
 
-    var storageRef  = login_base.storage();
+    var storageRef  = firebase.storage();
     var inputFile = document.getElementById('selfile');
     var filesrc = new Array();
     var submit = document.createElement("div");
@@ -41,7 +41,7 @@
         var fileEx = getExtension(filesrc[i]);
         var description = document.getElementById(filesrc[i]).value;
         console.log(fileEx);
-        var databaseRef = login_base.database().ref("/"+fileEx+"/"+filename);
+        var databaseRef = firebase.database().ref("/"+fileEx+"/"+filename);
         //set()で常に上書き
         //databaseへのアップロード
         databaseRef.set({
