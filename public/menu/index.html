@@ -22,41 +22,86 @@
         </script>
         <script>
             function changePractice(filename){
-                document.location.href='./practice/index.html';
+                // document.location.href='./practice/index.html';
+                var reg=/(.*)(?:\.([^.]+$))/;
                 localStorage.setItem('filename', filename);
-            }
-
-            function toTimeAttack(){
-              document.location.href='./timeAttack/index.html';
+                var file = filename.match(reg)[1];
+                var desc = document.getElementById("desc");
+                var databaseRef = firebase.database().ref("/" + localStorage.getItem('lang'));
+                var fileDescRef = firebase.database().ref("/" + localStorage.getItem('lang') + "/" + file);
+                //プログラム説明の取得
+                fileDescRef.on('value',function(snapshot){
+                  desc.innerText = snapshot.val().description;
+                });
+                var target = document.getElementById("target");
+                var reader = new FileReader();
+                var storageRef = firebase.storage().ref("/" + localStorage.getItem('lang'));
+                var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
+                //urlはダウンロード用url
+                  // CORSの構成が必要
+                  var xhr = new XMLHttpRequest();
+                  //blobで指定
+                  xhr.responseType = 'blob';
+                  //ファイル転送はxhrのonload内で抑える
+                  xhr.onload = function(event) {
+                    var blob = xhr.response;
+                    //readAsTextの引数はblob
+                    reader.readAsText(blob);
+                    //以下でファイルを表示
+                    reader.onload = function(ev){
+                      target.innerText = reader.result;
+                    }
+                  };
+                  xhr.open('GET', url);
+                  xhr.send();
+                }).catch(function(error) {
+                  //エラー処理
+                });
             }
         </script>
-        <title>C MENU</title>
+        <title>MENU</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h1>プログラム一覧</h1>
-        <div id="fileList">
+      <h1 id="title">Practiceモード</h1>
+      <div class="menu">
+        <div class="leftMenu">
+          <div id="fileList">
+          </div>
         </div>
-        <div class="button">
-          <div id="timeAttack" class="Dbutton" onclick="toTimeAttack();">
+
+        <div class="rightMenu">
+          <div id="description">
+            プログラム説明: <span id="desc"></span>
+          </div>
+          <div id="code">
+            <pre id = "target">
+              ここにプログラムが表示されます．
+            </pre>
+          </div>
+          <div id="ranking">
+            ランキング
+          </div>
+        </div>
+      </div>
+      <div class="button">
+        <div class="leftButton">
+          <div id="practice" class="Dbutton">
+            Practice
+          </div>
+          <div id="timeAttack" class="Dbutton">
             Time attack
           </div>
-          <div id="Ubutton" class="Dbutton">Upload</div>
         </div>
-        <div id="mask" class="hidden"></div>
-        <div id="modal" class="hidden">
-          <p id="note">アップロードするときの注意</p>
-          <div class="modalButton">
-            <label for="selfile" class="selectFiles">
-              <div id="upload">Upload</div>
-              <input type="file" id="selfile" multiple>
-            </label>
-            <div id="close">Close</div>
+        <div class="rightButton">
+          <div id="start" class="Dbutton">
+            Start
           </div>
         </div>
-        <script src="main.js"></script>
-        <script src="menuShowlist.js"></script>
-        <script src="menuUpload.js"></script>
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+      <script src="main.js"></script>
+      <script src="menuShowlist.js"></script>
     </body>
 </html>
 <script>
