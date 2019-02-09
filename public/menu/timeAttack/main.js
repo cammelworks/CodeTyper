@@ -58,14 +58,13 @@
     getCode()
   }
 
-  //idea datebaseからファイル名を受け取り，ファイル名の配列を作成し，その配列からランダムにファイル名を選択し，storageからダウンロードして表示
   var files = localStorage.getItem('files');
   var count = localStorage.getItem('count');
   //filesは連結した文字列になっているのでsplit(",")で配列に変換
   var fileArray = files.split(",");
   //firebaseからの読み込み
   let reader = new FileReader();
-  var storageRef = file_base.storage().ref();
+  var storageRef = file_base.storage().ref("/" + localStorage.getItem('lang'));
 
   function getCode(){
     //ロード開始
@@ -98,6 +97,12 @@
         target.classList.remove("hiddenMask");
         start.classList.remove("hiddenMask");
         load.classList.add("hiddenMask");
+
+        //
+        if(spaceKeyPressed){
+          startTime = Date.now();
+          timerId = setInterval(updateTimer, 100);
+        }
       };
       xhr.open('GET', url);
       xhr.send();
@@ -107,29 +112,26 @@
   }
 
   init();
-  //タイマーの設置
+  //タイマーの設置(intervalで実装)
   let cursorCount = 0;
   function updateTimer(){
-    timerId = setTimeout(function() {
-      elapsedTime = (Date.now() - startTime + timeToAdd) / 1000;
-      time = 200 - elapsedTime;
-      cursorCount++;
-      timerLabel.innerHTML = time.toFixed(1);
-      if(cursorCount == 5){
-        cursor.classList.toggle("cursor");
-        cursorCount = 0;
-      }
-      if (time <= 0) {
-        var accuracy = (score / (score + miss));
-        var wpm = (score / 200) * 60;
-        resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
-        mask.classList.remove("hiddenMask");
-        modal.classList.remove("hiddenModal");
-        clearTimeout(timerId);
-        return;
-      }
-      updateTimer();
-    }, 100);
+    elapsedTime = (Date.now() - startTime + timeToAdd) / 1000;
+    time = 200 - elapsedTime;
+    cursorCount++;
+    timerLabel.innerHTML = time.toFixed(1);
+    if(cursorCount === 3){
+      cursor.classList.toggle("cursor");
+      cursorCount = 0;
+    }
+    if (time <= 0) {
+      var accuracy = (score / (score + miss));
+      var wpm = (score / 200) * 60;
+      resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
+      mask.classList.remove("hiddenMask");
+      modal.classList.remove("hiddenModal");
+      clearInterval(timerId);
+      return;
+    }
   }
 
   //オートスクロール
@@ -142,9 +144,23 @@
     }
   }
 
+  //ゲーム終了時の処理
+  function finish() {
+    var accuracy = (score / (score + miss));
+    var wpm = (score / 200) * 60;
+    resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
+    mask.classList.remove("hiddenMask");
+    modal.classList.remove("hiddenModal");
+    clearInterval(timerId);
+    return;
+  }
   //タイピングゲーム中の処理
-  //Tabキーの処理
   window.addEventListener("keydown", function(e) {
+    //ゲーム中断
+    if(e.key === "Escape"){
+      finish();
+    }
+    //字下げ時の処理
     if(e.key === "Tab"){
       e.preventDefault();
     }
@@ -170,7 +186,7 @@
       if(String.fromCharCode(e.keyCode) === " "){
         spaceKeyPressed = true;
         startTime = Date.now();
-        updateTimer();
+        timerId = setInterval(updateTimer, 100);
         initWord = "";
         start.innerText = initWord;
         cursor.classList.remove("hidden");
@@ -180,14 +196,18 @@
       return;
     }
     //正しい文字を入力したときの処理
-    if((String.fromCharCode(e.keyCode) === currentWord[currentLocation]) ||
+    if((e.keyCode === currentWord[currentLocation].charCodeAt(0)) ||
     (e.keyCode === 13 && currentWord[currentLocation].charCodeAt(0) === 10)||
     (e.keyCode === 165 && currentWord[currentLocation].charCodeAt(0) === 92)){
-      currentLocation++;
       if(e.keyCode === 13){
+        if(currentWord[currentLocation].charCodeAt(0) === 13) {
+          currentLocation++;
+        }
         inputedText += "\n";
         autoScroll();
       }
+      currentLocation++;
+
       inputedText += String.fromCharCode(e.keyCode);
       inputed.textContent = inputedText;
       cursor.textContent = currentWord[currentLocation];
@@ -197,8 +217,8 @@
       cursor.classList.remove("miss");
       // 次のコードへ
       if(currentLocation === currentWord.length){
-        clearTimeout(timerId);
-        timeToAdd = Date.now() - startTime;
+        clearInterval(timerId);
+        timeToAdd += Date.now() - startTime;
         lines = 0;
         inputedText = "";
         currentLocation = 0;
@@ -206,8 +226,6 @@
         inputed.textContent = inputedText;
         cursor.textContent = currentWord[currentLocation];
         text.textContent = currentWord.substring(currentLocation+1);
-        startTime = Date.now();
-        updateTimer();
       }
     //間違った文字を入力したときの処理
     }else {
