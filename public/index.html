@@ -20,27 +20,28 @@
         messagingSenderId: "496234219788"
       };
       //var login_base = firebase.initializeApp(config, "other");
-      firebase = firebase.initializeApp(config);        
+      firebase.initializeApp(config);        
     </script>
-      
-    <!--
-    <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
-    -->
 
   </head>
   <body>
     <img src="img/logo.png" alt="">
     <h1>手元を見てコードを書いていませんか？</h1>
-    
-    <div class="auth">
-        <input id="email" type="email" placeholder="メールアドレスを入力" required/>
-        <input id="password" type="password" placeholder="パスワードを入力" required/>
-        <button id="login">Login</button>
-        <button id="signin">Sign in</button>
-        
-    </div>
-    <button id="signout">Sign out</button>
+      
+    <!--新規アカウント-->  
+    <div class="mask" class="hidden"></div>
+        <div id="authModal" class="hidden">
+            <input id="email" type="email" placeholder="メールアドレスを入力" required/><br>
+            <input id="username" type="text" placeholder="ユーザ名を入力" required/><br>
+            <input id="password" type="password" placeholder="パスワードを入力" required/><br>
+            <div class="modalButton">
+                <div id="ok">OK</div>
+                <div id="cancel">Return</div>
+            </div>    
+        </div>
+    <button id="signup">Sign Up</button>
+    <button id="login">Login</button>
+    <button id="signout">Sign Out</button>
       
     <div class="introduction">
       Code Typerはプログラミング初心者～中級者やコーディングのときにブラインドタッチできない人向けのタイピングゲームです．

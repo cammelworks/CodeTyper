@@ -1,16 +1,37 @@
 'use strict';
 {
     var login = document.getElementById("login");
-    var signin = document.getElementById("signin");
+    var signup = document.getElementById("signup");
     var signout = document.getElementById("signout");
+    
+    var ok = document.getElementById("ok");
+    //var cancel = document.getElementById("cancel");
+    
+    //var mask = document.getElementById("mask");
+    var modal = document.getElementById("authModal");
 
     //新規ユーザの登録
-    signin.addEventListener('click', function(e){
+    signup.addEventListener("click", function() {
+      //mask.classList.remove("hidden");
+      modal.classList.remove("hidden");
+    });
+    
+    /*
+    cancel.addEventListener("click", function() {
+      location.reload();
+    });
+
+    mask.addEventListener("click", function() {
+      cancel.click();
+    });*/
+
+    
+    ok.addEventListener('click', function(e){
     
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
-    
-        firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+        
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(function(error) {
             // エラー処理
             var errorCode = error.code;
             var errorMessage = error.message;
@@ -40,10 +61,21 @@
     //ユーザのログイン状態の確認
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
-            // User is signed in.
-            //サインインできたらパスをlocalStorageに保存しておく？？
-            //localStorage.setItem('userEmail', user.email);
-            console.log(user.email);
+            if(user.displayName === null){
+                //ユーザ名の登録
+                var username = document.getElementById("username").value;
+                user.updateProfile({
+                    displayName: username
+                }).then(function(error){
+                    // エラー処理
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    console.log(errorCode+':'+errorMessage);
+                }); 
+                console.log("name added!");
+            }else{
+               console.log(user.displayName); 
+            }
         } else {
             // No user is signed in.
             console.log("No user.");
@@ -65,4 +97,6 @@
         var errorMessage = error.message;
     });
     */
+    
+    
 }

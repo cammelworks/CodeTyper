@@ -62,23 +62,20 @@
   init();
     
 　//ユーザのログイン状態の確認
-  var user = localStorage.getItem('user');    
-  console.log(user.email);
- /*
-　file_base.auth().onAuthStateChanged(function(user) {
+　firebase.auth().onAuthStateChanged(function(user) {
 　　　if (user) {
 　　　　　// User is signed in.
-　　　　　console.log(user.email);
+　　　　　console.log(user.displayName);
 　　　} else {
 　　　　　// No user is signed in.
         console.log("No user.");
 　　　}
 　});
- */
+
     
   //firebaseからの読み込み
   let reader = new FileReader();
-  var storageRef = file_base.storage().ref();
+  var storageRef = firebase.storage().ref();
   var filename = localStorage.getItem('filename');
 
   var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
