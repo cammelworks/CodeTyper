@@ -40,6 +40,7 @@ ul.languages-container li {
   display: inline-block;
   text-align: center;
   font-size: 16px;
+  cursor: pointer;
 }
 
 ul.foo li.a {

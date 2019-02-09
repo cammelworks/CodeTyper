@@ -8,7 +8,7 @@
   <body>
   <div class="sidebar-container">
     <div class="logo-container">
-      <a href="">
+      <a href="#">
         <img src="img/logo.png" alt="logo" width="100%">
       </a>
     </div>
@@ -20,17 +20,21 @@
       <header>
         <div class="header-container">
           <ul class="languages-container">
-            <li><a href="#">C</a></li>
-            <li><a href="#">Java</a></li>
-            <li><a href="#">PHP</a></li>
-            <li><a href="#">Others...</a></li>
+            <li id="C">C</li>
+            <li id="Java">Java</li>
+            <li id="PHP">PHP</li>
+            <li id="Others">Others...</li>
           </ul>
           <!--行番号の実装を考える-->
           <div class="number-container">
 
           </div>
           <div class="content-container">
-
+            <div id="startDescription"></div>
+            <div id="description">
+              ここに説明を記入
+            </div>
+            <div id="endDescription"></div>
           </div>
         </div>
       </header>
@@ -38,5 +42,7 @@
     <footer>
 
     </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
