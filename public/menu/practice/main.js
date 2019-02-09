@@ -60,10 +60,23 @@
   target.classList.add("hiddenMask");
   start.classList.add("hiddenMask");
   init();
+    
+　//ユーザのログイン状態の確認
+　firebase.auth().onAuthStateChanged(function(user) {
+　　　if (user) {
+　　　　　// User is signed in.
+　　　　　console.log(user.displayName);
+　　　} else {
+　　　　　// No user is signed in.
+        console.log("No user.");
+　　　}
+　});
 
+    
   //firebaseからの読み込み
   let reader = new FileReader();
-  var storageRef = file_base.storage().ref("/" + localStorage.getItem('lang'));
+
+  var storageRef = firebase.storage().ref("/" + localStorage.getItem('lang'));
   var filename = localStorage.getItem('filename');
 
   var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
