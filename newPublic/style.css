@@ -28,7 +28,7 @@ div.body-container {
 
 ul.languages-container {
   width: 100%;
-  border: #181A1F solid 1px;
+  background-color: #21252B;
   padding: 0;
   font-size: 0px;
 }
@@ -36,6 +36,7 @@ ul.languages-container {
 ul.languages-container li {
   width: 25%;
   border-right: 1px solid #181A1F;
+  border-bottom: #181A1F solid 1px;
   box-sizing: border-box;
   display: inline-block;
   text-align: center;
@@ -43,6 +44,22 @@ ul.languages-container li {
   cursor: pointer;
 }
 
-ul.foo li.a {
-  display: block;
+ul.languages-container li:hover {
+  opacity: 0.7;
+}
+
+ul.languages-container li:first-child {
+  border-left: 1px solid #181A1F;
+}
+
+#lineNumber {
+  width: 20px;
+  margin-right: 5px;
+  float: left;
+  text-align: right;
+  color: rgba(150, 150, 150, 0.7);
+}
+
+.content-container > #description {
+  margin-left: 50px;
 }

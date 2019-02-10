@@ -61,7 +61,7 @@
         if(localStorage.getItem('filename') === " "){
           alert("ファイルを選択してください");
         } else {
-          document.location.href='./practice/index.html';    
+          document.location.href='./practice/index.html';
         }
       } else if(mode === "timeattack"){
         document.location.href='./timeAttack/index.html';

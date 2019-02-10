@@ -1,6 +1,7 @@
 'use strict';
 {
   $(function() {
+    //言語によって説明文のレイアウトを変える
     var description = $("#description").text();
     console.log(description);
     $("#C").click(function() {
@@ -27,5 +28,19 @@
       $("#description").text(description);
       $("#endDescription").text("");
     });
+
+    //選択された言語タグのスタイルを変える
+    var languageList = $('.languages-container li');
+    languageList.click(function(){
+      languageList.css('border-bottom', '1px solid #181A1F').css('background-color', '#21252B');
+      $(this).css('border-bottom', 'none').css('background-color', '#282C34');
+    });
+
+    //行番号の表示
+    var line = 30;
+    for(var i = 1; i <= line; i++){
+      var lineNumber = $("#lineNumber").html();
+      $("#lineNumber").html(lineNumber + i + "<br>");
+    }
   });
 }
