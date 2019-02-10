@@ -6,13 +6,13 @@
     console.log(description);
     $("#C").click(function() {
       console.log("C clicked");
-      $("#startDescription").text("int 説明() {");
+      $("#startDescription").text("int Description() {");
       $("#description").text(description);
       $("#endDescription").text("}");
     });
     $("#Java").click(function() {
       console.log("Java clicked");
-      $("#startDescription").text("class 説明() {");
+      $("#startDescription").text("class Description() {");
       $("#description").text("フィールド " + description);
       $("#endDescription").text("}");
     });
@@ -24,7 +24,7 @@
     });
     $("#Others").click(function() {
       console.log("Others clicked");
-      $("#startDescription").text("説明");
+      $("#startDescription").text("Description");
       $("#description").text(description);
       $("#endDescription").text("");
     });
