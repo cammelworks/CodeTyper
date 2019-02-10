@@ -26,6 +26,11 @@
                 var errorMessage = error.message;
                 console.log(errorCode+':'+errorMessage);
             });
+            
+            ///////////////////////////
+            //ここでユーザ名も登録したい///
+            //////////////////////////
+            
             //閉じる
             $("#modalAuth, #mask").fadeOut("slow", function() {
               $("#mask").remove();
@@ -89,12 +94,14 @@
             signout.classList.remove("hidden");
             
             if(user.displayName === null){
+                //SignUpモーダルを閉じた後リロードしないといけないバグ
+                
                 //ユーザ名の登録
                 var username = document.getElementById("username").value;
                 user.updateProfile({
                     displayName: username
                 }).then(function(error){
-                    // エラー処理
+                    //エラー処理
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log(errorCode+':'+errorMessage);
@@ -102,7 +109,6 @@
                 console.log("name added!");
             }else{
                $("#Uname").html(user.displayName); 
-               console.log(user.displayName); 
             }
         } else {
             //ログインしていない場合
@@ -114,7 +120,6 @@
             logINpassword.classList.remove("hidden");
             // ユーザがいなかったらGUEST
             $("#Uname").html("GUEST");
-            console.log("No user.");
         }
     });
     /*

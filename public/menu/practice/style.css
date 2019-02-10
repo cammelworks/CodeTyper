@@ -52,6 +52,10 @@ h1 {
   margin: 0;
 }
 
+.info > #Uname {
+  color: white;
+}
+
 .info > #letters {
   color: green;
 }

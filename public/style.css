@@ -205,6 +205,12 @@ li.menu:hover {
   color: #FFF;
 }
 
+#Uname{
+  text-align: right;
+  font-size: 22px;
+  color: white;
+}
+
 #Ubutton, #signup, #login, #signout {
   margin: 30px auto;
 }
