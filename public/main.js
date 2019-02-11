@@ -4,46 +4,66 @@
     var signup = document.getElementById("signup");
     var signout = document.getElementById("signout");
     
-    var ok = document.getElementById("ok");
-    //var cancel = document.getElementById("cancel");
-    
-    //var mask = document.getElementById("mask");
-    var modal = document.getElementById("authModal");
-
     //新規ユーザの登録
-    signup.addEventListener("click", function() {
-      //mask.classList.remove("hidden");
-      modal.classList.remove("hidden");
-    });
-    
-    /*
-    cancel.addEventListener("click", function() {
-      location.reload();
-    });
+    //JQueryでモーダルウィンドウの実装
+    $(function() {
+      $("#signup").click(function() {
+        //マスクを適用
+        $("body").append('<div id="mask"></div>');
 
-    mask.addEventListener("click", function() {
-      cancel.click();
-    });*/
-
-    
-    ok.addEventListener('click', function(e){
-    
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+        //画面中央を計算する関数を実行
+        modalResize();
+        //モーダルウィンドウの表示
+        $("#modalAuth,#mask").fadeIn("slow");
+          
+        //okをクリックしたら登録して閉じる
+        $("#ok").click(function(){
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(error) {
+                // エラー処理
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode+':'+errorMessage);
+            });
         
-        firebase.auth().createUserWithEmailAndPassword(email, password).then(function(error) {
-            // エラー処理
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode+':'+errorMessage);
+            
+            //閉じる
+            $("#modalAuth, #mask").fadeOut("slow", function() {
+              $("#mask").remove();
+            })
+        });  
+        //closeをクリックしたら閉じる
+        $("#close").click(function() {
+            $("#modalAuth, #mask").fadeOut("slow", function() {
+              $("#mask").remove();
+            })
         });
-    });
-
+        //画面中央を計算する関数
+        $(window).resize(modalResize);
+        function modalResize(){
+          var w = $(window).width();
+          var h = $(window).height();
+          var cw = $("#modalAuth").outerWidth();
+          var ch = $("#modalAuth").outerHeight();
+          //取得した値をcssに追加する
+          $("#modalAuth").css({
+              "left": ((w - cw)/2) + "px",
+              "top": ((h - ch)/2) + "px"
+          });
+        }
+      });
+    });    
+    
+    //常に表示されているフォーム
+    var logINemail = document.getElementById("logINemail");
+    var logINpassword = document.getElementById("logINpassword");
+    
     //既存ユーザのログイン
     login.addEventListener('click', function(e){
     
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("password").value;
+        var email = logINemail.value;
+        var password = logINpassword.value;
     
         firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
             // エラー処理
@@ -61,24 +81,52 @@
     //ユーザのログイン状態の確認
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
+            //非表示
+            signup.classList.add("hidden");
+            login.classList.add("hidden");
+            logINemail.classList.add("hidden");
+            logINpassword.classList.add("hidden");
+            
+            //サインアウトボタンの表示
+            signout.classList.remove("hidden");
+            
             if(user.displayName === null){
+                
+                
                 //ユーザ名の登録
                 var username = document.getElementById("username").value;
+                
+                //ユーザID
+                //DBにユーザーを追加
+                var userRef = firebase.database().ref("/user/"+user.uid);
+                userRef.set({
+                    username: username,
+                });
+                
                 user.updateProfile({
-                    displayName: username
+                    displayName: username,
                 }).then(function(error){
-                    // エラー処理
+                    //エラー処理
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log(errorCode+':'+errorMessage);
                 }); 
                 console.log("name added!");
+                $("#Uname").html(username);
+                
             }else{
-               console.log(user.displayName); 
+               $("#Uname").html(user.displayName); 
             }
         } else {
-            // No user is signed in.
-            console.log("No user.");
+            //ログインしていない場合
+            signout.classList.add("hidden");
+            
+            signup.classList.remove("hidden");
+            login.classList.remove("hidden");
+            logINemail.classList.remove("hidden");
+            logINpassword.classList.remove("hidden");
+            // ユーザがいなかったらGUEST
+            $("#Uname").html("GUEST");
         }
     });
     /*

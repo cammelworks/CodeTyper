@@ -143,3 +143,9 @@ button:hover {
   width: 300px;
   float: right;
 }
+
+#Uname{
+  text-align: right;
+  font-size: 22px;
+  color: white;
+}

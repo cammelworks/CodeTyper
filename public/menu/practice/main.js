@@ -61,16 +61,14 @@
   start.classList.add("hiddenMask");
   init();
     
-　//ユーザのログイン状態の確認
-　firebase.auth().onAuthStateChanged(function(user) {
-　　　if (user) {
-　　　　　// User is signed in.
-　　　　　console.log(user.displayName);
-　　　} else {
-　　　　　// No user is signed in.
-        console.log("No user.");
-　　　}
-　});
+  //ユーザのログイン状態の確認
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      $("#Uname").html(user.displayName);
+    } else {
+      $("#Uname").html("GUEST");
+    }
+  }); 
 
     
   //firebaseからの読み込み
@@ -150,6 +148,8 @@
     var accuracy = (score / (score + miss)) * 100;
     var wpm = (score / 30) * 60;
     resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + (30-time).toFixed(2);
+    //DBにスコアを追加
+      
   }
 
   //タイピングゲーム中の処理

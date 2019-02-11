@@ -23,26 +23,33 @@
       };
       firebase.initializeApp(config);        
     </script>
-
   </head>
   <body>
     <img src="img/logo.png" alt="">
+    <!--ユーザ名の表示-->  
+    <div id="Uname"></div>   
     <h1>手元を見てコードを書いていませんか？</h1>
       
-    <!--新規アカウント-->  
-    <div class="mask" class="hidden"></div>
-        <div id="authModal" class="hidden">
-            <input id="email" type="email" placeholder="メールアドレスを入力" required/><br>
-            <input id="username" type="text" placeholder="ユーザ名を入力" required/><br>
-            <input id="password" type="password" placeholder="パスワードを入力" required/><br>
-            <div class="modalButton">
-                <div id="ok">OK</div>
-                <div id="cancel">Return</div>
-            </div>    
-        </div>
-    <button id="signup">Sign Up</button>
-    <button id="login">Login</button>
-    <button id="signout">Sign Out</button>
+    <!--新規アカウント-->
+    <div id="modalAuth">
+      <p id="noteTitle">アカウント作成</p>
+      <p id="note">
+        <input id="email" type="email" placeholder="メールアドレスを入力" required/><br>
+        <input id="username" type="text" placeholder="ユーザ名を入力" required/><br>
+        <input id="password" type="password" placeholder="パスワードを入力" required/><br>
+      </p>
+      <div id="buttons" class="modalButton">
+        <div id="ok">OK</div>
+        <div id="close">Close</div>
+      </div>
+    </div>
+    <div>  
+        <input id="logINemail" type="email" placeholder="メールアドレスを入力" required/>
+        <input id="logINpassword" type="password" placeholder="パスワードを入力" required/>
+    </div>  
+    <div id="login" class="button">Login</div>   
+    <div id="signup" class="button">Sign Up</div>
+    <div id="signout" class="button">Sign Out</div>
       
     <div class="introduction">
       Code Typerはプログラミング初心者～中級者やコーディングのときにブラインドタッチできない人向けのタイピングゲームです．

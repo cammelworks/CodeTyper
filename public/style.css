@@ -205,7 +205,13 @@ li.menu:hover {
   color: #FFF;
 }
 
-#Ubutton {
+#Uname{
+  text-align: right;
+  font-size: 22px;
+  color: white;
+}
+
+#Ubutton, #signup, #login, #signout {
   margin: 30px auto;
 }
 
@@ -220,7 +226,7 @@ li.menu:hover {
   z-index: 1;
 }
 
-#modal {
+#modal, #modalAuth{
   display: none;
   font-size: 20px;
   color: #000;
@@ -234,11 +240,11 @@ li.menu:hover {
   z-index: 2;
 }
 
-#modal p {
+#modal, #modalAuth p {
   margin-bottom: 20px;
 }
 
-#modal #noteTitle {
+#modal, #modalAuth #noteTitle {
   font-size: 30px;
   font-weight: bold;
   margin-top: 0;
@@ -256,7 +262,7 @@ li.menu:hover {
   column-count: 2;
 }
 
-#selfiles, #close {
+#selfiles, #ok, #close {
   cursor: pointer;
   width: 230px;
   height: 30px;
