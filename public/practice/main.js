@@ -140,6 +140,14 @@
       }
     }
   }
+  //オート横スクロール
+  function horizontalScroll() {
+    if(letters > 10) {
+      if(target.scrollLeft < target.scrollWidth - target.clientWidth){
+        target.scrollLeft += 33;
+      }
+    }
+  }
   //ゲーム終了時の処理
   function finish() {
     mask.classList.remove("hiddenMask");
@@ -149,8 +157,10 @@
     var wpm = (score / 30) * 60;
     resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + time.toFixed(1);
     //DBにスコアを追加
-    
+
   }
+
+  var letters = 0;
 
   //タイピングゲーム中の処理
   //Tabキーの処理
@@ -168,6 +178,7 @@
      (currentWord[currentLocation+2] === " ") &&
      (currentWord[currentLocation+3] === " ")){
       currentLocation += 4;
+      letters += 4;
       inputedText += "    ";
       inputed.textContent = inputedText;
       cursor.textContent = currentWord[currentLocation];
@@ -197,7 +208,10 @@
     if((String.fromCharCode(e.keyCode) === currentWord[currentLocation]) ||
     (e.keyCode === 13 && currentWord[currentLocation].charCodeAt(0) === 10)||
     (e.keyCode === 165 && currentWord[currentLocation].charCodeAt(0) === 92)){
+      letters++;
       if(e.keyCode === 13){
+        letters = 0;
+        target.scrollLeft = 0;
         if(currentWord[currentLocation].charCodeAt(0) == 13){
           currentLocation++;
         }
@@ -205,6 +219,7 @@
         autoScroll();
       }
       currentLocation++;
+      horizontalScroll();
       // 終了
       if(currentLocation === currentWord.length){
         finish();

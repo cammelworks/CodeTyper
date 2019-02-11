@@ -9,72 +9,75 @@
     var attention = $("#attention").html();
 
     $("#C").click(function() {
-      $("#startCatchCopy").text("int Catchcopy() {");
+      $("#startCatchCopy").html("<span class='lightgreen'>int</span> <span class='skyblue'>Catchcopy()</span> {");
       $("#catchCopy").html(catchCopy);
-      $("#endCatchCopy").text("}");
-      $("#startDescription").text("int Description() {");
+      $("#endCatchCopy").html("}");
+      $("#startDescription").html("<span class='lightgreen'>int</span> <span class='skyblue'>Description()</span> {");
       $("#description").html(description);
-      $("#endDescription").text("}");
-      $("#startPracticeModeDescription").text("int PracticeMode() {");
+      $("#endDescription").html("}");
+      $("#startPracticeModeDescription").html("<span class='lightgreen'>int</span> <span class='skyblue'>PracticeMode()</span> {");
       $("#practiceModeDescription").html(practiceModeDescription);
-      $("#endPracticeModeDescription").text("}");
-      $("#startTimeAttackModeDescription").text("int timeAttackMode() {");
+      $("#endPracticeModeDescription").html("}");
+      $("#startTimeAttackModeDescription").html("<span class='lightgreen'>int</span> <span class='skyblue'>timeAttackMode()</span> {");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
-      $("#endTimeAttackModeDescription").text("}");
-      $("#startAttention").text("int Attention() {");
+      $("#endTimeAttackModeDescription").html("}");
+      $("#startAttention").html("<span class='lightgreen'>int</span> <span class='skyblue'>Attention()</span> {");
       $("#attention").html(attention);
-      $("#endAttention").text("}");
+      $("#endAttention").html("}");
       $("#fileList").empty();
       localStorage.setItem('lang', "C");
       setFileList();
     });
+    //Cをデフォルトで選択する
+    $("#C").click();
+    $("#C").css('border-bottom', 'none').css('background-color', '#282C34');
 
     $("#Java").click(function() {
-      $("#startCatchCopy").text("class Catchcopy() {");
+      $("#startCatchCopy").html("<span class='pink'>class</span> <span class='skyblue'>Catchcopy()</span> {");
       $("#catchCopy").html(catchCopy);
-      $("#endCatchCopy").text("}");
-      $("#startDescription").text("class Description() {");
+      $("#endCatchCopy").html("}");
+      $("#startDescription").html("<span class='pink'>class</span> <span class='skyblue'>Description()</span> {");
       $("#description").html(description);
-      $("#endDescription").text("}");
-      $("#startPracticeModeDescription").text("class PracticeMode() {");
+      $("#endDescription").html("}");
+      $("#startPracticeModeDescription").html("<span class='pink'>class</span> <span class='skyblue'>PracticeMode()</span></span> {");
       $("#practiceModeDescription").html(practiceModeDescription);
-      $("#endPracticeModeDescription").text("}");
-      $("#startTimeAttackModeDescription").text("class timeAttackMode() {");
+      $("#endPracticeModeDescription").html("}");
+      $("#startTimeAttackModeDescription").html("<span class='pink'>class</span> <span class='skyblue'>timeAttackMode()</span> {");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
-      $("#endTimeAttackModeDescription").text("}");
-      $("#startAttention").text("class Attention() {");
+      $("#endTimeAttackModeDescription").html("}");
+      $("#startAttention").html("<span class='pink'>class</span> <span class='skyblue'>Attention()</span> {");
       $("#attention").html(attention);
-      $("#endAttention").text("}");
+      $("#endAttention").html("}");
       $("#fileList").empty();
       localStorage.setItem('lang', "Java");
       setFileList();
     });
 
     $("#PHP").click(function() {
-      $("#startCatchCopy").text("<? php");
+      $("#startCatchCopy").html("<? php");
       $("#catchCopy").html(catchCopy);
-      $("#endCatchCopy").text(">");
-      $("#startDescription").text("<? php");
+      $("#endCatchCopy").html(">");
+      $("#startDescription").html("<? php");
       $("#description").html(description);
-      $("#endDescription").text(">");
-      $("#startPracticeModeDescription").text("<? php");
+      $("#endDescription").html(">");
+      $("#startPracticeModeDescription").html("<? php");
       $("#practiceModeDescription").html(practiceModeDescription);
-      $("#endPracticeModeDescription").text(">");
-      $("#startTimeAttackModeDescription").text("<? php");
+      $("#endPracticeModeDescription").html(">");
+      $("#startTimeAttackModeDescription").html("<? php");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
-      $("#endTimeAttackModeDescription").text(">");
-      $("#startAttention").text("<? php");
+      $("#endTimeAttackModeDescription").html(">");
+      $("#startAttention").html("<? php");
       $("#attention").html(attention);
-      $("#endAttention").text(">");
+      $("#endAttention").html(">");
       $("#fileList").empty();
       localStorage.setItem('lang', "PHP");
       setFileList();
     });
 
     $("#Others").click(function() {
-      $("#startDescription").text("Description");
-      $("#description").text(description);
-      $("#endDescription").text("");
+      $("#startDescription").html("Description");
+      $("#description").html(description);
+      $("#endDescription").html("");
       $("#fileList").empty();
     });
 

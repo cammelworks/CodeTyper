@@ -143,7 +143,14 @@
       }
     }
   }
-
+  //オート横スクロール
+  function horizontalScroll() {
+    if(letters > 10) {
+      if(target.scrollLeft < target.scrollWidth - target.clientWidth){
+        target.scrollLeft += 33;
+      }
+    }
+  }
   //ゲーム終了時の処理
   function finish() {
     var accuracy = (score / (score + miss));
@@ -154,6 +161,8 @@
     clearInterval(timerId);
     return;
   }
+
+  var letters = 0;
   //タイピングゲーム中の処理
   window.addEventListener("keydown", function(e) {
     //ゲーム中断
@@ -169,6 +178,7 @@
      (currentWord[currentLocation+2] === " ") &&
      (currentWord[currentLocation+3] === " ")){
       currentLocation += 4;
+      letters += 4;
       inputedText += "    ";
       inputed.textContent = inputedText;
       cursor.textContent = currentWord[currentLocation];
@@ -199,7 +209,10 @@
     if((e.keyCode === currentWord[currentLocation].charCodeAt(0)) ||
     (e.keyCode === 13 && currentWord[currentLocation].charCodeAt(0) === 10)||
     (e.keyCode === 165 && currentWord[currentLocation].charCodeAt(0) === 92)){
+      letters++;
       if(e.keyCode === 13){
+        letters = 0;
+        target.scrollLeft = 0;
         if(currentWord[currentLocation].charCodeAt(0) === 13) {
           currentLocation++;
         }
@@ -207,6 +220,7 @@
         autoScroll();
       }
       currentLocation++;
+      horizontalScroll();
       // 次のコードへ
       if(currentLocation === currentWord.length){
         clearInterval(timerId);

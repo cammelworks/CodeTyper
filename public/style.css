@@ -79,6 +79,18 @@ ul.languages-container li img{
   margin-left: 50px;
 }
 
+.lightgreen {
+  color: lightgreen;
+}
+
+.skyblue {
+  color: skyblue;
+}
+
+.pink {
+  color: pink;
+}
+
 .main-logo-container {
   text-align: center;
 }
