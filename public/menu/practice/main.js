@@ -148,6 +148,8 @@
     var accuracy = (score / (score + miss)) * 100;
     var wpm = (score / 30) * 60;
     resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + (30-time).toFixed(2);
+    //DBにスコアを追加
+      
   }
 
   //タイピングゲーム中の処理

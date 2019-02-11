@@ -26,10 +26,7 @@
                 var errorMessage = error.message;
                 console.log(errorCode+':'+errorMessage);
             });
-            
-            ///////////////////////////
-            //ここでユーザ名も登録したい///
-            //////////////////////////
+        
             
             //閉じる
             $("#modalAuth, #mask").fadeOut("slow", function() {
@@ -94,12 +91,20 @@
             signout.classList.remove("hidden");
             
             if(user.displayName === null){
-                //SignUpモーダルを閉じた後リロードしないといけないバグ
+                
                 
                 //ユーザ名の登録
                 var username = document.getElementById("username").value;
+                
+                //ユーザID
+                //DBにユーザーを追加
+                var userRef = firebase.database().ref("/user/"+user.uid);
+                userRef.set({
+                    username: username,
+                });
+                
                 user.updateProfile({
-                    displayName: username
+                    displayName: username,
                 }).then(function(error){
                     //エラー処理
                     var errorCode = error.code;
@@ -107,6 +112,8 @@
                     console.log(errorCode+':'+errorMessage);
                 }); 
                 console.log("name added!");
+                $("#Uname").html(username);
+                
             }else{
                $("#Uname").html(user.displayName); 
             }

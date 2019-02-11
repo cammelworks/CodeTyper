@@ -5,7 +5,7 @@
         if (user) {
             $("#Uname").html(user.displayName);
         } else {
-            $("#Uname").html("GUEST");;
+            $("#Uname").html("GUEST");
         }
     });   
 }
