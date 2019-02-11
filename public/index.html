@@ -4,6 +4,63 @@
     <meta charset="utf-8">
     <title>CodeTyper</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCNdPBNs_yzSoj3YSAYp83giUP0xIMQ9wg",
+        authDomain: "codetyper-cc5b6.firebaseapp.com",
+        databaseURL: "https://codetyper-cc5b6.firebaseio.com",
+        projectId: "codetyper-cc5b6",
+        storageBucket: "codetyper-cc5b6.appspot.com",
+        messagingSenderId: "496234219788"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script>
+        function changePractice(filename){
+            // 関数の引数からfirebaseとdatabeseにアクセスする
+            var reg=/(.*)(?:\.([^.]+$))/;
+            localStorage.setItem('filename', filename);
+            var file = filename.match(reg)[1];
+            var desc = document.getElementById("desc");
+            var databaseRef = firebase.database().ref("/" + localStorage.getItem('lang'));
+            var fileDescRef = firebase.database().ref("/" + localStorage.getItem('lang') + "/" + file);
+            //プログラム説明の取得
+            fileDescRef.on('value',function(snapshot){
+              desc.innerText = snapshot.val().description;
+            });
+            var target = document.getElementById("target");
+            var reader = new FileReader();
+            var storageRef = firebase.storage().ref("/" + localStorage.getItem('lang'));
+            var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
+            //urlはダウンロード用url
+              // CORSの構成が必要
+              var xhr = new XMLHttpRequest();
+              //blobで指定
+              xhr.responseType = 'blob';
+              //ファイル転送はxhrのonload内で抑える
+              xhr.onload = function(event) {
+                var blob = xhr.response;
+                //readAsTextの引数はblob
+                reader.readAsText(blob);
+                //以下でファイルを表示
+                reader.onload = function(ev){
+                  target.innerText = reader.result;
+                }
+              };
+              xhr.open('GET', url);
+              xhr.send();
+            }).catch(function(error) {
+              //エラー処理
+            });
+        }
+    </script>
   </head>
   <body>
     <!-- サイドバー -->
@@ -26,14 +83,14 @@
         <!-- 言語選択タブ -->
         <div class="header-container">
           <!-- 実装したい方 -->
-          <!-- <ul class="languages-container">
+          <ul class="languages-container">
             <li id="C"><img src="img/C-logo.png" alt="C"></li>
             <li id="Java"><img src="img/JAVA-logo.png" alt="JAVA"></li>
             <li id="PHP"><img src="img/PHP-logo.png" alt="JAVA"></li>
             <li id="Others">Others...</li>
-          </ul> -->
+          </ul>
           <!-- 現状 -->
-          <ul class="languages-container">
+          <!-- <ul class="languages-container">
             <li id="C">
               <div onclick="tomenu('C');">
                 <img src="img/C-logo.png" alt="C">
@@ -50,7 +107,7 @@
               </div>
             </li>
             <li id="Others">Others...</li>
-          </ul>
+          </ul> -->
         </div>
       </header>
 
@@ -66,25 +123,29 @@
           </div>
 
           <!--キャッチコピー-->
+          <div id="startCatchCopy"></div>
           <div id="catchCopy">
             <h1>手元を見てコードを書いていませんか？？</h1>
           </div>
+          <div id="endCatchCopy"></div>
 
           <!--説明-->
           <div id="startDescription"></div>
-          <div id="description">
-            CodeTyperはプログラミング初心者から中級者、コーディングの時にはブラインドタッチができないといった人に向けたタイピングゲームです。
-          </div>
+          <div id="description">CodeTyperはプログラミング初心者から中級者、コーディングの時にはブラインドタッチができないといった人に向けたタイピングゲームです。</div>
           <div id="endDescription"></div>
 
           <!--モード説明-->
           <div id="modeDescription">
+            <div id="startPracticeModeDescription"></div>
             <div id="practiceModeDescription">
               Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。
             </div>
-            <div id="TimeAttackModeDescription">
+            <div id="endPracticeModeDescription"></div>
+            <div id="startTimeAttackModeDescription"></div>
+            <div id="timeAttackModeDescription">
               TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。タイピングの正当率などから成績評価をします。
             </div>
+            <div id="endTimeAttackModeDescription"></div>
           </div>
 
           <!-- ゲーム開始ボタン(実装したい) -->
@@ -95,10 +156,69 @@
           </div> -->
 
           <!-- 注意 -->
-          <div id="Attention">
+          <div id="startAttention"></div>
+          <div id="attention">
             改行はEnterキーを使用してください。<br>
             自動インデントは想定しておりません。字下げ(インデント)はTabキーやSpaceキーを使用してください。
           </div>
+          <div id="endAttention"></div>
+
+          <div id="Uname"></div>
+          <h1 id="title">Practiceモード</h1>
+          <div class="menu">
+            <div class="leftMenu">
+              <div id="fileList">
+              </div>
+            </div>
+
+            <div class="rightMenu">
+              <div id="description">
+                プログラム説明: <span id="desc"></span>
+              </div>
+              <div id="code">
+                <pre id = "target">
+                  ここにプログラムが表示されます．
+                </pre>
+              </div>
+              <div id="ranking">
+                ランキング
+              </div>
+            </div>
+          </div>
+          <div class="button">
+            <div class="leftButton">
+              <div id="modeChange" class="Dbutton">
+                Mode Change
+              </div>
+            </div>
+            <div class="rightButton">
+              <div id="start" class="Dbutton">
+                Start
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- アップロードボタン -->
+      <div id="Ubutton">Upload</div>
+
+      <div id="modal">
+        <p id="noteTitle">UPLOAD上の注意</p>
+        <p id="note">
+          インデントまたは字下げは4文字分にしてください．<br>
+          コードの最終行に空行を１行入れてください．<br>
+          <span id="caution">上記に従わないコードはうまく動作しません．</span><br>
+          すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．
+        </p>
+        <form id="form" action="index.html" method="post">
+
+        </form>
+        <div id="buttons" class="modalButton">
+          <label for="selfile" class="selectFiles">
+            <div id="selfiles">select files</div>
+            <input type="file" id="selfile" multiple>
+          </label>
+          <div id="close">Close</div>
         </div>
       </div>
       <!-- フッター -->
@@ -109,5 +229,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script src="main.js"></script>
+    <script src="menuUpload.js"></script>
   </body>
 </html>
