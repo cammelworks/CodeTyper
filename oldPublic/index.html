@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>CODE TYPER</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCNdPBNs_yzSoj3YSAYp83giUP0xIMQ9wg",
+        authDomain: "codetyper-cc5b6.firebaseapp.com",
+        databaseURL: "https://codetyper-cc5b6.firebaseio.com",
+        projectId: "codetyper-cc5b6",
+        storageBucket: "codetyper-cc5b6.appspot.com",
+        messagingSenderId: "496234219788"
+      };
+      firebase.initializeApp(config);        
+    </script>
+  </head>
+  <body>
+    <img src="img/logo.png" alt="">
+    <!--ユーザ名の表示-->  
+    <div id="Uname"></div>   
+    <h1>手元を見てコードを書いていませんか？</h1>
+      
+    <!--新規アカウント-->
+    <div id="modalAuth">
+      <p id="noteTitle">アカウント作成</p>
+      <p id="note">
+        <input id="email" type="email" placeholder="メールアドレスを入力" required/><br>
+        <input id="username" type="text" placeholder="ユーザ名を入力" required/><br>
+        <input id="password" type="password" placeholder="パスワードを入力" required/><br>
+      </p>
+      <div id="buttons" class="modalButton">
+        <div id="ok">OK</div>
+        <div id="close">Close</div>
+      </div>
+    </div>
+    <div>  
+        <input id="logINemail" type="email" placeholder="メールアドレスを入力" required/>
+        <input id="logINpassword" type="password" placeholder="パスワードを入力" required/>
+    </div>  
+    <div id="login" class="button">Login</div>   
+    <div id="signup" class="button">Sign Up</div>
+    <div id="signout" class="button">Sign Out</div>
+      
+    <div class="introduction">
+      Code Typerはプログラミング初心者～中級者やコーディングのときにブラインドタッチできない人向けのタイピングゲームです．
+    </div>
+    <script>
+      function toMenu(lang) {
+        localStorage.setItem('lang', lang);
+        document.location.href='./menu/index.html';
+      }
+    </script>
+    <div class="function">
+        <div class="position">
+          <div class="description">
+            <dt>Practice</dt>
+            <dd>練習用モードです。</dd>
+          </div>
+          <div class="triangle">
+          </div>
+        </div>
+        <div class="position">
+          <div class="description">
+            <dt>TimeAttack</dt>
+            <dd>制限時間内にできるだけ多くのコードを入力していってください</dd>
+          </div>
+          <div class="triangle">
+          </div>
+        </div>
+        <div class="position">
+          <div class="description">
+            <dt>Upload</dt>
+            <dd>自分でコードをアップロードすることであなたの好きなコードを練習することができます。</dd>
+          </div>
+          <div class="triangle">
+          </div>
+        </div>
+      </div>
+
+    <ul>
+      <li class="menuTitle">MENU</li>
+      <li class="explanation">言語を選択してください</li>
+      <li class="menu"><div onclick="toMenu('C');">C</div></li>
+      <li class="menu"><div onclick="toMenu('Java');">Java</div></li>
+      <li class="menu"><div onclick="toMenu('Python');">Python</div></li>
+    </ul>
+
+
+
+    <div class="demo demo1">
+      <div class="heading"><span>使用上の注意</span></div>
+      <div class="announce">改行はEnterキーを使用してください<br>自動インデントを想定していないため字下げはtabやスペースキーを使用してください</div>
+    </div>
+
+    <div class="demo demo2">
+      <div class="heading"><span>scoreの説明</span></div>
+      <div class="announce">タイムアタックではスコアが設けられています。<br>スコア計算は"tyanio corp"独自の計算式を用いてより正確に評価を行えるようになっています。</div>
+    </div>
+
+    <div id="Ubutton" class="button">Upload</div>
+
+    <div id="modal">
+      <p id="noteTitle">UPLOAD上の注意</p>
+      <p id="note">
+        インデントまたは字下げは4文字分にしてください．<br>
+        コードの最終行に空行を１行入れてください．<br>
+        <span id="caution">上記に従わないコードはうまく動作しません．</span><br>
+        すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．
+      </p>
+      <form id="form" action="index.html" method="post">
+
+      </form>
+      <div id="buttons" class="modalButton">
+        <label for="selfile" class="selectFiles">
+          <div id="selfiles">select files</div>
+          <input type="file" id="selfile" multiple>
+        </label>
+        <div id="close">Close</div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script src="menu/menuUpload.js"></script>
+  </body>
+</html>
