@@ -25,6 +25,7 @@
     <script>
         function changePractice(filename){
             // 関数の引数からfirebaseとdatabeseにアクセスする
+            $("#target").text("Now Loading...");
             var reg=/(.*)(?:\.([^.]+$))/;
             localStorage.setItem('filename', filename);
             var file = filename.match(reg)[1];
