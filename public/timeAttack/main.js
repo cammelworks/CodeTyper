@@ -57,7 +57,7 @@
     modal.classList.add("hiddenModal");
     getCode()
   }
-    
+
   //ユーザのログイン状態の確認
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -66,14 +66,14 @@
       $("#Uname").html("GUEST");
     }
   });
-    
+
   var files = localStorage.getItem('files');
   var count = localStorage.getItem('count');
   //filesは連結した文字列になっているのでsplit(",")で配列に変換
   var fileArray = files.split(",");
   //firebaseからの読み込み
   let reader = new FileReader();
-  var storageRef = file_base.storage().ref("/" + localStorage.getItem('lang'));
+  var storageRef = firebase.storage().ref("/" + localStorage.getItem('lang'));
 
   function getCode(){
     //ロード開始
@@ -133,13 +133,7 @@
       cursorCount = 0;
     }
     if (time <= 0) {
-      var accuracy = (score / (score + miss));
-      var wpm = (score / 200) * 60;
-      resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
-      mask.classList.remove("hiddenMask");
-      modal.classList.remove("hiddenModal");
-      clearInterval(timerId);
-      return;
+      finish();
     }
   }
 
@@ -164,7 +158,10 @@
   function finish() {
     var accuracy = (score / (score + miss));
     var wpm = (score / 200) * 60;
-    resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " + (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " + (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: " +miss+"<br>WPM: " + wpm.toFixed(2);
+    resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
+    (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " +
+    (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: "
+    +miss+"<br>WPM: " + wpm.toFixed(2);
     mask.classList.remove("hiddenMask");
     modal.classList.remove("hiddenModal");
     clearInterval(timerId);

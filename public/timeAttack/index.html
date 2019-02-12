@@ -2,10 +2,13 @@
 <html lang="ja" >
   <head>
     <meta charset="utf-8">
+    <title>TimeAttack</title>
+    <link rel="stylesheet" href="style.css">
     <!-- Firebase App is always required and must be first -->
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -17,10 +20,8 @@
             storageBucket: "codetyper-cc5b6.appspot.com",
             messagingSenderId: "496234219788"
         };
-        var file_base = firebase.initializeApp(config, "other");
+        firebase.initializeApp(config);
     </script>
-    <title>Practice</title>
-    <link rel="stylesheet" href="style.css">
   </head>
   <body>
     <h1>TimeAttack</h1>
@@ -51,6 +52,7 @@
     </div>
     <p id="start">Word</p>
     <p id="load">Now Loading...</p>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script src="main.js"></script>
   </body>
 </html>

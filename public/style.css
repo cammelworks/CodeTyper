@@ -21,6 +21,12 @@ div.sidebar-container {
   padding: 0;
 }
 
+.authButton {
+  margin-top: 5px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 authButton {
     cursor: pointer;
 }
@@ -295,17 +301,17 @@ button:hover {
   margin-bottom: 20px;
 }
 
-#modal, #modalAuth #noteTitle {
+#modal #noteTitle, #userInfoTitle{
   font-size: 30px;
   font-weight: bold;
   margin-top: 0;
 }
 
-#modal #note {
+#modal #note , #userInfo{
   font-size: 16px;
 }
 
- #modal #caution {
+#modal #caution {
   color: red;
 }
 
@@ -317,7 +323,7 @@ button:hover {
   column-count: 2;
 }
 
-#selfiles, #ok, #close {
+#selfiles, #ok, .close {
   cursor: pointer;
   width: 230px;
   height: 30px;

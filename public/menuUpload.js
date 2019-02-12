@@ -95,9 +95,20 @@
     inputFile.addEventListener('change', getDescription, false);
     submit.addEventListener("click", upload2fire);
 
+    //closeをクリックしたら閉じる
+    $(".close").click(function() {
+      $("#modal, #modalAuth, #mask").fadeOut("slow", function() {
+        $("#mask").remove();
+      })
+    });
     //JQueryでモーダルウィンドウの実装
     $(function() {
       $("#Ubutton").click(function() {
+        $("#noteTitle").html("UPLOAD上の注意");
+        $("#note").html("インデントまたは字下げは4文字分にしてください．<br>コードの最終行に空行を１行入れてください．<br><span id='caution'>上記に従わないコードはうまく動作しません．</span><br>すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．");
+        $(".submit").remove();
+        $(".space").remove();
+        $("#selfiles").removeClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
 
@@ -105,12 +116,6 @@
         modalResize();
         //モーダルウィンドウの表示
         $("#modal,#mask").fadeIn("slow");
-        //closeをクリックしたら閉じる
-        $("#close").click(function() {
-            $("#modal, #mask").fadeOut("slow", function() {
-              $("#mask").remove();
-            })
-        });
         //画面中央を計算する関数
         $(window).resize(modalResize);
         function modalResize(){
