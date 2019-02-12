@@ -1,20 +1,20 @@
 'use strict';
 {
     var signout = document.getElementById("signout");
-    
+
     //ユーザの管理JQuery
     $(function() {
-      //新規ユーザ登録    
+      //新規ユーザ登録
       $("#signup").click(function() {
-        $("#noteTitle").html("アカウント作成"); 
-        $("#username").removeClass("hidden");  
+        $("#userInfoTitle").html("アカウント作成");
+        $("#username").removeClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
         modalResize();
         //モーダルウィンドウの表示
         $("#modalAuth,#mask").fadeIn("slow");
-          
+
         //okをクリックしたら登録して閉じる
         $("#ok").click(function(){
             var email = $("#email").val();
@@ -29,13 +29,8 @@
             $("#modalAuth, #mask").fadeOut("slow", function() {
               $("#mask").remove();
             })
-        });  
-        //closeをクリックしたら閉じる
-        $("#close").click(function() {
-            $("#modalAuth, #mask").fadeOut("slow", function() {
-              $("#mask").remove();
-            })
         });
+
         //画面中央を計算する関数
         $(window).resize(modalResize);
         function modalResize(){
@@ -50,18 +45,18 @@
           });
         }
       });
-        
-      //ログイン    
+
+      //ログイン
       $("#login").click(function() {
-        $("#noteTitle").html("ログイン"); 
-        $("#username").addClass("hidden");  
+        $("#userInfoTitle").html("ログイン");
+        $("#username").addClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
         modalResize();
         //モーダルウィンドウの表示
         $("#modalAuth,#mask").fadeIn("slow");
-          
+
         //okをクリックしたら登録して閉じる
         $("#ok").click(function(){
             var email = $("#email").val();
@@ -76,13 +71,8 @@
             $("#modalAuth, #mask").fadeOut("slow", function() {
               $("#mask").remove();
             })
-        });  
-        //closeをクリックしたら閉じる
-        $("#close").click(function() {
-            $("#modalAuth, #mask").fadeOut("slow", function() {
-              $("#mask").remove();
-            })
         });
+
         //画面中央を計算する関数
         $(window).resize(modalResize);
         function modalResize(){
@@ -97,25 +87,25 @@
           });
         }
       });
-    
+
       //サインアウト
       $("#signout").click(function(){
           firebase.auth().signOut();
       })
-        
+
     });
-    
+
     //ユーザのログイン状態の確認
     firebase.auth().onAuthStateChanged(function(user){
         if (user) {
             //新規、ログインの非表示
             $("#signup").addClass("hidden");
             $("#login").addClass("hidden");
-            
+
             //ユーザ名、サインアウトの表示
             $("#signout").removeClass("hidden");
             $("#Uname").removeClass("hidden");
-            
+
             //ユーザ名の登録
             if(user.displayName === null){
                 var username = $("#username").val();
@@ -133,26 +123,26 @@
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     console.log(errorCode+':'+errorMessage);
-                }); 
-                
+                });
+
                 //サインアウト、ユーザ名の非表示
                 $("#Uname").html(username);
             }else{
                 $("#Uname").html(user.displayName);
             }
-            
-        //GUEST    
+
+        //GUEST
         } else {
             //サインアウト、ユーザ名の非表示
             $("#signout").addClass("hidden");
             $("#Uname").addClass("hidden");
-            
+
             //新規、ログインの表示
             $("#signup").removeClass("hidden");
             $("#login").removeClass("hidden");
-        }        
+        }
     });
-          
+
   $(function() {
     //言語によって説明文のレイアウトを変える
     var catchCopy = $("#catchCopy").html();
