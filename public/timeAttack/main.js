@@ -61,7 +61,16 @@
   //ユーザのログイン状態の確認
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
+      var userRef = firebase.database().ref("/user/"+user.uid+"/timeAttack/"+localStorage.getItem('lang'));
       $("#Uname").html(user.displayName);
+
+      //DBから自己ベストスコアを持ってくる
+      //初めての場合は表示されない
+      userRef.orderByChild("score").once("value",function(snapshot){
+          if(snapshot.val() !== null){
+            $("#myBest").html("MY BEST: "+snapshot.val().score);
+          }
+      });
     } else {
       $("#Uname").html("GUEST");
     }
@@ -156,16 +165,52 @@
   }
   //ゲーム終了時の処理
   function finish() {
+    clearInterval(timerId);
     var accuracy = (score / (score + miss));
     var wpm = (score / 200) * 60;
-    resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
-    (wpm*accuracy*accuracy*accuracy).toFixed(0) + "<br>正答率: " +
-    (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: "
-    +miss+"<br>WPM: " + wpm.toFixed(2);
+    var totalScore = wpm*accuracy*accuracy*accuracy;
     mask.classList.remove("hiddenMask");
     modal.classList.remove("hiddenModal");
-    clearInterval(timerId);
-    return;
+
+    //最後まで終わらせたときのみ結果を表示
+    if(accuracy.toFixed(2) === "NaN"){
+       resultLabel.innerHTML = "中断";
+    }else{
+      resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
+      totalScore.toFixed(0) + "<br>正答率: " +
+      (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: "
+      +miss+"<br>WPM: " + wpm.toFixed(2);
+    }
+    //ログインしていたら
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        //DBにスコアを追加
+        var userRef = firebase.database().ref("/user/"+user.uid+"/timeAttack/"+localStorage.getItem('lang'));
+        userRef.orderByChild("score").once("value",function(snapshot){
+          //今回が初めて
+          if(snapshot.val() === null && accuracy.toFixed(2) !== "NaN"){
+            userRef.set({
+               score : totalScore.toFixed(0)
+            });
+          }else{
+            var myBest = snapshot.val().score;
+            if(myBest < totalScore && accuracy.toFixed(2) !== "NaN"){
+              console.log("自己ベスト");
+              //自己ベスト更新
+              userRef.set({
+                score : totalScore.toFixed(0)
+              });
+              resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
+              totalScore.toFixed(0) + "<br>正答率: " +
+              (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: "
+              +miss+"<br>WPM: " + wpm.toFixed(2) + "<br>自己ベスト更新！！";
+            }
+          }
+        });
+      } else {
+          //GUESTのとき
+      }
+    });
   }
 
   var letters = 0;

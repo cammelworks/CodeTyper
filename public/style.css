@@ -37,7 +37,9 @@ authButton {
   color: white;
 }
 
-
+#modalAuth #errorMessage {
+  color: red;
+}
 
 div.logo-container{
   color: #CBCED4;
