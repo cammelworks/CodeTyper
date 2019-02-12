@@ -7,6 +7,7 @@
       //新規ユーザ登録
       $("#signup").click(function() {
         $("#userInfoTitle").html("アカウント作成");
+        $("#errorMessage").empty();
         $("#username").removeClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
@@ -15,19 +16,27 @@
         //モーダルウィンドウの表示
         $("#modalAuth,#mask").fadeIn("slow");
 
+        $("#email, #usename, #password").keypress(function(e) {
+          if(e.keyCode === 13){
+            $("#ok").click();
+          }
+        })
+
         //okをクリックしたら登録して閉じる
         $("#ok").click(function(){
             var email = $("#email").val();
             var password = $("#password").val();
-            firebase.auth().createUserWithEmailAndPassword(email, password).then(function(error) {
-                // エラー処理
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorCode+':'+errorMessage);
-            });
-            //閉じる
-            $("#modalAuth, #mask").fadeOut("slow", function() {
-              $("#mask").remove();
+            firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
+              //ログイン成功
+              $("#modalAuth, #mask").fadeOut("slow", function() {
+                $("#mask").remove();
+              })
+            }).catch(function(error) {
+              // エラー処理
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.log(errorCode+':'+errorMessage);
+              $("#errorMessage").text(errorMessage);
             })
         });
 
@@ -49,6 +58,7 @@
       //ログイン
       $("#login").click(function() {
         $("#userInfoTitle").html("ログイン");
+        $("#errorMessage").empty();
         $("#username").addClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
@@ -57,20 +67,27 @@
         //モーダルウィンドウの表示
         $("#modalAuth,#mask").fadeIn("slow");
 
+        $("#email, #password").keypress(function(e) {
+          if(e.keyCode === 13){
+            $("#ok").click();
+          }
+        })
         //okをクリックしたら登録して閉じる
         $("#ok").click(function(){
             var email = $("#email").val();
             var password = $("#password").val();
-            firebase.auth().signInWithEmailAndPassword(email, password).then(function(error) {
+            firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
+                //ログイン成功
+                $("#modalAuth, #mask").fadeOut("slow", function() {
+                  $("#mask").remove();
+                })
+            }).catch(function(error) {
                 // エラー処理
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode+':'+errorMessage);
+                $("#errorMessage").text(errorMessage)
             });
-            //閉じる
-            $("#modalAuth, #mask").fadeOut("slow", function() {
-              $("#mask").remove();
-            })
         });
 
         //画面中央を計算する関数
