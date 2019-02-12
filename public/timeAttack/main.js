@@ -57,7 +57,16 @@
     modal.classList.add("hiddenModal");
     getCode()
   }
-
+    
+  //ユーザのログイン状態の確認
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      $("#Uname").html(user.displayName);
+    } else {
+      $("#Uname").html("GUEST");
+    }
+  });
+    
   var files = localStorage.getItem('files');
   var count = localStorage.getItem('count');
   //filesは連結した文字列になっているのでsplit(",")で配列に変換

@@ -61,22 +61,12 @@
   start.classList.add("hiddenMask");
   init();
 
-  //ユーザのログイン状態の確認
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      $("#Uname").html(user.displayName);
-    } else {
-      $("#Uname").html("GUEST");
-    }
-  });
-
-
   //firebaseからの読み込み
   let reader = new FileReader();
 
   var storageRef = firebase.storage().ref("/" + localStorage.getItem('lang'));
   var filename = localStorage.getItem('filename');
-
+  
   var fileRef = storageRef.child(filename).getDownloadURL().then(function(url) {
   //urlはダウンロード用url
     // CORSの構成が必要
@@ -105,6 +95,26 @@
   }).catch(function(error) {
     //エラー処理
   });
+      
+  var reg=/(.*)(?:\.([^.]+$))/;   
+  //ユーザのログイン状態の確認
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      var userRef = firebase.database().ref("/user/"+user.uid+"/"+localStorage.getItem('lang')+"/"+filename.match(reg)[1]);    
+      $("#Uname").html(user.displayName);
+          
+      //DBから自己ベストスコアを持ってくる 
+      //初めての場合は表示されない    
+      userRef.orderByChild("score").once("value",function(snapshot){
+          if(snapshot.val() !== null){
+            $("#myBest").html("MY BEST: "+snapshot.val().score+"sec");      
+          }
+      });            
+            
+    } else {
+      $("#Uname").html("GUEST");
+    }
+  });    
 
   //タイマーの設置
   let cursorCount = 0;
@@ -155,9 +165,40 @@
     clearTimeout(timerId);
     var accuracy = (score / (score + miss)) * 100;
     var wpm = (score / 30) * 60;
-    resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + time.toFixed(1);
-    //DBにスコアを追加
-
+      
+    //最後まで終わらせたときのみ結果を表示 
+    if(accuracy.toFixed(2) === "NaN"){
+       resultLabel.innerHTML = "中断";      
+    }else{
+       resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + time.toFixed(1); 
+    }   
+    //ログインしていたら  
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {  
+        //DBにスコアを追加  
+        var userRef = firebase.database().ref("/user/"+user.uid+"/"+localStorage.getItem('lang')+"/"+filename.match(reg)[1]);  
+        userRef.orderByChild("score").once("value",function(snapshot){
+          //今回が初めて
+          console.log(snapshot.val());    
+          if(snapshot.val() === null & accuracy.toFixed(2) !== "NaN"){  
+            userRef.set({
+               score : time.toFixed(1), 
+            });      
+          }else{
+            var myBest = snapshot.val().score;
+            if(myBest > time.toFixed(1) && accuracy.toFixed(2) !== "NaN"){    
+              //自己ベスト更新    
+              userRef.set({
+                score : time.toFixed(1),
+              });
+              resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + time.toFixed(1) + "<br>自己ベスト更新!!";   
+            }      
+          }    
+        }); 
+      } else {
+          //GUESTのとき         
+      }
+    });       
   }
 
   var letters = 0;
