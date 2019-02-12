@@ -21,6 +21,18 @@ div.sidebar-container {
   padding: 0;
 }
 
+authButton {
+    cursor: pointer;
+}
+
+#Uname {
+  text-align: left;
+  font-size: 22px;
+  color: white;
+}
+
+
+
 div.logo-container{
   color: #CBCED4;
   text-align: center;
@@ -237,12 +249,12 @@ button:hover {
 }
 
 #Uname{
-  text-align: right;
+  text-align: left;
   font-size: 22px;
   color: white;
 }
 
-#Ubutton, #signup, #login, #signout {
+#Ubutton {
   margin: auto;
   font-size: 30px;
   height: 50px;
