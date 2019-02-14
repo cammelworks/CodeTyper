@@ -8,13 +8,13 @@ body{
   margin: 0;
   padding: 0;
   font-family: MyricaM;
-  font-size: large;
+  font-size: 17px;
   color: #FFFFFF
 }
 
 div.sidebar-container {
   background-color: #21252B;
-  width: 20%;
+  width: 15%;
   height: 1000px;
   float: left;
   margin: 0;
@@ -22,19 +22,27 @@ div.sidebar-container {
 }
 
 .authButton {
-  margin-top: 5px;
-  font-size: 25px;
   cursor: pointer;
+  margin: 8px 0;
+}
+
+.authButton img {
+  height: 1em;
+  margin-left: 2px;
 }
 
 authButton {
     cursor: pointer;
 }
 
-#Uname {
-  text-align: left;
-  font-size: 22px;
+.authUname {
   color: white;
+  margin: 8px 0;
+  margin-left: 2px;
+}
+
+.authUname img {
+  height: 1em;
 }
 
 #modalAuth #errorMessage {
@@ -48,7 +56,7 @@ div.logo-container{
 }
 
 div.body-container {
-  width: 80%;
+  width: 85%;
   float: right;
   margin: 0;
   padding: 0;
@@ -76,13 +84,9 @@ ul.languages-container li:hover {
   opacity: 0.7;
 }
 
-ul.languages-container li:first-child {
-  border-left: 1px solid #181A1F;
-}
-
 ul.languages-container li img{
-  height: 30px;
-  padding: 10px 0;
+  height: 20px;
+  padding: 5px 0;
 }
 
 #lineNumber {
@@ -93,6 +97,15 @@ ul.languages-container li img{
   color: rgba(150, 150, 150, 0.7);
   padding: 0 5px 0 3px;
   border-right: 1px solid rgba(150, 150, 150, 0.7);
+}
+
+#catchCopy {
+  vertical-align: middle;
+}
+
+#catchCopy h1{
+  padding: 0.5em 0;
+  margin: 0;
 }
 
 .content-container > #description, #catchCopy, #practiceModeDescription, #timeAttackModeDescription, #attention {
@@ -107,17 +120,25 @@ ul.languages-container li img{
   color: skyblue;
 }
 
+.cornflowerblue {
+  color: cornflowerblue;
+}
+
+.magenta{
+  color: magenta;
+}
+
 .pink {
   color: pink;
 }
 
-.main-logo-container {
+/* .main-logo-container {
   text-align: center;
 }
 
 .main-logo-container img{
   object-fit: contain;
-}
+} */
 
 .menu {
   height: 500px;
@@ -254,12 +275,6 @@ button:hover {
 .rightButton {
   width: 300px;
   float: right;
-}
-
-#Uname{
-  text-align: left;
-  font-size: 22px;
-  color: white;
 }
 
 #Ubutton {
