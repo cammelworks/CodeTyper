@@ -24,6 +24,9 @@
   let elapsedTime;
   let timeToAdd;
   let lines;
+  let countLines;
+  let lineMisses;
+  let perfictLines;
 
   const inputed = document.createElement("span");
   inputed.classList.add("inputed");
@@ -39,6 +42,7 @@
     miss = 0;
     time = 200;
     timeToAdd = 0;
+    lineMisses = 0;
     spaceKeyPressed = false;
     start.innerText = initWord;
     target.innerText = currentWord;
@@ -148,7 +152,6 @@
 
   //オートスクロール
   function autoScroll() {
-    lines++;
     if(lines > 10) {
       if(target.scrollTop < target.scrollHeight - target.clientHeight){
         target.scrollTop += 33;
@@ -169,6 +172,8 @@
     var accuracy = (score / (score + miss));
     var wpm = (score / 200) * 60;
     var totalScore = wpm*accuracy*accuracy*accuracy;
+    console.log(lines);
+    console.log(lineMisses);
     mask.classList.remove("hiddenMask");
     modal.classList.remove("hiddenModal");
 
@@ -178,7 +183,8 @@
     }else{
       resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
       totalScore.toFixed(0) + "<br>正答率: " +
-      (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: "
+      (accuracy * 100).toFixed(2) + "<br>行正答率: " +
+      perfictLines +"/" + countLines + "<br>ミスタイプ数: "
       +miss+"<br>WPM: " + wpm.toFixed(2);
     }
     //ログインしていたら
@@ -253,6 +259,9 @@
         cursor.classList.remove("hidden");
         text.classList.remove("hidden");
         cursor.textContent = currentWord[currentLocation];
+        lines = 0;
+        countLines = 0;
+        perfictLines = 0;
       }
       return;
     }
@@ -262,12 +271,19 @@
     (e.keyCode === 165 && currentWord[currentLocation].charCodeAt(0) === 92)){
       letters++;
       if(e.keyCode === 13){
+        if(lineMisses == 0) {
+          perfictLines++;
+          console.log("perfect");
+        }
         letters = 0;
+        lineMisses = 0;
         target.scrollLeft = 0;
         if(currentWord[currentLocation].charCodeAt(0) === 13) {
           currentLocation++;
         }
         inputedText += "\n";
+        lines++;
+        countLines++;
         autoScroll();
       }
       currentLocation++;
@@ -277,6 +293,7 @@
         clearInterval(timerId);
         timeToAdd += Date.now() - startTime;
         lines = 0;
+        lineMisses = 0;
         inputedText = "";
         currentLocation = 0;
         getCode();
@@ -300,6 +317,7 @@
     //間違った文字を入力したときの処理
     }else {
       miss++;
+      lineMisses++;
       missLabel.innerHTML = miss;
       cursor.classList.add("miss");
     }
