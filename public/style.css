@@ -339,10 +339,12 @@ td, th {
   font-size: 30px;
   font-weight: bold;
   margin-top: 0;
+  text-align: center;     
 }
 
 #modal #note , #userInfo{
   font-size: 16px;
+  text-align: center;    
 }
 
 #modal #caution {
@@ -355,9 +357,10 @@ td, th {
   position: absolute;
   bottom: 0;
   column-count: 2;
+  text-align: center;   
 }
 
-#selfiles, #ok, .close {
+#selfiles, .ok, .close {
   cursor: pointer;
   width: 230px;
   height: 30px;
