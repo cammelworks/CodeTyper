@@ -177,13 +177,18 @@
       if (user) {  
         //DBにスコアを追加  
         var userRef = firebase.database().ref("/user/"+user.uid+"/"+localStorage.getItem('lang')+"/"+filename.match(reg)[1]);  
-        userRef.orderByChild("score").once("value",function(snapshot){
+        //ランキング用
+        var rankingRef = firebase.database().ref("/ranking/"+localStorage.getItem('lang')+"/"+filename.match(reg)[1]+"/"+user.displayName); 
+          userRef.orderByChild("score").once("value",function(snapshot){
           //今回が初めて
           console.log(snapshot.val());    
           if(snapshot.val() === null & accuracy.toFixed(2) !== "NaN"){  
             userRef.set({
                score : time.toFixed(1), 
-            });      
+            });
+            rankingRef.set({
+               score : time.toFixed(1), 
+            });  
           }else{
             var myBest = snapshot.val().score;
             if(myBest > time.toFixed(1) && accuracy.toFixed(2) !== "NaN"){    
@@ -191,6 +196,9 @@
               userRef.set({
                 score : time.toFixed(1),
               });
+              rankingRef.set({
+               score : time.toFixed(1), 
+              });    
               resultLabel.innerHTML = "正答率: " + accuracy.toFixed(2) + "<br>WPM: " + wpm.toFixed(2) + "<br>時間: " + time.toFixed(1) + "<br>自己ベスト更新!!";   
             }      
           }    

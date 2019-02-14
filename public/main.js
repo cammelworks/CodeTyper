@@ -283,12 +283,15 @@
     //databaseの並び順を変えてボタン生成
     //onメソッドはブラウザのリロード時、データの追加時、更新時に発火
     databaseRef.orderByChild("filename").on('child_added',function(snapshot){
-      addList(snapshot.val().filename);
+      addList(snapshot.val().filename);    
       count++;
       changeButton();
     });
   }
-
+  
+     
+      
+  
   //選択されているボタンを表示
   function changeButton() {
     btn = $('button');

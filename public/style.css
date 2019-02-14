@@ -183,9 +183,26 @@ button:hover {
 }
 
 .rightMenu > #ranking {
-  height: 100px;
+  font-size: 25px;
+  height: 112px;
   overflow: auto;
   border: 1px solid #fff;
+}
+
+#rankingScore {
+  font-size: 15px;
+}
+
+.rightMenu > #ranking >table td,th{
+	border-collapse: collapse;
+    border: solid 1px;
+	padding: 0.5em;
+    width: 660px;
+}
+td, th {
+    text-align: center;
+	border: solid 1px;
+	padding: 0.5em;
 }
 
 .button {

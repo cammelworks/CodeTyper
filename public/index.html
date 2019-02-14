@@ -24,6 +24,8 @@
     </script>
     <script>
         function changePractice(filename){
+            //ランキングの初期化
+            $("#rankingScore").html("");
             // 関数の引数からfirebaseとdatabeseにアクセスする
             $("#target").text("Now Loading...");
             var reg=/(.*)(?:\.([^.]+$))/;
@@ -59,6 +61,15 @@
               xhr.send();
             }).catch(function(error) {
               //エラー処理
+            });
+            var count = 0;
+            $("#rankingScore").append("<tr><th>rank</th><th>user</th><th>score</th></tr>");
+            //ランキングの表示    
+            var rankingRef = firebase.database().ref("/ranking/"+localStorage.getItem('lang')+"/"+file);
+            rankingRef.orderByChild("score").on('child_added',function(snapshot){
+              count++;    
+              console.log(count+":"+snapshot.key);    
+              $("#rankingScore").append("<tr><td>"+count+"</td><td>"+snapshot.key+"</td><td>"+snapshot.val().score+"[sec]</td></tr>");    
             });
         }
     </script>
@@ -203,6 +214,11 @@
               </div>
               <div id="ranking">
                 ランキング
+                <table>  
+                  <div id="rankingScore">
+                    ここにランキングが表示されます. 
+                  </div>
+                </table>   
               </div>
             </div>
           </div>
