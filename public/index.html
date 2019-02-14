@@ -85,11 +85,24 @@
       </div>
       <!-- ログイン機能 -->
       <div class="login-container">
-          <div id="Uname"></div>
-          <div id="login" class="authButton">Login</div>
-          <div id="signup" class="authButton">Sign Up</div>
+          <div class="authUname">
+            >
+            <img src="img/file-logo.png" alt="dir">
+            <span id="Uname"></span>
+          </div>
+          <div id="login" class="authButton">
+            <img src="img/dir-logo.png" alt="dir">
+            Login
+          </div>
+          <div id="signup" class="authButton">
+            <img src="img/dir-logo.png" alt="dir">
+            Sign Up
+          </div>
           <div id=""></div>
-          <div id="signout" class="authButton">Sign Out</div>
+          <div id="signout" class="authButton">
+            <img src="img/dir-logo.png" alt="dir">
+            Sign Out
+          </div>
       </div>
     </div>
 
@@ -111,36 +124,14 @@
     <!-- コンテンツ -->
     <div class="body-container">
       <!-- ヘッダー -->
-      <header>
+      <header class="header-container">
         <!-- 言語選択タブ -->
-        <div class="header-container">
-          <!-- 実装したい方 -->
-          <ul class="languages-container">
-            <li id="C"><img src="img/C-logo.png" alt="C"></li>
-            <li id="Java"><img src="img/JAVA-logo.png" alt="JAVA"></li>
-            <li id="PHP"><img src="img/PHP-logo.png" alt="JAVA"></li>
-            <li id="Others">Others...</li>
-          </ul>
-          <!-- 現状 -->
-          <!-- <ul class="languages-container">
-            <li id="C">
-              <div onclick="tomenu('C');">
-                <img src="img/C-logo.png" alt="C">
-              </div>
-            </li>
-            <li id="Java">
-              <div onclick="toMenu('Java')">
-                <img src="img/JAVA-logo.png" alt="JAVA">
-              </div>
-            </li>
-            <li id="PHP">
-              <div onclick="toMenu('Python')">
-              <img src="img/PHP-logo.png" alt="JAVA">
-              </div>
-            </li>
-            <li id="Others">Others...</li>
-          </ul> -->
-        </div>
+        <ul class="languages-container">
+          <li id="C"><img src="img/C-logo.png" alt="C"></li>
+          <li id="Java"><img src="img/JAVA-logo.png" alt="JAVA"></li>
+          <li id="PHP"><img src="img/PHP-logo.png" alt="JAVA"></li>
+          <li id="Others">Others...</li>
+        </ul>
       </header>
 
 
@@ -150,9 +141,13 @@
 
         <div class="content-container">
           <!-- メインロゴ -->
-          <div class="main-logo-container">
+          <!-- <div class="main-logo-container">
             <img src="img/logo.png" alt="main-logo">
-          </div>
+          </div> -->
+
+          <!-- 言語のヘッダ -->
+          <div id="language-header"></div>
+          <br>
 
           <!--キャッチコピー-->
           <div id="startCatchCopy"></div>
@@ -160,24 +155,35 @@
             <h1>手元を見てコードを書いていませんか？？</h1>
           </div>
           <div id="endCatchCopy"></div>
+          <br>
 
           <!--説明-->
           <div id="startDescription"></div>
           <div id="description">CodeTyperはプログラミング初心者から中級者、コーディングの時にはブラインドタッチができないといった人に向けたタイピングゲームです。</div>
           <div id="endDescription"></div>
+          <br>
 
           <!--モード説明-->
           <div id="modeDescription">
             <div id="startPracticeModeDescription"></div>
             <div id="practiceModeDescription">
               Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。
+              <br>
+              <span class="return"></span>
+              ゲーム終了時にはログインしているアカウントにベストタイムが記録されます。
             </div>
             <div id="endPracticeModeDescription"></div>
+            <br>
+
             <div id="startTimeAttackModeDescription"></div>
             <div id="timeAttackModeDescription">
               TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。タイピングの正当率などから成績評価をします。
+              <br>
+              <span class="return"></span>
+              ゲーム終了時にはログインされたアカウントにベストスコアが記録されます。
             </div>
             <div id="endTimeAttackModeDescription"></div>
+            <br>
           </div>
 
           <!-- ゲーム開始ボタン(実装したい) -->

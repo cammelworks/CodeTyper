@@ -162,6 +162,7 @@
 
   $(function() {
     //言語によって説明文のレイアウトを変える
+    var languageHeader = $("#language-header").html();
     var catchCopy = $("#catchCopy").html();
     var description = $("#description").html();
     var practiceModeDescription = $("#practiceModeDescription").html();
@@ -169,19 +170,21 @@
     var attention = $("#attention").html();
 
     $("#C").click(function() {
-      $("#startCatchCopy").html("<span class='lightgreen'>int</span> <span class='skyblue'>Catchcopy()</span> {");
+      $("#language-header").html("<span style='color:orchid;'>#include</span><span class='lightgreen'>&ltstdio.h&gt</span>");
+      $("#startCatchCopy").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>Catchcopy</span>(<span class='skyblue'>char</span> <span>str[]</span>) {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
-      $("#startDescription").html("<span class='lightgreen'>int</span> <span class='skyblue'>Description()</span> {");
+      $("#startDescription").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>description</span>(<span class='skyblue'>void</span>) {");
       $("#description").html(description);
       $("#endDescription").html("}");
-      $("#startPracticeModeDescription").html("<span class='lightgreen'>int</span> <span class='skyblue'>PracticeMode()</span> {");
+      $("#startPracticeModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>practiceMode</span>(<span class='skyblue'>void</span>) {");
       $("#practiceModeDescription").html(practiceModeDescription);
       $("#endPracticeModeDescription").html("}");
-      $("#startTimeAttackModeDescription").html("<span class='lightgreen'>int</span> <span class='skyblue'>timeAttackMode()</span> {");
+      $("#startTimeAttackModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>timeAttackMode</span>(<span class='skyblue'>void</span>) {");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
       $("#endTimeAttackModeDescription").html("}");
-      $("#startAttention").html("<span class='lightgreen'>int</span> <span class='skyblue'>Attention()</span> {");
+      $(".return").html("<span style='color:orchid;'>return </span>");
+      $("#startAttention").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>attention</span>(<span class='skyblue'>void</span>) {");
       $("#attention").html(attention);
       $("#endAttention").html("}");
       $("#fileList").empty();
@@ -193,6 +196,7 @@
     $("#C").css('border-bottom', 'none').css('background-color', '#282C34');
 
     $("#Java").click(function() {
+      $("#language-header").html("");
       $("#startCatchCopy").html("<span class='pink'>class</span> <span class='skyblue'>Catchcopy()</span> {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
@@ -214,6 +218,7 @@
     });
 
     $("#PHP").click(function() {
+      $("#language-header").html("");
       $("#startCatchCopy").html("<? php");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html(">");
