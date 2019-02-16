@@ -3,13 +3,19 @@
   src: url(font/MyricaM.ttf);
 }
 
+@media screen and (max-width: 640px) {
+  body {
+    width: 640px;
+  }
+}
+
 body{
   background-color: #282C34;
   margin: 0;
   padding: 0;
   font-family: MyricaM;
   font-size: 17px;
-  color: #FFFFFF
+  color: #FFFFFF;
 }
 
 div.sidebar-container {
@@ -49,14 +55,16 @@ authButton {
   color: red;
 }
 
-div.logo-container{
+.logo-container{
   color: #CBCED4;
   text-align: center;
   border-bottom: #181A1F solid 1px;
 }
 
-div.body-container {
+.body-container {
   width: 85%;
+  height: auto;
+  overflow: hidden;
   float: right;
   margin: 0;
   padding: 0;
@@ -89,6 +97,11 @@ ul.languages-container li img{
   padding: 5px 0;
 }
 
+.main-container {
+  height: auto;
+  overflow: hidden;
+}
+
 #lineNumber {
   width: 20px;
   margin-right: 5px;
@@ -99,17 +112,25 @@ ul.languages-container li img{
   border-right: 1px solid rgba(150, 150, 150, 0.7);
 }
 
+.content-container {
+  width: calc(100% - 40px);
+  padding-right: 6px;
+  float: right;
+}
+
 #catchCopy {
   vertical-align: middle;
 }
 
 #catchCopy h1{
-  padding: 0.5em 0;
+  padding: .5em 0;
   margin: 0;
 }
 
 .content-container > #description, #catchCopy, #practiceModeDescription, #timeAttackModeDescription, #attention {
-  margin-left: 50px;
+  padding: .5em 0;
+  margin-left: 20px;
+  background-color:
 }
 
 .lightgreen {
@@ -140,28 +161,51 @@ ul.languages-container li img{
   object-fit: contain;
 } */
 
+.menu-container {
+  height: auto;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+.menu-container #title {
+  padding-left: 10px;
+  color: #000;
+  background-color: #fff;
+  border-bottom: 2px solid #fff;
+  box-sizing: border-box;
+}
+
+
+
 .menu {
-  height: 500px;
-  width: 1000px;
+  /* height: 500px; */
+  /* width: 1000px; */
+  width: 100%;
+  height: auto;
+  overflow: hidden;
   margin: auto;
 }
 
 .leftMenu {
-  width: 300px;
+  /* width: 300px; */
+  width: 30%;
   float: left;
   margin: auto;
 }
 
 
 #fileList {
-  height: 400px;
-  width: 250px;
-  margin: 0 auto 50px;
+  height: 24em;
+  /* width: 250px; */
+  /* margin: 0 auto 50px; */
   border: 2px solid #fff;
-  overflow: auto;
+  box-sizing: border-box;
+  /* overflow: auto; */
 }
 
-button {
+/* button {
   color: #fff;
   font-size: 30px;
   height: 50px;
@@ -169,33 +213,94 @@ button {
   background-color: red;
   cursor: pointer;
   overflow: hidden;
+} */
+
+#fileList button {
+  display: inline-block;
+  width: 100%;
+  height:50px;
+  text-align: center;
+  background-color: #9ec34b;
+  font-size: 16px;
+  line-height: 52px;
+  color: #FFF;
+  text-decoration: none;
+  font-weight: bold;
+  border: 2px solid #9ec34b;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-button:hover {
+#fileList button:after{
+  width: 100%;
+  height: 0;
+  content:"";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background : #FFF;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transition: .2s;
+  z-index: -1;
+}
+
+#fileList button:focus {
+  color: #9ec34b;
+}
+
+#fileList button:focus:after {
+  height: 240%;
+  opacity: 1;
+}
+
+/* button:hover {
   opacity: 0.7;
+} */
+
+#fileList button:hover{
+  color: #9ec34b;
 }
 
-.active {
+/* .active {
   float: right;
+} */
+
+#fileList button:hover:after{
+  height: 240%;
+  opacity: 1;
 }
+
+#fileList button:active:after{
+  height: 340%;
+  opacity: 1;
+}
+
 
 .rightMenu {
-  width: 660px;
+  /* width: 660px; */
+  width: 70%;
+  height: 24em;
   float: right;
   margin: auto;
+  position: relative;
 }
 
-.rightMenu > #description {
+.rightMenu #description {
   height: 2em;
   border: 1px solid #fff;
-  border-radius: 3px;
+  box-sizing: border-box;
+  /* border-radius: 3px; */
 }
 
-.rightMenu > #code {
-  height: 250px;
+.rightMenu #code {
+  height: 12em;
   overflow: auto;
   border: 1px solid #fff;
-  border-radius: 3px;
+  box-sizing: border-box;
+  /* border-radius: 3px; */
 }
 
 .rightMenu > #code > #target{
@@ -204,10 +309,14 @@ button:hover {
 }
 
 .rightMenu > #ranking {
+  width: 100%;
   font-size: 25px;
-  height: 112px;
+  height: 6em;
   overflow: auto;
   border: 1px solid #fff;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
 }
 
 #rankingScore {
@@ -218,7 +327,7 @@ button:hover {
 	border-collapse: collapse;
     border: solid 1px;
 	padding: 0.5em;
-    width: 660px;
+    /* width: 660px; */
 }
 td, th {
     text-align: center;
@@ -227,7 +336,7 @@ td, th {
 }
 
 .button {
-  width: 1000px;
+  /* width: 1000px; */
   margin: auto;
   column-count: 2;
 }
@@ -235,7 +344,7 @@ td, th {
   margin: auto;
   font-size: 30px;
   height: 50px;
-  width: 200px;
+  /* width: 200px; */
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -339,12 +448,12 @@ td, th {
   font-size: 30px;
   font-weight: bold;
   margin-top: 0;
-  text-align: center;     
+  text-align: center;
 }
 
 #modal #note , #userInfo{
   font-size: 16px;
-  text-align: center;    
+  text-align: center;
 }
 
 #modal #caution {
@@ -357,7 +466,7 @@ td, th {
   position: absolute;
   bottom: 0;
   column-count: 2;
-  text-align: center;   
+  text-align: center;
 }
 
 #selfiles, .ok, .close {

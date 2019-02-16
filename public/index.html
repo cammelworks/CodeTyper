@@ -64,12 +64,12 @@
             });
             var count = 0;
             $("#rankingScore").append("<tr><th>rank</th><th>user</th><th>score</th></tr>");
-            //ランキングの表示    
+            //ランキングの表示
             var rankingRef = firebase.database().ref("/ranking/"+localStorage.getItem('lang')+"/"+file);
             rankingRef.orderByChild("score").on('child_added',function(snapshot){
-              count++;    
-              console.log(count+":"+snapshot.key);    
-              $("#rankingScore").append("<tr><td>"+count+"</td><td>"+snapshot.key+"</td><td>"+snapshot.val().score+"[sec]</td></tr>");    
+              count++;
+              console.log(count+":"+snapshot.key);
+              $("#rankingScore").append("<tr><td>"+count+"</td><td>"+snapshot.key+"</td><td>"+snapshot.val().score+"[sec]</td></tr>");
             });
         }
     </script>
@@ -119,7 +119,7 @@
         <div class="ok">OK</div>
         <div class="close">Close</div>
       </div>
-    </div>      
+    </div>
 
     <!-- コンテンツ -->
     <div class="body-container">
@@ -167,7 +167,7 @@
           <div id="modeDescription">
             <div id="startPracticeModeDescription"></div>
             <div id="practiceModeDescription">
-              Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。
+              Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。<br>
               <br>
               <span class="return"></span>
               ゲーム終了時にはログインしているアカウントにベストタイムが記録されます。
@@ -177,7 +177,7 @@
 
             <div id="startTimeAttackModeDescription"></div>
             <div id="timeAttackModeDescription">
-              TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。タイピングの正当率などから成績評価をします。
+              TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。タイピングの正当率などから成績評価をします。<br>
               <br>
               <span class="return"></span>
               ゲーム終了時にはログインされたアカウントにベストスコアが記録されます。
@@ -200,9 +200,12 @@
             自動インデントは想定しておりません。字下げ(インデント)はTabキーやSpaceキーを使用してください。
           </div>
           <div id="endAttention"></div>
+          <br>
 
-          <div id="Uname"></div>
-          <h1 id="title">Practiceモード</h1>
+          <!-- old menu -->
+          <!-- <div id="Uname"></div>
+
+          <div id="title">Practiceモード</div>
           <div class="menu">
             <div class="leftMenu">
               <div id="fileList">
@@ -220,11 +223,11 @@
               </div>
               <div id="ranking">
                 ランキング
-                <table>  
+                <table>
                   <div id="rankingScore">
-                    ここにランキングが表示されます. 
+                    ここにランキングが表示されます.
                   </div>
-                </table>   
+                </table>
               </div>
             </div>
           </div>
@@ -237,6 +240,48 @@
             <div class="rightButton">
               <div id="start" class="Dbutton">
                 Start
+              </div>
+            </div>
+          </div> -->
+
+          <!-- new menu -->
+          <div class="menu-container">
+            <div id="Uname"></div>
+            <div id="title">Practice</div>
+            <div class="menu">
+              <div class="leftMenu">
+                <div id="fileList"></div>
+              </div>
+              <div class="rightMenu">
+                <div id="description">
+                  <!-- 説明 -->
+                  <span id="desc"></span>
+                </div>
+                <div id="code">
+                  <pre id="target">
+                    コードを選ぶとここにファイルがプレビューされます。
+                  </pre>
+                </div>
+                <div id="ranking">
+                  <!-- ランキングタイトル -->
+                  <table>
+                    <div id="rankingScore">
+                      ここにランキングが表示されます。
+                    </div>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="menuButton">
+              <div class="leftButton">
+                <div id="modeChange" class="Dbutton">
+                  Mode Change
+                </div>
+              </div>
+              <div class="rightButton">
+                <div id="start" class="Dbutton">
+                  Start!
+                </div>
               </div>
             </div>
           </div>
