@@ -25,9 +25,9 @@
         //表示  
         $("#userInfo").removeClass("hidden");
         $("#username").removeClass("hidden");
-        $(".ok").removeClass("hidden");  
+        $(".modalButton").removeClass("hidden");  
         //非表示
-          
+        $(".closeButton").addClass("hidden");   
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
@@ -69,9 +69,10 @@
         $("#errorMessage").empty();
         //表示
         $("#userInfo").removeClass("hidden");
-        $(".ok").removeClass("hidden");  
+        $(".modalButton").removeClass("hidden");  
         //非表示  
         $("#username").addClass("hidden");
+        $(".closeButton").addClass("hidden");  
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
@@ -112,10 +113,11 @@
         firebase.auth().signOut();
         $("#errorMessage").empty();  
         //表示
-          
+        $(".closeButton").removeClass("hidden");  
         //非表示
         $("#userInfo").addClass("hidden");
-        $(".ok").addClass("hidden");
+        $(".modalButton").addClass("hidden");
+          
           
         //マスクを適用
         $("body").append('<div id="mask"></div>');
@@ -137,10 +139,12 @@
             //新規、ログインの非表示
             $("#signup").addClass("hidden");
             $("#login").addClass("hidden");
-
-            //ユーザ名、サインアウトの表示
+            
+            //ロゴ、ユーザ名、サインアウトの表示
+            $("#logo").removeClass("hidden");
             $("#signout").removeClass("hidden");
             $("#Uname").removeClass("hidden");
+            $("#user").removeClass("hidden");
 
             //ユーザ名の登録
             if(user.displayName === null){
@@ -172,7 +176,9 @@
             //サインアウト、ユーザ名の非表示
             $("#signout").addClass("hidden");
             $("#Uname").addClass("hidden");
-
+            $("#logo").addClass("hidden");
+            $("#user").addClass("hidden");
+            
             //新規、ログインの表示
             $("#signup").removeClass("hidden");
             $("#login").removeClass("hidden");

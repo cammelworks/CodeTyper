@@ -469,6 +469,15 @@ td, th {
   text-align: center;
 }
 
+.closeButton {  
+  height: 35px;    
+  margin-bottom: 20px;
+  position: absolute;
+  bottom: 0;
+  column-count: 1;    
+  text-align: center;
+}
+
 #selfiles, .ok, .close {
   cursor: pointer;
   width: 230px;
