@@ -189,7 +189,7 @@
     var attention = $("#attention").html();
 
     $("#C").click(function() {
-      $("#language-header").html("<span style='color:orchid;'>#include</span><span class='lightgreen'>&ltstdio.h&gt</span>");
+      $("#language-header").html("<span class='orchid'>#include</span><span class='lightgreen'>&ltstdio.h&gt</span>");
       $("#startCatchCopy").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>Catchcopy</span>(<span class='skyblue'>char</span> <span>str[]</span>) {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
@@ -202,7 +202,7 @@
       $("#startTimeAttackModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>timeAttackMode</span>(<span class='skyblue'>void</span>) {");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
       $("#endTimeAttackModeDescription").html("}");
-      $(".return").html("<span style='color:orchid;'>return </span>");
+      $(".return").html("<span class='orchid'>return </span>");
       $("#startAttention").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>attention</span>(<span class='skyblue'>void</span>) {");
       $("#attention").html(attention);
       $("#endAttention").html("}");

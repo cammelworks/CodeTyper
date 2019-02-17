@@ -149,7 +149,7 @@ ul.languages-container li img{
   background-color:
 }
 
-.lightgreen {
+/* .lightgreen {
   color: lightgreen;
 }
 
@@ -165,9 +165,13 @@ ul.languages-container li img{
   color: magenta;
 }
 
+.orchid {
+  color: orchid;
+}
+
 .pink {
   color: pink;
-}
+} */
 
 /* .main-logo-container {
   text-align: center;
@@ -248,7 +252,6 @@ ul.languages-container li img{
   width: 100%;
   height: 3em;
   text-align: center;
-  /* background-color: #9ec34b; */
   background-color: mediumseagreen;
   line-height: 1em;
   color: #FFF;
@@ -450,6 +453,7 @@ ul.languages-container li img{
 .menu-button {
   margin: .5em;
   color: #FFF;
+  background-color: green;
   display: inline-block;
   font-weight: bold;
   line-height: 2em;
@@ -475,12 +479,10 @@ ul.languages-container li img{
 }
 
 #modeChange {
-  background-color: darkorange;
   float: left;
 }
 
 #start {
-  background-color: tomato;
   float: right;
 }
 

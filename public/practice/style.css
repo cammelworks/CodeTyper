@@ -248,5 +248,21 @@ body {
 }
 
 #start {
+  font-size: 60px;
+  color: #fff;
+  position: fixed;
+  text-align: center;
+  top: 250px;
+  right: 0;
+  left: 15%;
+}
 
+#load {
+  font-size: 60px;
+  color: #fff;
+  position: fixed;
+  text-align: center;
+  top: 250px;
+  right: 0;
+  left: 15%;
 }
