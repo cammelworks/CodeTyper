@@ -1,7 +1,5 @@
 'use strict';
 {
-    var signout = document.getElementById("signout");
-
     //ユーザの管理JQuery
     $(function() {
     
@@ -113,11 +111,13 @@
         firebase.auth().signOut();
         $("#errorMessage").empty();  
         //表示
-        $(".closeButton").removeClass("hidden");  
+        $(".closeButton").removeClass("hidden");
+        $(".content-container").removeClass("hidden"); 
         //非表示
         $("#userInfo").addClass("hidden");
         $(".modalButton").addClass("hidden");
-          
+        $("#home").addClass("hidden");
+        $("#user").addClass("hidden");  
           
         //マスクを適用
         $("body").append('<div id="mask"></div>');
@@ -131,6 +131,28 @@
         $(window).resize(modalResize);
           
       });
+        
+      //アカウントページへの移動
+      $("#user").click(function(){
+         //非表示 
+         $(".content-container").addClass("hidden");
+         $("#user").addClass("hidden");  
+         //表示
+         $("#home").removeClass("hidden");
+         $(".account-container").removeClass("hidden");  
+         //window.location.href = './account/index.html'; 
+      });
+        
+      //ホームへ    
+      $("#home").click(function(){
+         //非表示 
+         $(".account-container").addClass("hidden");  
+         $("#home").addClass("hidden"); 
+         //表示
+         $(".content-container").removeClass("hidden"); 
+         $("#user").removeClass("hidden");  
+          
+      });        
     });
 
     //ユーザのログイン状態の確認

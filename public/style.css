@@ -112,10 +112,14 @@ ul.languages-container li img{
   border-right: 1px solid rgba(150, 150, 150, 0.7);
 }
 
-.content-container {
+.content-container, .account-container{
   width: calc(100% - 40px);
   padding-right: 6px;
   float: right;
+}
+#accountInfo {
+    font-size: 30px;
+    text-align: center;
 }
 
 #catchCopy {
