@@ -104,6 +104,10 @@
     //JQueryでモーダルウィンドウの実装
     $(function() {
       $("#Ubutton").click(function() {
+        //表示  
+        $(".modalButton").removeClass("hidden");  
+        //非表示
+        $(".closeButton").addClass("hidden");
         $("#noteTitle").html("UPLOAD上の注意");
         $("#note").html("インデントまたは字下げは4文字分にしてください．<br>コードの最終行に空行を１行入れてください．<br><span id='caution'>上記に従わないコードはうまく動作しません．</span><br>すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．");
         $(".submit").remove();
