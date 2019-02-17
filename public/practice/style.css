@@ -1,18 +1,18 @@
-body{
+/* body{
   width: 80%;
   margin: 20px auto 0;
   font-family: "Courier New", sans-serif;
   text-align: center;
   color: #fff;
   background-color: #000;
-}
+} */
 
-h1 {
+/* h1 {
   margin-bottom: -50px;
   font-size: 50px;
-}
+} */
 
-#target{
+/* #target{
   height: 600px;
   font-size: 30px;
   text-align: initial;
@@ -25,7 +25,7 @@ h1 {
   overflow: auto;
 
   position: relative;
-}
+} */
 
 .inputed {
   color: green;
@@ -42,31 +42,32 @@ h1 {
   color: #333
 }
 
-.info{
+/* .info{
   text-align: right;
   font-size: 22px;
   color: #ccc;
-}
+} */
 
-.info p {
+/* .info p {
   margin: 0;
-}
+} */
 
-.info > #Uname {
+/* .info > #Uname {
   color: white;
-}
+} */
 
-.info > #letters {
+/* .info > #letters {
   color: green;
-}
+} */
 
-.info > #missCount {
+/* .info > #missCount {
   color: red;
-}
+} */
 
-.info > #time{
+/* .info > #time{
   color: blue;
-}
+} */
+
 #start {
   width: 60%;
   margin: -400px auto 0;
@@ -130,4 +131,100 @@ h1 {
 
 .modalButton {
   column-count: 2;
+}
+
+/* new */
+@font-face {
+  font-family: 'MyricaM';
+  src: url(../font/MyricaM.ttf);
+}
+
+@media screen and (max-width: 640px) {
+  body {
+    width: 640px;
+  }
+}
+
+body {
+  background-color: #282C34;
+  margin: 0;
+  padding: 0;
+  font-family: MyricaM;
+  font-size: 17px;
+  color: #FFFFFF;
+}
+
+.sidebar-container {
+  background-color: #21252B;
+  width: 15%;
+  height: 100vh;
+  overflow: hidden;
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+.logo-container {
+  text-align: center;
+  border-bottom: #181A1F solid 1px;
+  box-sizing: border-box;
+}
+
+.logo-container a {
+  height: auto;
+  overflow: hidden;
+}
+
+.auth-container {
+  padding-left: 5%;
+  height: auto;
+  overflow: hidden;
+}
+
+.username img {
+  height: 1em;
+}
+
+.besttime img {
+  height: 1em;
+}
+
+.counter-container {
+  padding-left: 5%;
+  height: auto;
+  overflow: hidden;
+}
+
+.body-container {
+  width: 85%;
+  height: auto;
+  overflow: hidden;
+  float: right;
+  margin: 0;
+  padding: 0;
+}
+
+.game-container {
+  height: auto;
+  overflow: hidden;
+  border: 2px solid #fff;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+#target {
+  height: 560px;
+  font-size: 20px;
+  text-align: initial;
+  letter-spacing: 3px;
+  overflow: auto;
+}
+
+#mask {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }

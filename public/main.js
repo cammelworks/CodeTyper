@@ -4,8 +4,8 @@
 
     //ユーザの管理JQuery
     $(function() {
-    
-      //画面中央を計算する関数    
+
+      //画面中央を計算する関数
       function modalResize(){
         var w = $(window).width();
         var h = $(window).height();
@@ -17,17 +17,17 @@
           "top": ((h - ch)/2) + "px"
         });
       }
-          
+
       //新規ユーザ登録
       $("#signup").click(function() {
         $("#userInfoTitle").html("アカウント作成");
         $("#errorMessage").empty();
-        //表示  
+        //表示
         $("#userInfo").removeClass("hidden");
         $("#username").removeClass("hidden");
-        $(".ok").removeClass("hidden");  
+        $(".ok").removeClass("hidden");
         //非表示
-          
+
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
@@ -58,8 +58,8 @@
               $("#errorMessage").text(errorMessage);
             })
         });
-    
-        //画面中央を計算する関数 
+
+        //画面中央を計算する関数
         $(window).resize(modalResize);
       });
 
@@ -69,8 +69,8 @@
         $("#errorMessage").empty();
         //表示
         $("#userInfo").removeClass("hidden");
-        $(".ok").removeClass("hidden");  
-        //非表示  
+        $(".ok").removeClass("hidden");
+        //非表示
         $("#username").addClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
@@ -108,26 +108,26 @@
 
       //サインアウト
       $("#signout").click(function(){
-        //サインアウト処理  
+        //サインアウト処理
         firebase.auth().signOut();
-        $("#errorMessage").empty();  
+        $("#errorMessage").empty();
         //表示
-          
+
         //非表示
         $("#userInfo").addClass("hidden");
         $(".ok").addClass("hidden");
-          
+
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
         modalResize();
         //モーダルウィンドウの表示
         $("#modalAuth,#mask").fadeIn("slow");
-          
-        $("#userInfoTitle").html("サインアウトしました。");  
+
+        $("#userInfoTitle").html("サインアウトしました。");
         //画面中央を計算する関数
         $(window).resize(modalResize);
-          
+
       });
     });
 
@@ -273,7 +273,7 @@
     });
 
     //行番号の表示
-    var line = 70;
+    var line = 200;
     for(var i = 1; i <= line; i++){
       var lineNumber = $("#lineNumber").html();
       $("#lineNumber").html(lineNumber + i + "<br>");
@@ -307,15 +307,15 @@
     //databaseの並び順を変えてボタン生成
     //onメソッドはブラウザのリロード時、データの追加時、更新時に発火
     databaseRef.orderByChild("filename").on('child_added',function(snapshot){
-      addList(snapshot.val().filename);    
+      addList(snapshot.val().filename);
       count++;
       changeButton();
     });
   }
-  
-     
-      
-  
+
+
+
+
   //選択されているボタンを表示
   function changeButton() {
     btn = $('button');

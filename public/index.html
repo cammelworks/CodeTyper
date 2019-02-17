@@ -96,13 +96,18 @@
           </div>
           <div id="signup" class="authButton">
             <img src="img/dir-logo.png" alt="dir">
-            Sign Up
+            SignUp
           </div>
           <div id=""></div>
           <div id="signout" class="authButton">
             <img src="img/dir-logo.png" alt="dir">
-            Sign Out
+            SignOut
           </div>
+      </div>
+
+      <!-- アップロードボタン -->
+      <div class="upload-container">
+        <div id="Ubutton" class="menu-button">Upload</div>
       </div>
     </div>
 
@@ -159,32 +164,14 @@
 
           <!--説明-->
           <div id="startDescription"></div>
-          <div id="description">CodeTyperはプログラミング初心者から中級者、コーディングの時にはブラインドタッチができないといった人に向けたタイピングゲームです。</div>
+          <div id="description">
+            CodeTyperはプログラミング初心者から中級者、コーディングの時にはブラインドタッチができないといった人に向けたタイピングゲームです。<br>
+            <br>
+            上のタブで遊ぶプログラミング言語を選択できます。
+          </div>
           <div id="endDescription"></div>
           <br>
 
-          <!--モード説明-->
-          <div id="modeDescription">
-            <div id="startPracticeModeDescription"></div>
-            <div id="practiceModeDescription">
-              Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。<br>
-              <br>
-              <span class="return"></span>
-              ゲーム終了時にはログインしているアカウントにベストタイムが記録されます。
-            </div>
-            <div id="endPracticeModeDescription"></div>
-            <br>
-
-            <div id="startTimeAttackModeDescription"></div>
-            <div id="timeAttackModeDescription">
-              TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。タイピングの正当率などから成績評価をします。<br>
-              <br>
-              <span class="return"></span>
-              ゲーム終了時にはログインされたアカウントにベストスコアが記録されます。
-            </div>
-            <div id="endTimeAttackModeDescription"></div>
-            <br>
-          </div>
 
           <!-- ゲーム開始ボタン(実装したい) -->
           <!-- <div id="gameStart">
@@ -193,14 +180,6 @@
             </div>
           </div> -->
 
-          <!-- 注意 -->
-          <div id="startAttention"></div>
-          <div id="attention">
-            改行はEnterキーを使用してください。<br>
-            自動インデントは想定しておりません。字下げ(インデント)はTabキーやSpaceキーを使用してください。
-          </div>
-          <div id="endAttention"></div>
-          <br>
 
           <!-- old menu -->
           <!-- <div id="Uname"></div>
@@ -255,15 +234,14 @@
               <div class="rightMenu">
                 <div id="description">
                   <!-- 説明 -->
-                  <span id="desc"></span>
+                  <span id="desc">コードの概要がここに表示されます。</span>
                 </div>
                 <div id="code">
-                  <pre id="target">
-                    コードを選ぶとここにファイルがプレビューされます。
-                  </pre>
+                  <pre id="target">コードを選ぶとここにファイルがプレビューされます。</pre>
                 </div>
                 <div id="ranking">
                   <!-- ランキングタイトル -->
+                  ランキング
                   <table>
                     <div id="rankingScore">
                       ここにランキングが表示されます。
@@ -272,48 +250,92 @@
                 </div>
               </div>
             </div>
-            <div class="menuButton">
-              <div class="leftButton">
-                <div id="modeChange" class="Dbutton">
-                  Mode Change
-                </div>
+            <div class="menu-button-container">
+              <div id="modeChange" class="menu-button">
+                Mode Change
               </div>
-              <div class="rightButton">
-                <div id="start" class="Dbutton">
-                  Start!
-                </div>
+              <div id="start" class="menu-button">
+                Start!
               </div>
+            </div>
+          </div>
+          <br>
+
+          <!-- 注意 -->
+          <div id="startAttention"></div>
+          <div id="attention">
+            改行はEnterキーを使用してください。<br>
+            自動インデントは想定しておりません。字下げ(インデント)はTabキーやSpaceキーを使用してください。
+          </div>
+          <div id="endAttention"></div>
+          <br>
+
+          <!--モード説明-->
+          <div id="modeDescription">
+            <div id="startPracticeModeDescription"></div>
+            <div id="practiceModeDescription">
+              Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。<br>
+              今後実際に打っているリファレンスの説明を随時出力するようにしていきたいと思います。<br>
+              <br>
+              <span class="return"></span>
+              ゲーム終了時にはログインしているアカウントにベストタイムが記録されます。<br>
+              <br>
+              二回目以降はゲーム中にもこのベストタイムは表示されます。
+            </div>
+            <div id="endPracticeModeDescription"></div>
+            <br>
+
+            <div id="startTimeAttackModeDescription"></div>
+            <div id="timeAttackModeDescription">
+              TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。タイピングの正当率などから成績評価をします。<br>
+              <br>
+              <span class="return"></span>
+              ゲーム終了時にはログインされたアカウントにベストスコアが記録されます。
+            </div>
+            <div id="endTimeAttackModeDescription"></div>
+            <br>
+          </div>
+
+          <!-- アップロードの説明 -->
+          <div class="">
+
+          </div>
+
+          <!-- アップロードボタン -->
+          <!-- <div id="Ubutton" class="menu-button">Upload</div> -->
+
+          <div id="modal">
+            <p id="noteTitle">UPLOAD上の注意</p>
+            <p id="note">
+              インデントまたは字下げは4文字分にしてください．<br>
+              コードの最終行に空行を１行入れてください．<br>
+              <span id="caution">上記に従わないコードはうまく動作しません．</span><br>
+              すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．
+            </p>
+            <form id="form" action="index.html" method="post">
+
+            </form>
+            <div id="buttons" class="modalButton">
+              <label for="selfile" class="selectFiles">
+                <div id="selfiles">select files</div>
+                <input type="file" id="selfile" multiple>
+              </label>
+              <div class="close">Close</div>
             </div>
           </div>
         </div>
       </div>
-      <!-- アップロードボタン -->
-      <div id="Ubutton">Upload</div>
 
-      <div id="modal">
-        <p id="noteTitle">UPLOAD上の注意</p>
-        <p id="note">
-          インデントまたは字下げは4文字分にしてください．<br>
-          コードの最終行に空行を１行入れてください．<br>
-          <span id="caution">上記に従わないコードはうまく動作しません．</span><br>
-          すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．
-        </p>
-        <form id="form" action="index.html" method="post">
 
-        </form>
-        <div id="buttons" class="modalButton">
-          <label for="selfile" class="selectFiles">
-            <div id="selfiles">select files</div>
-            <input type="file" id="selfile" multiple>
-          </label>
-          <div class="close">Close</div>
-        </div>
-      </div>
-      <!-- フッター -->
-      <footer id="footer">
-        Copyright © 2019- Tyanio Corp All Rights Reserved.
-      </footer>
+
+
+
     </div>
+
+    <!-- フッター -->
+    <footer id="footer">
+      © 2019- Tyanio Corp
+    </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
     <script src="main.js"></script>

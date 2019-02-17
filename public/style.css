@@ -18,13 +18,23 @@ body{
   color: #FFFFFF;
 }
 
-div.sidebar-container {
+.sidebar-container {
   background-color: #21252B;
   width: 15%;
-  height: 1000px;
+  height: 1500px;
   float: left;
   margin: 0;
   padding: 0;
+}
+
+.logo-container{
+  text-align: center;
+  border-bottom: #181A1F solid 1px;
+  box-sizing: border-box;
+}
+
+.login-container {
+  padding-left: 5%;
 }
 
 .authButton {
@@ -55,10 +65,14 @@ authButton {
   color: red;
 }
 
-.logo-container{
-  color: #CBCED4;
+.upload-container {
+  height: auto;
+  overflow: hidden;
   text-align: center;
-  border-bottom: #181A1F solid 1px;
+}
+
+#Ubutton {
+  width: 80%;
 }
 
 .body-container {
@@ -104,12 +118,14 @@ ul.languages-container li img{
 
 #lineNumber {
   width: 20px;
+  height: 1465px;
   margin-right: 5px;
   float: left;
   text-align: right;
   color: rgba(150, 150, 150, 0.7);
   padding: 0 5px 0 3px;
   border-right: 1px solid rgba(150, 150, 150, 0.7);
+  overflow: hidden;
 }
 
 .content-container {
@@ -162,11 +178,17 @@ ul.languages-container li img{
 } */
 
 .menu-container {
+  max-width: 1000px;
   height: auto;
+  margin-bottom: 8px;
   overflow: hidden;
   border: 2px solid #fff;
   border-radius: 2px;
   box-sizing: border-box;
+}
+
+.menu-container #Uname {
+  color: black;
 }
 
 .menu-container #title {
@@ -186,13 +208,19 @@ ul.languages-container li img{
   height: auto;
   overflow: hidden;
   margin: auto;
+  border-bottom: 1px solid #fff;
+  box-sizing: border-box;
 }
 
 .leftMenu {
   /* width: 300px; */
   width: 30%;
+  height: auto;
+  overflow: auto;
   float: left;
   margin: auto;
+  border-right: 1px solid #fff;
+  box-sizing: border-box;
 }
 
 
@@ -200,8 +228,8 @@ ul.languages-container li img{
   height: 24em;
   /* width: 250px; */
   /* margin: 0 auto 50px; */
-  border: 2px solid #fff;
-  box-sizing: border-box;
+  /* border: 2px solid #fff;
+  box-sizing: border-box; */
   /* overflow: auto; */
 }
 
@@ -218,19 +246,23 @@ ul.languages-container li img{
 #fileList button {
   display: inline-block;
   width: 100%;
-  height:50px;
+  height: 3em;
   text-align: center;
-  background-color: #9ec34b;
-  font-size: 16px;
-  line-height: 52px;
+  /* background-color: #9ec34b; */
+  background-color: mediumseagreen;
+  line-height: 1em;
   color: #FFF;
   text-decoration: none;
   font-weight: bold;
-  border: 2px solid #9ec34b;
+  border: 2px solid #282C34;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
   z-index: 1;
+}
+
+#fileList button:first-child {
+  border-top: 4px solid #282C34;
 }
 
 #fileList button:after{
@@ -248,7 +280,7 @@ ul.languages-container li img{
 }
 
 #fileList button:focus {
-  color: #9ec34b;
+  color: mediumseagreen;
 }
 
 #fileList button:focus:after {
@@ -261,7 +293,7 @@ ul.languages-container li img{
 } */
 
 #fileList button:hover{
-  color: #9ec34b;
+  color: mediumseagreen;
 }
 
 /* .active {
@@ -290,61 +322,73 @@ ul.languages-container li img{
 
 .rightMenu #description {
   height: 2em;
-  border: 1px solid #fff;
+  padding: .4em 0 .4em 3px;
+  border-bottom: 1px solid #fff;
   box-sizing: border-box;
   /* border-radius: 3px; */
+}
+
+.rightMenu #desc {
 }
 
 .rightMenu #code {
   height: 12em;
   overflow: auto;
-  border: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   box-sizing: border-box;
+  overflow-x: hidden;
   /* border-radius: 3px; */
 }
 
 .rightMenu > #code > #target{
   text-align: initial;
-  font-size: 20px;
+  padding-left: 3px;
 }
 
-.rightMenu > #ranking {
+.rightMenu #ranking {
   width: 100%;
-  font-size: 25px;
-  height: 6em;
+  height: calc(10em - 5px);
+  padding-left: 3px;
+  font-size: 1em;
   overflow: auto;
-  border: 1px solid #fff;
-  box-sizing: border-box;
   position: absolute;
   bottom: 0;
 }
 
-#rankingScore {
+/* #rankingScore {
   font-size: 15px;
+} */
+
+.rightMenu > #ranking >table, td, th{
+	/* border-collapse: collapse; */
+  /* border: solid 1px; */
+  border: none;
+	padding: .2em .5em;
+  /* width: 660px; */
 }
 
-.rightMenu > #ranking >table td,th{
-	border-collapse: collapse;
-    border: solid 1px;
-	padding: 0.5em;
-    /* width: 660px; */
-}
-td, th {
-    text-align: center;
+/* td, th {
+  text-align: center;
 	border: solid 1px;
-	padding: 0.5em;
-}
+	padding: .2em .5em;
+} */
 
-.button {
-  /* width: 1000px; */
+/* .button {
+  width: 1000px;
   margin: auto;
   column-count: 2;
+} */
+
+.menu-button-container {
+  height: auto;
+  overflow: hidden;
 }
-.Dbutton {
+
+/* .Dbutton {
   margin: auto;
   font-size: 30px;
   height: 50px;
-  /* width: 200px; */
+  width: 200px;
   cursor: pointer;
   display: inline-block;
   position: relative;
@@ -352,8 +396,8 @@ td, th {
   text-decoration: none;
   background: #555;
   color: #FFF;
-  /* border-bottom: solid 5px #333;
-  border-right: solid 5px #333; */
+  border-bottom: solid 5px #333;
+  border-right: solid 5px #333;
   border: 5px solid #333;
 }
 
@@ -401,9 +445,46 @@ td, th {
 .rightButton {
   width: 300px;
   float: right;
+} */
+
+.menu-button {
+  margin: .5em;
+  color: #FFF;
+  display: inline-block;
+  font-weight: bold;
+  line-height: 2em;
+  width: 200px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  outline: 1px solid;
+  outline-color: rgba(255, 255, 255, 0.5);
+  outline-offset: 0px;
+  text-shadow: none;
+  transition: all 1.2s cubic-bezier(0.2, 1, 0.2, 1);
 }
 
-#Ubutton {
+.menu-button:hover {
+  border-color: #FFF;
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
+  outline-color: transparent;
+  outline-offset: 12px;
+  text-shadow: 2px 2px 3px #000;
+}
+
+#modeChange {
+  background-color: darkorange;
+  float: left;
+}
+
+#start {
+  background-color: tomato;
+  float: right;
+}
+
+/* #Ubutton {
   margin: auto;
   font-size: 30px;
   height: 50px;
@@ -413,7 +494,7 @@ td, th {
   text-decoration: none;
   background: red;
   color: #FFF;
-}
+} */
 
 #mask {
   display: none;
@@ -502,6 +583,10 @@ td, th {
 }
 
 #footer {
+  width: 100%;
+  height: 1em;
   background-color: #181A1F;
   text-align: center;
+  vertical-align: middle;
+  float: right;
 }
