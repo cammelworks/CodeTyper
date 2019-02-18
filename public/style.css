@@ -73,6 +73,8 @@ authButton {
 
 #Ubutton {
   width: 80%;
+  line-height: 2em;
+  padding: 0;
 }
 
 .body-container {
@@ -139,7 +141,6 @@ ul.languages-container li img{
 }
 
 #catchCopy h1{
-  padding: .5em 0;
   margin: 0;
 }
 
@@ -172,6 +173,10 @@ ul.languages-container li img{
 .pink {
   color: pink;
 } */
+
+.language-green {
+  color: springgreen;
+}
 
 /* .main-logo-container {
   text-align: center;
@@ -452,30 +457,52 @@ ul.languages-container li img{
 
 .menu-button {
   margin: .5em;
-  color: #FFF;
-  background-color: green;
   display: inline-block;
-  font-weight: bold;
-  line-height: 2em;
   width: 200px;
-  position: relative;
+  line-height: 1em;
   text-align: center;
+  color: #fff;
+  background: mediumseagreen;
   text-decoration: none;
-  text-transform: uppercase;
-  border: 1px solid transparent;
-  outline: 1px solid;
-  outline-color: rgba(255, 255, 255, 0.5);
-  outline-offset: 0px;
-  text-shadow: none;
-  transition: all 1.2s cubic-bezier(0.2, 1, 0.2, 1);
+  font-weight: bold;
+  padding: 12px 24px;
+  position: relative;
+  border: 2px solid mediumseagreen;
+  transition: .6s;
 }
 
 .menu-button:hover {
-  border-color: #FFF;
-  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 255, 255, 0.2);
-  outline-color: transparent;
-  outline-offset: 12px;
-  text-shadow: 2px 2px 3px #000;
+  border: 2px solid transparent;
+  color: #FFF;
+}
+
+.menu-button:before, .menu-button:after {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  transform: scale(0);
+  transition: .2s;
+}
+
+.menu-button:before {
+  border-bottom: 2px solid #FFF;
+  border-left: 2px solid #FFF;
+  transform-origin: 100% 0%;
+}
+
+.menu-button:after {
+  border-top: 2px solid #FFF;
+  border-right: 2px solid #FFF;
+  transform-origin: 0% 100%;
+}
+
+.menu-button:hover:before, .menu-button:hover:after {
+  transform: scale(1);
 }
 
 #modeChange {

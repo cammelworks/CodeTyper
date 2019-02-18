@@ -188,12 +188,13 @@
     var timeAttackModeDescription = $("#timeAttackModeDescription").html();
     var attention = $("#attention").html();
 
+    // デザイン編集の結果、スタイルの無駄が多いのでclass='mediumseagreen'以外のclassは取り除いてくれると助かる
     $("#C").click(function() {
       $("#language-header").html("<span class='orchid'>#include</span><span class='lightgreen'>&ltstdio.h&gt</span>");
-      $("#startCatchCopy").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>Catchcopy</span>(<span class='skyblue'>char</span> <span>str[]</span>) {");
+      $("#startCatchCopy").html("<span class='skyblue'>void</span> <span class='language-green'>catchcopy</span>(<span class='skyblue'>char</span> <span>str[]</span>) {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
-      $("#startDescription").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>description</span>(<span class='skyblue'>void</span>) {");
+      $("#startDescription").html("<span class='skyblue'>void</span> <span class='language-green'>description</span>(<span class='skyblue'>void</span>) {");
       $("#description").html(description);
       $("#endDescription").html("}");
       $("#startPracticeModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>practiceMode</span>(<span class='skyblue'>void</span>) {");

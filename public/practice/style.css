@@ -68,8 +68,9 @@
   color: blue;
 } */
 
-#start {
+/* #start {
   width: 60%;
+  min-width: 800px;
   margin: -400px auto 0;
   font-size: 60px;
   color: #fff;
@@ -78,13 +79,14 @@
 }
 
 #load {
+  min-width: 800px;
   font-size: 60px;
   color: #fff;
   position: absolute;
   top: 300px;
   right: 0;
   left: 0;
-}
+} */
 
 /* #mask {
   background-color: rgba(0, 0, 0, 0.4);
@@ -99,7 +101,7 @@
   display: none;
 } */
 
-#modal {
+/* #modal {
   font-size: 20px;
   color: #000;
   background-color: #fff;
@@ -112,7 +114,7 @@
   left: 0;
   margin: 0 auto;
   transition: .8s;
-}
+} */
 
 #modal p {
   margin-bottom: 20px;
@@ -196,28 +198,44 @@ body {
 }
 
 .body-container {
-  width: 85%;
-  height: auto;
+  width: 75%;
+  height: 90vh;
   overflow: hidden;
   float: right;
-  margin: 0;
+  margin: 5vh 5%;
   padding: 0;
+  border: 2px solid #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.source-title {
+  padding-left: 20px;
+  color: #000;
+  background-color: #fff;
+  font-size: 2em;
+  order: 0;
 }
 
 .game-container {
   height: auto;
   overflow: hidden;
-  border: 2px solid #fff;
-  border-radius: 2px;
-  box-sizing: border-box;
+  order:1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 #target {
-  height: 560px;
-  font-size: 20px;
+  padding-left: 16px;
+  font-family: MyricaM;
+  font-size: 1.5em;
   text-align: initial;
   letter-spacing: 3px;
   overflow: auto;
+  flex-grow: 1;
 }
 
 #mask {
@@ -248,21 +266,22 @@ body {
 }
 
 #start {
-  font-size: 60px;
+  min-width: 600px;
+  font-size: 40px;
   color: #fff;
-  position: fixed;
+  position: absolute;
   text-align: center;
-  top: 250px;
+  top: 40vh;
   right: 0;
   left: 15%;
 }
 
 #load {
+  width: 100%;
+  min-width: 800px;
   font-size: 60px;
   color: #fff;
   position: fixed;
   text-align: center;
-  top: 250px;
-  right: 0;
-  left: 15%;
+  top: 40vh;
 }
