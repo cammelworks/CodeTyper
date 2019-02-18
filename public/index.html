@@ -116,24 +116,44 @@
       </div>
     </div>
 
-    <!--アカウント管理モーダル-->
-    <div id="modalAuth">
-      <p id="userInfoTitle"></p>
-      <p id="errorMessage"></p>
-      <p id="userInfo">
-        <input id="email" type="email" placeholder="メールアドレスを入力" required/><br>
-        <input id="username" type="text" placeholder="ユーザ名を入力" required/><br>
-        <input id="password" type="password" placeholder="パスワードを入力" required/><br>
+    <!--新規登録モーダル-->
+    <div id="modalSignup" class="modal">
+      <p id="signupTitle" class="userInfoTitle"></p>
+      <p id="signupError" class="errorMessage"></p>
+      <p id="signupInfo" class="userInfo">
+        <input id="signupEmail" type="email" placeholder="メールアドレスを入力" required/><br>
+        <input id="signupUsername" type="text" placeholder="ユーザ名を入力" required/><br>
+        <input id="signupPassword" type="password" placeholder="パスワードを入力" required/><br>
       </p>
       <div class="modalButton">
-        <div class="ok">OK</div>
-        <div class="close">Close</div>
-      </div>
-      <div class="closeButton">
-        <div class="close">Close</div>
+        <div id="signupOk" class="ok">OK</div>
+        <div id="signupClose" class="close">Close</div>
       </div>
     </div>
-
+      
+    <!--ログインモーダル-->
+    <div id="modalLogin" class="modal">
+      <p id="loginTitle" class="userInfoTitle"></p>
+      <p id="loginError" class="errorMessage"></p>
+      <p id="loginInfo" class="userInfo">
+        <input id="loginEmail" type="email" placeholder="メールアドレスを入力" required/><br>
+        <input id="loginPassword" type="password" placeholder="パスワードを入力" required/><br>
+      </p>
+      <div class="modalButton">
+        <div id="loginOk" class="ok">OK</div>
+        <div id="loginClose" class="close">Close</div>
+      </div>
+    </div>    
+    
+    <!--サインアウトモーダル-->
+    <div id="modalSignout" class="modal">
+      <p id="signoutTitle" class="userInfoTitle"></p>
+      <p id="signoutError" class="errorMessage"></p>
+      <div class="closeButton">
+        <div id="signoutClose" class="close">Close</div>
+      </div>
+    </div>
+      
     <!-- コンテンツ -->
     <div class="body-container">
       <!-- ヘッダー -->

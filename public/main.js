@@ -7,10 +7,10 @@
       function modalResize(){
         var w = $(window).width();
         var h = $(window).height();
-        var cw = $("#modalAuth").outerWidth();
-        var ch = $("#modalAuth").outerHeight();
+        var cw = $(".modal").outerWidth();
+        var ch = $(".modal").outerHeight();
         //取得した値をcssに追加する
-        $("#modalAuth").css({
+        $(".modal").css({
           "left": ((w - cw)/2) + "px",
           "top": ((h - ch)/2) + "px"
         });
@@ -18,34 +18,28 @@
 
       //新規ユーザ登録
       $("#signup").click(function() {
-        $("#userInfoTitle").html("アカウント作成");
-        $("#errorMessage").empty();
-        //表示
-        $("#userInfo").removeClass("hidden");
-        $("#username").removeClass("hidden");
-        $(".modalButton").removeClass("hidden");
-        //非表示
-        $(".closeButton").addClass("hidden");
+        $("#signupTitle").html("アカウント作成");
+        $("#signupError").empty();
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
         modalResize();
         //モーダルウィンドウの表示
-        $("#modalAuth,#mask").fadeIn("slow");
+        $("#modalSignup,#mask").fadeIn("slow");
 
-        $("#email, #usename, #password").keypress(function(e) {
+        $("#signupEmail, #signupUsename, #signupPassword").keypress(function(e) {
           if(e.keyCode === 13){
-            $(".ok").click();
+            $("#signupOk").click();
           }
         })
 
         //okをクリックしたら登録して閉じる
-        $(".ok").click(function(){
-            var email = $("#email").val();
-            var password = $("#password").val();
+        $("#signupOk").click(function(){
+            var email = $("#signupEmail").val();
+            var password = $("#signupPassword").val();
             firebase.auth().createUserWithEmailAndPassword(email, password).then(function() {
               //ログイン成功
-              $("#modalAuth, #mask").fadeOut("slow", function() {
+              $("#modalSignup, #mask").fadeOut("slow", function() {
                 $("#mask").remove();
               })
             }).catch(function(error) {
@@ -53,43 +47,42 @@
               var errorCode = error.code;
               var errorMessage = error.message;
               console.log(errorCode+':'+errorMessage);
-              $("#errorMessage").text(errorMessage);
+              $("#signupError").text(errorMessage);
             })
         });
-
+        //closeをクリックしたら閉じる
+        $(".close").click(function() {
+          $("#modalSignup, #mask").fadeOut("slow", function() {
+            $("#mask").remove();
+          })
+        });
         //画面中央を計算する関数
         $(window).resize(modalResize);
       });
 
       //ログイン
       $("#login").click(function() {
-        $("#userInfoTitle").html("ログイン");
-        $("#errorMessage").empty();
-        //表示
-        $("#userInfo").removeClass("hidden");
-        $(".modalButton").removeClass("hidden");
-        //非表示
-        $("#username").addClass("hidden");
-        $(".closeButton").addClass("hidden");
+        $("#loginTitle").html("ログイン");
+        $("#loginError").empty();
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
         modalResize();
         //モーダルウィンドウの表示
-        $("#modalAuth,#mask").fadeIn("slow");
+        $("#modalLogin,#mask").fadeIn("slow");
 
-        $("#email, #password").keypress(function(e) {
+        $("#loginEmail, #loginPassword").keypress(function(e) {
           if(e.keyCode === 13){
-            $(".ok").click();
+            $("#loginOk").click();
           }
         })
         //okをクリックしたら登録して閉じる
-        $(".ok").click(function(){
-            var email = $("#email").val();
-            var password = $("#password").val();
+        $("#loginOk").click(function(){
+            var email = $("#loginEmail").val();
+            var password = $("#loginPassword").val();
             firebase.auth().signInWithEmailAndPassword(email, password).then(function() {
                 //ログイン成功
-                $("#modalAuth, #mask").fadeOut("slow", function() {
+                $("#modalLogin, #mask").fadeOut("slow", function() {
                   $("#mask").remove();
                 })
             }).catch(function(error) {
@@ -97,12 +90,15 @@
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode+':'+errorMessage);
-                if(errorCode !== "auth/email-already-exists"){
-                  $("#errorMessage").text(errorMessage);
-                }
+                $("#errorMessage").text(errorMessage);   
             });
         });
-
+        //closeをクリックしたら閉じる
+        $(".close").click(function() {
+          $("#modalLogin, #mask").fadeOut("slow", function() {
+            $("#mask").remove();
+          })
+        });          
         //画面中央を計算する関数
         $(window).resize(modalResize);
       });
@@ -111,27 +107,25 @@
       $("#signout").click(function(){
         //サインアウト処理
         firebase.auth().signOut();
-        $("#errorMessage").empty();
-        //表示
-        $(".closeButton").removeClass("hidden");
-        $(".content-container").removeClass("hidden");
-        //非表示
-        $("#userInfo").addClass("hidden");
-        $(".modalButton").addClass("hidden");
-        $("#home").addClass("hidden");
-        $("#user").addClass("hidden");
-
+        $("#signoutError").empty();
+          
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
         modalResize();
         //モーダルウィンドウの表示
-        $("#modalAuth,#mask").fadeIn("slow");
+        $("#modalSignout,#mask").fadeIn("slow");
 
-        $("#userInfoTitle").html("サインアウトしました。");
+        $("#signoutTitle").html("サインアウトしました。");
+        //closeをクリックしたら閉じる
+        $(".close").click(function() {
+          $("#modalSignout, #mask").fadeOut("slow", function() {
+            $("#mask").remove();
+          })
+        });          
         //画面中央を計算する関数
         $(window).resize(modalResize);
-
+          
       });
 
       //アカウントページへの移動
@@ -155,7 +149,7 @@
 
             //ユーザ名の登録
             if(user.displayName === null){
-                var username = $("#username").val();
+                var username = $("#signupUsername").val();
                 //ユーザID
                 //DBにユーザーを追加
                 var userRef = firebase.database().ref("/user/"+user.uid);

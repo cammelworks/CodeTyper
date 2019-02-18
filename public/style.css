@@ -70,7 +70,7 @@ authButton {
   height: 1em;
 }
 
-#modalAuth #errorMessage {
+.errorMessage {
   color: red;
 }
 
@@ -554,7 +554,7 @@ ul.languages-container li img{
   z-index: 1;
 }
 
-#modal, #modalAuth{
+#modal, .modal{
   display: none;
   font-size: 20px;
   color: #000;
@@ -568,18 +568,18 @@ ul.languages-container li img{
   z-index: 2;
 }
 
-#modal, #modalAuth p {
+#modal, .modal p {
   margin-bottom: 20px;
 }
 
-#modal #noteTitle, #userInfoTitle{
+#modal #noteTitle, .userInfoTitle{
   font-size: 30px;
   font-weight: bold;
   margin-top: 0;
   text-align: center;
 }
 
-#modal #note , #userInfo{
+#modal #note , .userInfo{
   font-size: 16px;
   text-align: center;
 }
