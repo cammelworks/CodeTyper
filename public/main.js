@@ -97,7 +97,9 @@
                 var errorCode = error.code;
                 var errorMessage = error.message;
                 console.log(errorCode+':'+errorMessage);
-                $("#errorMessage").text(errorMessage)
+                if(errorCode !== "auth/email-already-exists"){
+                  $("#errorMessage").text(errorMessage);   
+                }
             });
         });
 

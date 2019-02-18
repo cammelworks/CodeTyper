@@ -35,6 +35,8 @@
     //firebaseへアップロード
     function upload2fire() {
       for(var i = 0; i < fileCount; i++){
+        //現在のユーザ
+        var user = firebase.auth().currentUser;  
         //拡張子なしファイル名
         var filename = filesrc[i].match(reg)[1];
         //拡張子から言語を取得
@@ -46,9 +48,11 @@
         //databaseへのアップロード
         databaseRef.set({
           filename: filesrc[i],
-          description: description
+          description: description,
+          user: user.displayName    
         });
         console.log('Uploaded to Database!');
+        console.log(user.displayName);  
       }
       var pElements = document.getElementsByClassName("codeDescription");
       submit.classList.add("hidden");
