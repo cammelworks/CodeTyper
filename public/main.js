@@ -188,23 +188,23 @@
     var timeAttackModeDescription = $("#timeAttackModeDescription").html();
     var attention = $("#attention").html();
 
-    // デザイン編集の結果、スタイルの無駄が多いのでclass='mediumseagreen'以外のclassは取り除いてくれると助かる
+    // デザイン編集の結果、スタイルの無駄が多いのでclass='language-green'以外のclassは取り除いてくれると助かる
     $("#C").click(function() {
-      $("#language-header").html("<span class='orchid'>#include</span><span class='lightgreen'>&ltstdio.h&gt</span>");
-      $("#startCatchCopy").html("<span class='skyblue'>void</span> <span class='language-green'>catchcopy</span>(<span class='skyblue'>char</span> <span>str[]</span>) {");
+      $("#language-header").html("<span>#include</span><span>&ltstdio.h&gt</span>");
+      $("#startCatchCopy").html("<span>void</span> <span class='language-green'>catchcopy</span>(<span>char</span> <span>str[]</span>) {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
-      $("#startDescription").html("<span class='skyblue'>void</span> <span class='language-green'>description</span>(<span class='skyblue'>void</span>) {");
+      $("#startDescription").html("<span>void</span> <span class='language-green'>description</span>(<span>void</span>) {");
       $("#description").html(description);
       $("#endDescription").html("}");
-      $("#startPracticeModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>practiceMode</span>(<span class='skyblue'>void</span>) {");
+      $("#startPracticeModeDescription").html("<span>int</span> <span class='language-green'>practiceMode</span>(<span>void</span>) {");
       $("#practiceModeDescription").html(practiceModeDescription);
       $("#endPracticeModeDescription").html("}");
-      $("#startTimeAttackModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>timeAttackMode</span>(<span class='skyblue'>void</span>) {");
+      $("#startTimeAttackModeDescription").html("<span>int</span> <span class='language-green'>timeAttackMode</span>(<span>void</span>) {");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
       $("#endTimeAttackModeDescription").html("}");
-      $(".return").html("<span class='orchid'>return </span>");
-      $("#startAttention").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>attention</span>(<span class='skyblue'>void</span>) {");
+      $(".return").html("<span class='language-green'>return </span>");
+      $("#startAttention").html("<span>void</span> <span class='language-green'>attention</span>(<span class='skyblue'>void</span>) {");
       $("#attention").html(attention);
       $("#endAttention").html("}");
       $("#fileList").empty();
