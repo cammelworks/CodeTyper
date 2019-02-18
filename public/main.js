@@ -2,8 +2,8 @@
 {
     //ユーザの管理JQuery
     $(function() {
-    
-      //画面中央を計算する関数    
+
+      //画面中央を計算する関数
       function modalResize(){
         var w = $(window).width();
         var h = $(window).height();
@@ -15,12 +15,12 @@
           "top": ((h - ch)/2) + "px"
         });
       }
-          
+
       //新規ユーザ登録
       $("#signup").click(function() {
         $("#userInfoTitle").html("アカウント作成");
         $("#errorMessage").empty();
-        //表示  
+        //表示
         $("#userInfo").removeClass("hidden");
         $("#username").removeClass("hidden");
         $(".modalButton").removeClass("hidden");  
@@ -56,8 +56,8 @@
               $("#errorMessage").text(errorMessage);
             })
         });
-    
-        //画面中央を計算する関数 
+
+        //画面中央を計算する関数
         $(window).resize(modalResize);
       });
 
@@ -107,9 +107,9 @@
 
       //サインアウト
       $("#signout").click(function(){
-        //サインアウト処理  
+        //サインアウト処理
         firebase.auth().signOut();
-        $("#errorMessage").empty();  
+        $("#errorMessage").empty();
         //表示
         $(".closeButton").removeClass("hidden");
         $(".content-container").removeClass("hidden"); 
@@ -125,11 +125,11 @@
         modalResize();
         //モーダルウィンドウの表示
         $("#modalAuth,#mask").fadeIn("slow");
-          
-        $("#userInfoTitle").html("サインアウトしました。");  
+
+        $("#userInfoTitle").html("サインアウトしました。");
         //画面中央を計算する関数
         $(window).resize(modalResize);
-          
+
       });
         
       //アカウントページへの移動
@@ -216,22 +216,23 @@
     var timeAttackModeDescription = $("#timeAttackModeDescription").html();
     var attention = $("#attention").html();
 
+    // デザイン編集の結果、スタイルの無駄が多いのでclass='language-green'以外のclassは取り除いてくれると助かる
     $("#C").click(function() {
-      $("#language-header").html("<span style='color:orchid;'>#include</span><span class='lightgreen'>&ltstdio.h&gt</span>");
-      $("#startCatchCopy").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>Catchcopy</span>(<span class='skyblue'>char</span> <span>str[]</span>) {");
+      $("#language-header").html("<span>#include</span><span>&ltstdio.h&gt</span>");
+      $("#startCatchCopy").html("<span>void</span> <span class='language-green'>catchcopy</span>(<span>char</span> <span>str[]</span>) {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
-      $("#startDescription").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>description</span>(<span class='skyblue'>void</span>) {");
+      $("#startDescription").html("<span>void</span> <span class='language-green'>description</span>(<span>void</span>) {");
       $("#description").html(description);
       $("#endDescription").html("}");
-      $("#startPracticeModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>practiceMode</span>(<span class='skyblue'>void</span>) {");
+      $("#startPracticeModeDescription").html("<span>int</span> <span class='language-green'>practiceMode</span>(<span>void</span>) {");
       $("#practiceModeDescription").html(practiceModeDescription);
       $("#endPracticeModeDescription").html("}");
-      $("#startTimeAttackModeDescription").html("<span class='skyblue'>int</span> <span class='cornflowerblue'>timeAttackMode</span>(<span class='skyblue'>void</span>) {");
+      $("#startTimeAttackModeDescription").html("<span>int</span> <span class='language-green'>timeAttackMode</span>(<span>void</span>) {");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
       $("#endTimeAttackModeDescription").html("}");
-      $(".return").html("<span style='color:orchid;'>return </span>");
-      $("#startAttention").html("<span class='skyblue'>void</span> <span class='cornflowerblue'>attention</span>(<span class='skyblue'>void</span>) {");
+      $(".return").html("<span class='language-green'>return </span>");
+      $("#startAttention").html("<span>void</span> <span class='language-green'>attention</span>(<span class='skyblue'>void</span>) {");
       $("#attention").html(attention);
       $("#endAttention").html("}");
       $("#fileList").empty();
@@ -301,7 +302,7 @@
     });
 
     //行番号の表示
-    var line = 70;
+    var line = 200;
     for(var i = 1; i <= line; i++){
       var lineNumber = $("#lineNumber").html();
       $("#lineNumber").html(lineNumber + i + "<br>");
@@ -335,15 +336,15 @@
     //databaseの並び順を変えてボタン生成
     //onメソッドはブラウザのリロード時、データの追加時、更新時に発火
     databaseRef.orderByChild("filename").on('child_added',function(snapshot){
-      addList(snapshot.val().filename);    
+      addList(snapshot.val().filename);
       count++;
       changeButton();
     });
   }
-  
-     
-      
-  
+
+
+
+
   //選択されているボタンを表示
   function changeButton() {
     btn = $('button');
