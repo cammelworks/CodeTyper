@@ -37,7 +37,7 @@
             var fileDescRef = firebase.database().ref("/" + localStorage.getItem('lang') + "/" + file);
             //プログラム説明の取得
             fileDescRef.on('value',function(snapshot){
-              desc.innerText = snapshot.val().description;
+              desc.innerHTML = snapshot.val().description+"["+snapshot.val().user+"]";
             });
             var target = document.getElementById("target");
             var reader = new FileReader();
@@ -86,28 +86,25 @@
       </div>
       <!-- ログイン機能 -->
       <div class="login-container">
-          <div id="logo" class="authUname">
+          <div id="logo" class="authUname hidden">
             > <img src="img/file-logo.png" alt="dir">
             <span id="Uname"></span>
           </div>
-          <div id="login" class="authButton">
+          <div id="login" class="authButton hidden">
             <img src="img/dir-logo.png" alt="dir">
             Login
           </div>
-          <div id="user" class="authButton">
+          <!-- アカウントページ
+          <div id="user" class="authButton hidden">
             <img src="img/dir-logo.png" alt="dir">
             Account
           </div>
-          <div id="home" class="authButton hidden">
-            <img src="img/dir-logo.png" alt="dir">
-            Home
-          </div>
-          <div id="signup" class="authButton">
+          -->
+          <div id="signup" class="authButton hidden">
             <img src="img/dir-logo.png" alt="dir">
             SignUp
           </div>
-          <div id=""></div>
-          <div id="signout" class="authButton">
+          <div id="signout" class="authButton hidden">
             <img src="img/dir-logo.png" alt="dir">
             SignOut
           </div>
