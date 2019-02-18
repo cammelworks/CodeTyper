@@ -23,9 +23,9 @@
         //表示
         $("#userInfo").removeClass("hidden");
         $("#username").removeClass("hidden");
-        $(".modalButton").removeClass("hidden");  
+        $(".modalButton").removeClass("hidden");
         //非表示
-        $(".closeButton").addClass("hidden");   
+        $(".closeButton").addClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
@@ -67,10 +67,10 @@
         $("#errorMessage").empty();
         //表示
         $("#userInfo").removeClass("hidden");
-        $(".modalButton").removeClass("hidden");  
-        //非表示  
+        $(".modalButton").removeClass("hidden");
+        //非表示
         $("#username").addClass("hidden");
-        $(".closeButton").addClass("hidden");  
+        $(".closeButton").addClass("hidden");
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
@@ -114,13 +114,13 @@
         $("#errorMessage").empty();
         //表示
         $(".closeButton").removeClass("hidden");
-        $(".content-container").removeClass("hidden"); 
+        $(".content-container").removeClass("hidden");
         //非表示
         $("#userInfo").addClass("hidden");
         $(".modalButton").addClass("hidden");
         $("#home").addClass("hidden");
-        $("#user").addClass("hidden");  
-          
+        $("#user").addClass("hidden");
+
         //マスクを適用
         $("body").append('<div id="mask"></div>');
         //画面中央を計算する関数を実行
@@ -133,7 +133,7 @@
         $(window).resize(modalResize);
 
       });
-        
+
       //アカウントページへの移動
       $("#user").click(function(){
          window.location.href = './account/index.html'; 
@@ -146,7 +146,7 @@
             //新規、ログインの非表示
             $("#signup").addClass("hidden");
             $("#login").addClass("hidden");
-            
+
             //ロゴ、ユーザ名、サインアウトの表示
             $("#logo").removeClass("hidden");
             $("#signout").removeClass("hidden");
@@ -185,7 +185,7 @@
             $("#Uname").addClass("hidden");
             $("#logo").addClass("hidden");
             $("#user").addClass("hidden");
-            
+
             //新規、ログインの表示
             $("#signup").removeClass("hidden");
             $("#login").removeClass("hidden");
@@ -346,11 +346,28 @@
     if(mode === "timeattack") {
       $("#title").text("Practiceモード");
       mode = "practice";
+      //practice時のスタイル
+      $("#target").text("コードを選ぶとここにファイルがプレビューされます。");
+      $(".leftMenu").removeClass("hidden");
+      $(".rightMenu #description").removeClass("hidden");
+      $(".rightMenu").removeClass("rightMenu-timeAttack");
+      //timeAttackのランキング（開発中）
+      $("#rankingScore").text("ここにランキングが表示されます。");
     } else if (mode === "practice"){
       $("#title").text("Time Attackモード");
       mode = "timeattack";
+      //タイムアタック用に変数をセット
       localStorage.setItem('files', files);
       localStorage.setItem('count', count);
+      //timeattack時のスタイル
+      $("#target").html("TimeAttackモードは制限時間内にできるだけ多くのコードをタイピングするゲームです。<br>"+
+      "タイピングの正当率などから成績評価をします。<br>"+
+      "ゲーム終了時にはログインされたアカウントにベストスコアが記録されます。");
+      $(".leftMenu").addClass("hidden");
+      $(".rightMenu #description").addClass("hidden");
+      $(".rightMenu").addClass("rightMenu-timeAttack");
+      //timeAttackのランキング（開発中）
+      $("#rankingScore").text("開発中...");
     }
   });
 

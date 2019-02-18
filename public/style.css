@@ -342,6 +342,10 @@ ul.languages-container li img{
   position: relative;
 }
 
+.rightMenu-timeAttack {
+  width: 100%;
+}
+
 .rightMenu #description {
   height: 2em;
   padding: .4em 0 .4em 3px;
@@ -386,7 +390,7 @@ ul.languages-container li img{
   /* border: solid 1px; */
   border: none;
 	padding: .2em .5em;
-  /* width: 660px; */
+  /* width: 600px; */
 }
 
 /* td, th {
@@ -593,12 +597,12 @@ ul.languages-container li img{
   text-align: center;
 }
 
-.closeButton {  
-  height: 35px;    
+.closeButton {
+  height: 35px;
   margin-bottom: 20px;
   position: absolute;
   bottom: 0;
-  column-count: 1;    
+  column-count: 1;
   text-align: center;
 }
 
