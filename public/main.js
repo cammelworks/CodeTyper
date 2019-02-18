@@ -130,8 +130,8 @@
 
       //アカウントページへの移動
       $("#user").click(function(){
-         window.location.href = './account/index.html'; 
-      });         
+         window.location.href = './account/index.html';
+      });
     });
 
     //ユーザのログイン状態の確認
@@ -246,21 +246,21 @@
 
     $("#PHP").click(function() {
       $("#language-header").html("");
-      $("#startCatchCopy").html("<? php");
+      $("#startCatchCopy").text("<? php");
       $("#catchCopy").html(catchCopy);
-      $("#endCatchCopy").html(">");
-      $("#startDescription").html("<? php");
+      $("#endCatchCopy").text(">");
+      $("#startDescription").text("<? php");
       $("#description").html(description);
-      $("#endDescription").html(">");
-      $("#startPracticeModeDescription").html("<? php");
+      $("#endDescription").text(">");
+      $("#startPracticeModeDescription").text("<? php");
       $("#practiceModeDescription").html(practiceModeDescription);
-      $("#endPracticeModeDescription").html(">");
-      $("#startTimeAttackModeDescription").html("<? php");
+      $("#endPracticeModeDescription").text(">");
+      $("#startTimeAttackModeDescription").text("<? php");
       $("#timeAttackModeDescription").html(timeAttackModeDescription);
-      $("#endTimeAttackModeDescription").html(">");
-      $("#startAttention").html("<? php");
+      $("#endTimeAttackModeDescription").text(">");
+      $("#startAttention").text("<? php");
       $("#attention").html(attention);
-      $("#endAttention").html(">");
+      $("#endAttention").text(">");
       $("#fileList").empty();
       localStorage.setItem('lang', "PHP");
       setFileList();
@@ -323,7 +323,6 @@
 
 
 
-
   //選択されているボタンを表示
   function changeButton() {
     btn = $('button');
@@ -341,7 +340,9 @@
       $("#title").text("Practiceモード");
       mode = "practice";
       //practice時のスタイル
-      $("#target").text("コードを選ぶとここにファイルがプレビューされます。");
+      $("#target").html("Practiceモードは練習用のモードで、ゆっくりコードを見ながらタイピングの練習もしたい人におすすめです。<br>"+
+      "今後実際に打っているリファレンスの説明を随時出力するようにしていきたいと思います。<br>"+
+      "ゲーム終了時にはログインしているアカウントにベストタイムが記録されます。");
       $(".leftMenu").removeClass("hidden");
       $(".rightMenu #description").removeClass("hidden");
       $(".rightMenu").removeClass("rightMenu-timeAttack");
