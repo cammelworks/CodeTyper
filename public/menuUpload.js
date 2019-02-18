@@ -104,35 +104,40 @@
     //JQueryでモーダルウィンドウの実装
     $(function() {
       $("#Ubutton").click(function() {
-        //表示  
-        $(".modalButton").removeClass("hidden");  
-        //非表示
-        $(".closeButton").addClass("hidden");
-        $("#noteTitle").html("UPLOAD上の注意");
-        $("#note").html("インデントまたは字下げは4文字分にしてください．<br>コードの最終行に空行を１行入れてください．<br><span id='caution'>上記に従わないコードはうまく動作しません．</span><br>すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．");
-        $(".submit").remove();
-        $(".space").remove();
-        $("#selfiles").removeClass("hidden");
-        //マスクを適用
-        $("body").append('<div id="mask"></div>');
+        //サインアウト非表示の時(ログインしてないとき)  
+        if($("#signout").is(':hidden')){
+          alert("アップロードには「アカウント」が必要です。\nログインしてください");
+        }else{
+          //表示  
+          $(".modalButton").removeClass("hidden");  
+          //非表示
+          $(".closeButton").addClass("hidden");
+          $("#noteTitle").html("UPLOAD上の注意");
+          $("#note").html("インデントまたは字下げは4文字分にしてください．<br>コードの最終行に空行を１行入れてください．<br><span id='caution'>上記に従わないコードはうまく動作しません．</span><br>すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．");
+          $(".submit").remove();
+          $(".space").remove();
+          $("#selfiles").removeClass("hidden");
+          //マスクを適用
+          $("body").append('<div id="mask"></div>');
 
-        //画面中央を計算する関数を実行
-        modalResize();
-        //モーダルウィンドウの表示
-        $("#modal,#mask").fadeIn("slow");
-        //画面中央を計算する関数
-        $(window).resize(modalResize);
-        function modalResize(){
-          var w = $(window).width();
-          var h = $(window).height();
-          var cw = $("#modal").outerWidth();
-          var ch = $("#modal").outerHeight();
-          //取得した値をcssに追加する
-          $("#modal").css({
+          //画面中央を計算する関数を実行
+          modalResize();
+          //モーダルウィンドウの表示
+          $("#modal,#mask").fadeIn("slow");
+          //画面中央を計算する関数
+          $(window).resize(modalResize);
+          function modalResize(){
+            var w = $(window).width();
+            var h = $(window).height();
+            var cw = $("#modal").outerWidth();
+            var ch = $("#modal").outerHeight();
+            //取得した値をcssに追加する
+            $("#modal").css({
               "left": ((w - cw)/2) + "px",
               "top": ((h - ch)/2) + "px"
-          });
-        }
+            });
+          }  
+        }  
       });
     });
 
