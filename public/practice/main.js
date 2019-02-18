@@ -30,7 +30,7 @@
   const text = document.createElement("span");
   //初期化
   function init(){
-    initWord = "Press space bar to start";
+    initWord = "Press [SPACE] bar to START!!\n[ESC] to QUIT";
     currentWord = "";
     inputedText = "";
     currentLocation = 0;
