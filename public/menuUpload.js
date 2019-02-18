@@ -36,7 +36,7 @@
     function upload2fire() {
       for(var i = 0; i < fileCount; i++){
         //現在のユーザ
-        var user = firebase.auth().currentUser;  
+        var user = firebase.auth().currentUser;
         //拡張子なしファイル名
         var filename = filesrc[i].match(reg)[1];
         //拡張子から言語を取得
@@ -49,10 +49,10 @@
         databaseRef.set({
           filename: filesrc[i],
           description: description,
-          user: user.displayName    
+          user: user.displayName
         });
         console.log('Uploaded to Database!');
-        console.log(user.displayName);  
+        console.log(user.displayName);
       }
       var pElements = document.getElementsByClassName("codeDescription");
       submit.classList.add("hidden");
@@ -108,16 +108,20 @@
     //JQueryでモーダルウィンドウの実装
     $(function() {
       $("#Ubutton").click(function() {
-        //サインアウト非表示の時(ログインしてないとき)  
+        //サインアウト非表示の時(ログインしてないとき)
         if($("#signout").is(':hidden')){
           alert("アップロードには「アカウント」が必要です。\nログインしてください");
         }else{
-          //表示  
-          $(".modalButton").removeClass("hidden");  
+          //表示
+          $(".modalButton").removeClass("hidden");
           //非表示
           $(".closeButton").addClass("hidden");
           $("#noteTitle").html("UPLOAD上の注意");
-          $("#note").html("インデントまたは字下げは4文字分にしてください．<br>コードの最終行に空行を１行入れてください．<br><span id='caution'>上記に従わないコードはうまく動作しません．</span><br>すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．");
+          $("#note").html("インデントまたは字下げは4文字分にしてください．<br>"+
+          "コードの最終行に空行を１行入れてください．<br>"+
+          "コメントアウトなどで日本語を入れないでください．<br>"+
+          "<span id='caution'>上記に従わないコードはうまく動作しません．</span><br>"+
+          "すでにアップロードしてあるファイルと同じファイル名のファイルをアップロードすると上書きされます．");
           $(".submit").remove();
           $(".space").remove();
           $("#selfiles").removeClass("hidden");
@@ -140,8 +144,8 @@
               "left": ((w - cw)/2) + "px",
               "top": ((h - ch)/2) + "px"
             });
-          }  
-        }  
+          }
+        }
       });
     });
 

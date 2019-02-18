@@ -262,7 +262,7 @@ body {
   right: 0;
   left: 0;
   margin: 0 auto;
-  transition: .8s;
+  /* transition: .8s; */
 }
 
 #start {
