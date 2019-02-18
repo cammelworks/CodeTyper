@@ -134,25 +134,8 @@
         
       //アカウントページへの移動
       $("#user").click(function(){
-         //非表示 
-         $(".content-container").addClass("hidden");
-         $("#user").addClass("hidden");  
-         //表示
-         $("#home").removeClass("hidden");
-         $(".account-container").removeClass("hidden");  
-         //window.location.href = './account/index.html'; 
-      });
-        
-      //ホームへ    
-      $("#home").click(function(){
-         //非表示 
-         $(".account-container").addClass("hidden");  
-         $("#home").addClass("hidden"); 
-         //表示
-         $(".content-container").removeClass("hidden"); 
-         $("#user").removeClass("hidden");  
-          
-      });        
+         window.location.href = './account/index.html'; 
+      });         
     });
 
     //ユーザのログイン状態の確認
@@ -219,7 +202,7 @@
     // デザイン編集の結果、スタイルの無駄が多いのでclass='language-green'以外のclassは取り除いてくれると助かる
     $("#C").click(function() {
       $("#language-header").html("<span>#include</span><span>&ltstdio.h&gt</span>");
-      $("#startCatchCopy").html("<span>void</span> <span class='language-green'>catchcopy</span>(<span>char</span> <span>str[]</span>) {");
+      $("#startCatchCopy").html("<span>void</span> <span class='language-green'>problem</span>(<span>char</span> <span>str[]</span>) {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
       $("#startDescription").html("<span>void</span> <span class='language-green'>description</span>(<span>void</span>) {");
@@ -245,7 +228,7 @@
 
     $("#Java").click(function() {
       $("#language-header").html("");
-      $("#startCatchCopy").html("<span class='pink'>class</span> <span class='skyblue'>Catchcopy()</span> {");
+      $("#startCatchCopy").html("<span class='pink'>class</span> <span class='skyblue'>Problem()</span> {");
       $("#catchCopy").html(catchCopy);
       $("#endCatchCopy").html("}");
       $("#startDescription").html("<span class='pink'>class</span> <span class='skyblue'>Description()</span> {");

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="jp" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Account</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCNdPBNs_yzSoj3YSAYp83giUP0xIMQ9wg",
+        authDomain: "codetyper-cc5b6.firebaseapp.com",
+        databaseURL: "https://codetyper-cc5b6.firebaseio.com",
+        projectId: "codetyper-cc5b6",
+        storageBucket: "codetyper-cc5b6.appspot.com",
+        messagingSenderId: "496234219788"
+      };
+      firebase.initializeApp(config);
+    </script>   
+  </head>
+  <body>
+    <!-- サイドバー -->
+    <div class="sidebar-container">
+      <!-- ロゴ -->
+      <div class="logo-container">
+        <a href="#">
+          <img src="../img/logo.png" alt="logo" width="100%">
+        </a>
+      </div>
+      <!-- ログイン機能 -->
+      <div class="login-container">
+          <div id="logo" class="authUname"> 
+            > <img src="../img/file-logo.png" alt="dir">
+            <span id="Uname"></span> 
+          </div>
+          <div id="home" class="authButton">
+            <img src="../img/dir-logo.png" alt="dir">
+            Home  
+          </div>      
+          <div id=""></div>
+          <div id="signout" class="authButton">
+            <img src="../img/dir-logo.png" alt="dir">
+            Sign Out
+          </div>
+      </div>
+      <!-- アップロードボタン -->
+      <div class="upload-container">
+        <div id="Ubutton" class="menu-button">Upload</div>
+      </div>
+    </div>
+
+    <!--アカウント管理モーダル-->
+    <div id="modalAuth">
+      <p id="userInfoTitle"></p>
+      <div class="closeButton">      
+        <div class="close">Close</div>
+      </div>    
+    </div>
+      
+    <div>
+        作成中!!
+    </div>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>      
+    <script src="main.js"></script> 
+  </body>
+</html>
+    
