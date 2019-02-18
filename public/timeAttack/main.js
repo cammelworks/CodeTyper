@@ -26,7 +26,7 @@
   let lines;
   let countLines;
   let lineMisses;
-  let perfictLines;
+  let perfectLines;
 
   const inputed = document.createElement("span");
   inputed.classList.add("inputed");
@@ -170,8 +170,9 @@
   function finish() {
     clearInterval(timerId);
     var accuracy = (score / (score + miss));
+    var lineAccuracy = perfectLines / countLines;
     var wpm = (score / 200) * 60;
-    var totalScore = wpm*accuracy*accuracy*accuracy;
+    var totalScore = wpm*lineAccuracy*lineAccuracy*lineAccuracy;
     console.log(lines);
     console.log(lineMisses);
     mask.classList.remove("hiddenMask");
@@ -184,7 +185,7 @@
       resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
       totalScore.toFixed(0) + "<br>正答率: " +
       (accuracy * 100).toFixed(2) + "<br>行正答率: " +
-      perfictLines +"/" + countLines + "<br>ミスタイプ数: "
+      perfectLines +"/" + countLines + "<br>ミスタイプ数: "
       +miss+"<br>WPM: " + wpm.toFixed(2);
     }
     //ログインしていたら
@@ -208,7 +209,8 @@
               });
               resultLabel.innerHTML = "<span id='score'>Time up!!</span><br>スコア: " +
               totalScore.toFixed(0) + "<br>正答率: " +
-              (accuracy * 100).toFixed(2) + "<br>ミスタイプ数: "
+              (accuracy * 100).toFixed(2) + "<br>行正答率: " +
+              perfictLines +"/" + countLines + "<br>ミスタイプ数: "
               +miss+"<br>WPM: " + wpm.toFixed(2) + "<br>自己ベスト更新！！";
             }
           }
@@ -261,7 +263,7 @@
         cursor.textContent = currentWord[currentLocation];
         lines = 0;
         countLines = 0;
-        perfictLines = 0;
+        perfectLines = 0;
       }
       return;
     }
@@ -272,7 +274,7 @@
       letters++;
       if(e.keyCode === 13){
         if(lineMisses == 0) {
-          perfictLines++;
+          perfectLines++;
           console.log("perfect");
         }
         letters = 0;
