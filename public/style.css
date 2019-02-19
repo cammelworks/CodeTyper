@@ -151,7 +151,7 @@ ul.languages-container li img{
 
 .advertisement-container {
   height: 4em;
-  text-align: center;
+  padding-left: 20%;
   vertical-align: middle;
 }
 
@@ -369,13 +369,14 @@ ul.languages-container li img{
   overflow: auto;
   border-bottom: 1px solid #fff;
   box-sizing: border-box;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   /* border-radius: 3px; */
 }
 
 .rightMenu > #code > #target{
   text-align: initial;
   padding-left: 3px;
+  font-family: inherit;
 }
 
 .rightMenu #ranking {
