@@ -148,9 +148,16 @@ ul.languages-container li img{
   margin-top: 1em;
   float: right;
 }
+
+.advertisement-container {
+  height: 4em;
+  text-align: center;
+  vertical-align: middle;
+}
+
 #accountInfo {
-    font-size: 30px;
-    text-align: center;
+  font-size: 30px;
+  text-align: center;
 }
 
 #catchCopy {
