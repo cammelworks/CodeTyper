@@ -2,6 +2,8 @@
 # CodeTyper 
 ## feat. 🐫Cammel🐫
 
+[![](CodeTyper.gif)](https://codetyper-cc5b6.web.app/index.html)
+
 ---
 
 ### Are you still looking at your key-board when you code ... ??😅
